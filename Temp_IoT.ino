@@ -98,6 +98,31 @@ void setColor(int redValue, int greenValue, int blueValue) {
 }
 
 void loop() {
+  //Button input read and processing 
+  if(!buttonState) {
+    if(analogRead(CONTACT_PIN)) {
+      currTime = millis();
+      buttonState = true;
+      setColor(0, 255, 0);
+      open = true;
+      attempts = 0;
+      Serial.println("Door Opened");
+    }
+  }
+  else {
+    if(analogRead(CONTACT_PIN)) {
+      if((millis()-currTime)>=30000) {
+        setColor(255, 0, 0);
+        //Alerta #11111 Por puerta abierta más de 30 seg
+        Serial.println(11111);
+      }
+    }else{
+      setColor(0, 0, 255);
+      open = false;
+      buttonState = false;
+      Serial.println("Door closed!!");
+    }
+  }
 
   char customKey;
 
@@ -155,7 +180,8 @@ void loop() {
   } else if(currentKey.length()> KEY.length()){
     //If times >= 30000 led go RED
     if ((millis() - currTime) >= 30000){
-      Serial.println("Door opened way too long!!");
+      //Alerta #11111 Por puerta abierta más de 30 seg
+      Serial.println(11111);
       setColor(255, 0, 0);
     } else {
       Serial.println("Door opened!!");
@@ -166,9 +192,32 @@ void loop() {
     block = true;
     //RED for 30 seconds when its block
     setColor(255, 0, 0);
+    //Alerta #33333 Numero de intentos excedidos
+    Serial.println(33333);
     delay(30000);
     setColor(0, 0, 255);
     block = false;
     attempts = 0;
   } 
+
+ val = digitalRead(inputPin);  // read input value
+  if (val == HIGH) {            // check if the input is HIGH
+    digitalWrite(redLedPin, HIGH);  // turn LED ON
+    if (pirState == LOW) {
+      //Alerta #22222 Por detección de movimiento en el sensor
+      Serial.println(22222);
+      // We only want to print on the output change, not state
+      pirState = HIGH;
+    }
+  } else {
+    digitalWrite(redLedPin, LOW); // turn LED OFF
+    if (pirState == HIGH){
+      // we have just turned of
+      Serial.println("Motion ended!");
+      // We only want to print on the output change, not state
+      pirState = LOW;
+    }
+  }
+
+  delay(100);
 }
