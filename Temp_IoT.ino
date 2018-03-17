@@ -1,5 +1,19 @@
 #include <Keypad.h>
 
+const int buzzer = A5;
+
+//Minimum voltage required for an alert
+const double MIN_VOLTAGE = 1.2;
+
+//Battery indicator
+const int BATTERY_LED = A1;
+
+//Battery measure pin
+const int BATTERY_PIN = A2;
+
+//Current battery charge
+double batteryCharge;
+
 
 int inputPin = 2;               // choose the input pin (for PIR sensor)
 int pirState = LOW;             // we start, assuming no motion detected
@@ -13,7 +27,7 @@ int redPin= 13;
 int greenPin = 10;
 int bluePin = 12;
 int redLedPin = 11;
-int CONTACT_PIN = 0;
+int CONTACT_PIN = A0;
 boolean buttonState;
 
 //Specified password
@@ -89,6 +103,15 @@ void setup() {
   //Blue as standby
   setColor(0, 0, 255);
   digitalWrite(redLedPin, LOW);
+
+  // Ouput pin definition for BATTERY_LED
+  pinMode(BATTERY_LED,OUTPUT);
+
+  //Input pin definition for battery measure
+  pinMode(BATTERY_PIN,INPUT);
+
+  pinMode(buzzer, OUTPUT);
+
 }
 
 void setColor(int redValue, int greenValue, int blueValue) {
@@ -106,15 +129,14 @@ void loop() {
       setColor(0, 255, 0);
       open = true;
       attempts = 0;
-      Serial.println("Door Opened");
+      Serial.println("Door opened!!");
     }
   }
   else {
     if(analogRead(CONTACT_PIN)) {
       if((millis()-currTime)>=30000) {
         setColor(255, 0, 0);
-        //Alerta #11111 Por puerta abierta más de 30 seg
-        Serial.println(11111);
+        Serial.println("Door opened too much time!!");
       }
     }else{
       setColor(0, 0, 255);
@@ -180,8 +202,7 @@ void loop() {
   } else if(currentKey.length()> KEY.length()){
     //If times >= 30000 led go RED
     if ((millis() - currTime) >= 30000){
-      //Alerta #11111 Por puerta abierta más de 30 seg
-      Serial.println(11111);
+      Serial.println("Door opened way too long!!");
       setColor(255, 0, 0);
     } else {
       Serial.println("Door opened!!");
@@ -192,8 +213,6 @@ void loop() {
     block = true;
     //RED for 30 seconds when its block
     setColor(255, 0, 0);
-    //Alerta #33333 Numero de intentos excedidos
-    Serial.println(33333);
     delay(30000);
     setColor(0, 0, 255);
     block = false;
@@ -204,8 +223,8 @@ void loop() {
   if (val == HIGH) {            // check if the input is HIGH
     digitalWrite(redLedPin, HIGH);  // turn LED ON
     if (pirState == LOW) {
-      //Alerta #22222 Por detección de movimiento en el sensor
-      Serial.println(22222);
+      // we have just turned on
+      Serial.println("Motion detected!");
       // We only want to print on the output change, not state
       pirState = HIGH;
     }
@@ -219,5 +238,25 @@ void loop() {
     }
   }
 
+  //Value conversion from digital to voltage
+  batteryCharge = (analogRead(BATTERY_PIN)*5.4)/1024;
+  //batteryCharge = 1;
+  //0Serial.println(batteryCharge);
+  
+  //Measured value comparison with min voltage required
+  if(batteryCharge<=MIN_VOLTAGE) {
+    analogWrite(BATTERY_LED, 255);
+    Serial.println("LOW BATTERY");
+            digitalWrite(buzzer, 20);
+            delay(2000);                 // Espera
+            digitalWrite(buzzer, 0);            // Apaga
+            delay(30000);                 // Espera
+  }
+  else {
+  analogWrite(BATTERY_LED, 0);
+  }
+
+
   delay(100);
 }
+
