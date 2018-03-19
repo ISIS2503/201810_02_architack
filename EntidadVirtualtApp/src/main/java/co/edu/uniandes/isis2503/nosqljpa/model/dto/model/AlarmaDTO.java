@@ -39,16 +39,14 @@ public class AlarmaDTO {
     private String id;
     private int tipo;
     private String mensaje;
-    
-    @Temporal(TemporalType.DATE)
-    private Date tiempo;
+    private String tiempo;
 
 
     public AlarmaDTO() {
 
     }
 
-    public AlarmaDTO(String id, int tipo, Date tiempo, String mensaje) {
+    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje) {
         this.id = id;
         this.tipo = tipo;
         this.mensaje = mensaje;
@@ -79,11 +77,11 @@ public class AlarmaDTO {
         this.mensaje = mensaje;
     }
 
-    public Date getTiempo() {
+    public String getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(Date tiempo) {
+    public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
 

@@ -54,18 +54,17 @@ public class AlarmaEntity implements Serializable {
     
     private String mensaje;
     
-    @Temporal(TemporalType.DATE)
-    private Date tiempo;
+    private String tiempo;
 
     public AlarmaEntity() {
 
     }
 
-    public AlarmaEntity(String id, int tipo, String mensaje) {
+    public AlarmaEntity(String id, int tipo, String mensaje, String tiempo) {
         this.id = id;
         this.tipo = tipo;
         this.mensaje = mensaje;
-        tiempo = new Timestamp(System.currentTimeMillis());
+        this.tiempo = tiempo;
     }
 
     public String getId() {
@@ -92,11 +91,11 @@ public class AlarmaEntity implements Serializable {
         this.mensaje = mensaje;
     }
 
-    public Date getTiempo() {
+    public String getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(Date tiempo) {
+    public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
 
