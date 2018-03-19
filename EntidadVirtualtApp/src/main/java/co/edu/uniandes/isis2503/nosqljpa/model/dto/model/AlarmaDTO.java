@@ -24,7 +24,10 @@
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -32,22 +35,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ca.mendoza968
  */
 @XmlRootElement
-public class SensorDTO {
+public class AlarmaDTO {
     private String id;
-    private String code;
-    private List<String> realTimeData;
-    private List<String> measurements;
+    private int tipo;
+    private String mensaje;
+    
+    @Temporal(TemporalType.DATE)
+    private Date tiempo;
 
-    public SensorDTO() {
-        realTimeData = new ArrayList();
-        measurements = new ArrayList();
+
+    public AlarmaDTO() {
+
     }
 
-    public SensorDTO(String id, String code, List<String> realTimeData, List<String> measurements) {
+    public AlarmaDTO(String id, int tipo, Date tiempo, String mensaje) {
         this.id = id;
-        this.code = code;
-        this.realTimeData = realTimeData;
-        this.measurements = measurements;
+        this.tipo = tipo;
+        this.mensaje = mensaje;
+        this.tiempo = tiempo;
     }
 
     public String getId() {
@@ -58,35 +63,28 @@ public class SensorDTO {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
-    public List<String> getRealTimeData() {
-        return realTimeData;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setRealTimeData(List<String> realTimeData) {
-        this.realTimeData = realTimeData;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public List<String> getMeasurements() {
-        return measurements;
+    public Date getTiempo() {
+        return tiempo;
     }
 
-    public void setMeasurements(List<String> measurements) {
-        this.measurements = measurements;
+    public void setTiempo(Date tiempo) {
+        this.tiempo = tiempo;
     }
-    
-    public void addMeasurement(String id) {
-        this.measurements.add(id);
-    }
-    
-    public void addRealTimeData(String id) {
-        this.realTimeData.add(id);
-    }
+
 }

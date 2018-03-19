@@ -37,62 +37,50 @@ import org.hibernate.annotations.DynamicUpdate;
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "SENSOR")
-public class SensorEntity implements Serializable {
+@Table(name = "RESIDENCIA")
+public class ResidenciaEntity implements Serializable {
 
     @Id
-    private String id;
+    private String nombre;
 
-    private String code;
+    private String propietario;
+
 
     @ElementCollection
-    private List<String> realTimeData;
+    private List<String> sensors;
+
+    public ResidenciaEntity() {
+        sensors =  new ArrayList();
+    }
+
+    public ResidenciaEntity(String id, String name, List<String> sensors) {
+        this.nombre = id;
+        this.propietario = name;
+        this.sensors = sensors;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
+    }
+
+    public List<String> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<String> sensors) {
+        this.sensors = sensors;
+    }
     
-    @ElementCollection
-    private List<String> measurements;
-
-    public SensorEntity() {
-        realTimeData = new ArrayList();
-        measurements = new ArrayList();
-    }
-
-    public SensorEntity(String id, String code, List<String> realTimeData, List<String> measurements) {
-        this.id = id;
-        this.code = code;
-        this.realTimeData = realTimeData;
-        this.measurements = measurements;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<String> getRealTimeData() {
-        return realTimeData;
-    }
-
-    public void setRealTimeData(List<String> realTimeData) {
-        this.realTimeData = realTimeData;
-    }
-
-    public List<String> getMeasurements() {
-        return measurements;
-    }
-
-    public void setMeasurements(List<String> measurements) {
-        this.measurements = measurements;
-    }
-   
 }

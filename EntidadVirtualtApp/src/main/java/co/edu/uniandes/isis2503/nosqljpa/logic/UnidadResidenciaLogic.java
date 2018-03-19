@@ -23,52 +23,47 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.logic;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.ISensorLogic;
-import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.SensorConverter.CONVERTER;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.persistence.SensorPersistence;
+import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.UnidadResidencialConverter.CONVERTER;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
+import co.edu.uniandes.isis2503.nosqljpa.persistence.UnidadResidencialPersistence;
 import java.util.List;
 import java.util.UUID;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class SensorLogic implements ISensorLogic {
+public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
+    
+    private final UnidadResidencialPersistence persistence;
 
-    private final SensorPersistence persistence;
-
-    public SensorLogic() {
-        this.persistence = new SensorPersistence();
+    public UnidadResidenciaLogic() {
+        this.persistence = new UnidadResidencialPersistence();
     }
 
     @Override
-    public SensorDTO add(SensorDTO dto) {
-        if (dto.getId() == null) {
+    public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
+         if(dto.getId()==null){
             dto.setId(UUID.randomUUID().toString());
-        }
-        SensorDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+         }
+        UnidadResidencialDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public SensorDTO update(SensorDTO dto) {
-        SensorDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+    public UnidadResidencialDTO update(UnidadResidencialDTO dto) {
+        UnidadResidencialDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public SensorDTO find(String id) {
+    public UnidadResidencialDTO find(String id) {
         return CONVERTER.entityToDto(persistence.find(id));
     }
-    
-    @Override
-    public SensorDTO findCode(String code) {
-        return CONVERTER.entityToDto(persistence.findCode(code));
-    }
 
     @Override
-    public List<SensorDTO> all() {
+    public List<UnidadResidencialDTO> all() {
         return CONVERTER.listEntitiesToListDTOs(persistence.all());
     }
 

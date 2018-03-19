@@ -23,12 +23,13 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IFloorLogic;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRoomLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.FloorLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.RoomLogic;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.FloorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IConsolidatedDataLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.ConsolidatedDataLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.AlarmaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ConsolidatedDataDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
 import com.sun.istack.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
@@ -41,63 +42,64 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaLogic;
 
 /**
  *
  * @author ca.mendoza968
  */
-@Path("/floors")
+@Path("/residencia")
 @Produces(MediaType.APPLICATION_JSON)
-public class FloorService {
+public class ResidenciaService {
+    private final IResidenciaLogic residenciaLogic;
+    private final IAlarmaLogic alarmaLogic;
 
-    private final IFloorLogic floorLogic;
-    private final IRoomLogic roomLogic;
-
-    public FloorService() {
-        this.floorLogic = new FloorLogic();
-        this.roomLogic = new RoomLogic();
+    public ResidenciaService() {
+        this.residenciaLogic = new ResidenciaLogic();
+        this.alarmaLogic = new AlarmaLogic();
     }
 
     @POST
-    public FloorDTO add(FloorDTO dto) {
-        return floorLogic.add(dto);
+    public ResidenciaDTO add(ResidenciaDTO dto) throws Exception {
+        return residenciaLogic.add(dto);
     }
-
+    
     @POST
-    @Path("{code}/rooms")
-    public RoomDTO addRoom(@PathParam("code") String code, RoomDTO dto) {
-        FloorDTO floor = floorLogic.findCode(code);
-        RoomDTO result = roomLogic.add(dto);
-        floor.addRoom(dto.getId());
-        floorLogic.update(floor);
+    @Path("{code}/sensors")
+    public AlarmaDTO addSensor(@PathParam("id") String id, AlarmaDTO dto) {
+        ResidenciaDTO room = residenciaLogic.find(id);
+        AlarmaDTO result = alarmaLogic.add(dto);
+        room.addSAlarma(dto.getId());
+        residenciaLogic.update(room);
         return result;
     }
 
     @PUT
-    public FloorDTO update(FloorDTO dto) {
-        return floorLogic.update(dto);
+    public ResidenciaDTO update(ResidenciaDTO dto) {
+        return residenciaLogic.update(dto);
     }
 
     @GET
     @Path("/{id}")
-    public FloorDTO find(@PathParam("id") String id) {
-        return floorLogic.find(id);
+    public ResidenciaDTO find(@PathParam("id") String id) {
+        return residenciaLogic.find(id);
     }
 
     @GET
-    public List<FloorDTO> all() {
-        return floorLogic.all();
+    public List<ResidenciaDTO> all() {
+        return residenciaLogic.all();
     }
 
     @DELETE
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {
-            floorLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Floor was deleted").build();
+            residenciaLogic.delete(id);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Room was deleted").build();
         } catch (Exception e) {
-            Logger.getLogger(FloorService.class).log(Level.WARNING, e.getMessage());
+            Logger.getLogger(ResidenciaService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }
+    }    
 }

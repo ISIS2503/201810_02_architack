@@ -23,56 +23,57 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.converter;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.ISensorConverter;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.SensorEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.AlarmaEntity;
 import java.util.ArrayList;
 import java.util.List;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaConverter;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class SensorConverter implements ISensorConverter {
+public class AlarmaConverter implements IAlarmaConverter {
 
-    public static ISensorConverter CONVERTER = new SensorConverter();
+    public static IAlarmaConverter CONVERTER = new AlarmaConverter();
 
-    public SensorConverter() {
+    public AlarmaConverter() {
     }
 
     @Override
-    public SensorDTO entityToDto(SensorEntity entity) {
-        SensorDTO dto = new SensorDTO();
+    public AlarmaDTO entityToDto(AlarmaEntity entity) {
+        AlarmaDTO dto = new AlarmaDTO();
         dto.setId(entity.getId());
-        dto.setCode(entity.getCode());
-        dto.setMeasurements(entity.getMeasurements());
-        dto.setRealTimeData(entity.getRealTimeData());
+        dto.setMensaje(entity.getMensaje());
+        dto.setTiempo(entity.getTiempo());
+        dto.setTipo(entity.getTipo());
         return dto;
     }
 
     @Override
-    public SensorEntity dtoToEntity(SensorDTO dto) {
-        SensorEntity entity = new SensorEntity();
+    public AlarmaEntity dtoToEntity(AlarmaDTO dto) {
+        AlarmaEntity entity = new AlarmaEntity();
         entity.setId(dto.getId());
-        entity.setCode(dto.getCode());
-        entity.setMeasurements(dto.getMeasurements());
-        entity.setRealTimeData(dto.getRealTimeData());
+        entity.setMensaje(dto.getMensaje());
+        entity.setTiempo(dto.getTiempo());
+        entity.setTipo(dto.getTipo());  
+  
         return entity;
     }
 
     @Override
-    public List<SensorDTO> listEntitiesToListDTOs(List<SensorEntity> entities) {
-        ArrayList<SensorDTO> dtos = new ArrayList<>();
-        for (SensorEntity entity : entities) {
+    public List<AlarmaDTO> listEntitiesToListDTOs(List<AlarmaEntity> entities) {
+        ArrayList<AlarmaDTO> dtos = new ArrayList<>();
+        for (AlarmaEntity entity : entities) {
             dtos.add(entityToDto(entity));
         }
         return dtos;
     }
 
     @Override
-    public List<SensorEntity> listDTOsToListEntities(List<SensorDTO> dtos) {
-        ArrayList<SensorEntity> entities = new ArrayList<>();
-        for (SensorDTO dto : dtos) {
+    public List<AlarmaEntity> listDTOsToListEntities(List<AlarmaDTO> dtos) {
+        ArrayList<AlarmaEntity> entities = new ArrayList<>();
+        for (AlarmaDTO dto : dtos) {
             entities.add(dtoToEntity(dto));
         }
         return entities;

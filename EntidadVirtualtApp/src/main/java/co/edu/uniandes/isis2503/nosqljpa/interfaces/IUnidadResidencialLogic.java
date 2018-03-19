@@ -23,18 +23,17 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
 import java.util.List;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface ISensorLogic {
-    public SensorDTO add(SensorDTO dto);
-    public SensorDTO update(SensorDTO dto);
-    public SensorDTO find(String id);
-    public SensorDTO findCode(String code);
-    public List<SensorDTO> all();
+public interface IUnidadResidencialLogic {
+    public UnidadResidencialDTO add(UnidadResidencialDTO dto);
+    public UnidadResidencialDTO update(UnidadResidencialDTO dto);
+    public UnidadResidencialDTO find(String id);
+    public List<UnidadResidencialDTO> all();
     public Boolean delete(String id);
 }

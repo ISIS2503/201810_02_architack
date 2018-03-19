@@ -21,20 +21,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.interfaces;
+package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface IRoomLogic {
-    public RoomDTO add(RoomDTO dto);
-    public RoomDTO update(RoomDTO dto);
-    public RoomDTO find(String id);
-    public RoomDTO findCode(String code);
-    public List<RoomDTO> all();
-    public Boolean delete(String id);
+@XmlRootElement
+public class UnidadResidencialDTO {
+    private String id;
+    private String name;
+    private List<String> residencias;
+
+    public UnidadResidencialDTO() {
+        this.residencias = new ArrayList();
+    }
+
+    public UnidadResidencialDTO(String id, String name, List<String> residencias) {
+        this.id = id;
+        this.name = name;
+        this.residencias = residencias;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public List<String> getResidencias() {
+        return residencias;
+    }
+
+    public void setResidencias(List<String> residencias) {
+        this.residencias = residencias;
+    }
+    
+    public void addResidencia(String id) {
+        this.residencias.add(id);
+    }
 }

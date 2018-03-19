@@ -21,18 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.persistence;
+package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.FloorEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.ResidenciaEntity;
+import java.util.List;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class FloorPersistence extends Persistencer<FloorEntity, String>{
+public interface IResidenciaConverter {
+    public ResidenciaDTO entityToDto(ResidenciaEntity entity);
 
-    public FloorPersistence(){
-        this.entityClass = FloorEntity.class;
-    }
+    public ResidenciaEntity dtoToEntity(ResidenciaDTO dto);
 
+    public List<ResidenciaDTO> listEntitiesToListDTOs(List<ResidenciaEntity> entities);
+
+    public List<ResidenciaEntity> listDTOsToListEntities(List<ResidenciaDTO> dtos);
 }

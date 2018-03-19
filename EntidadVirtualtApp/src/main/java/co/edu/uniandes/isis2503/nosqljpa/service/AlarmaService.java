@@ -24,13 +24,12 @@
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IMeasurementLogic;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.ISensorLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IRealTimeDataLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.MeasurementLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.SensorLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.AlarmaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.RealTimeDataLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.MeasurementDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RealTimeDataDTO;
 import com.sun.istack.logging.Logger;
 import java.util.List;
@@ -44,70 +43,39 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaLogic;
 
 /**
  *
  * @author ca.mendoza968
  */
-@Path("/sensors")
+@Path("/alarms")
 @Produces(MediaType.APPLICATION_JSON)
-public class SensorService {
-    private final ISensorLogic sensorLogic;
-    private final IRealTimeDataLogic realtimedataLogic;
-    private final IMeasurementLogic measurementLogic;
+public class AlarmaService {
+    private final IAlarmaLogic sensorLogic;
 
-    public SensorService() {
-        this.sensorLogic = new SensorLogic();
-        this.realtimedataLogic = new RealTimeDataLogic();
-        this.measurementLogic = new MeasurementLogic();
+    public AlarmaService() {
+        this.sensorLogic = new AlarmaLogic();
     }
 
     @POST
-    public SensorDTO add(SensorDTO dto) {
+    public AlarmaDTO add(AlarmaDTO dto) {
         return sensorLogic.add(dto);
     }
 
-    @POST
-    @Path("{code}/realtimedata")
-    public RealTimeDataDTO addRealTimeData(@PathParam("code") String code, RealTimeDataDTO dto) {
-        SensorDTO sensor = sensorLogic.findCode(code);
-        dto.setIdSensor(sensor.getId());
-        RealTimeDataDTO result = realtimedataLogic.add(dto);
-        sensor.addRealTimeData(dto.getId());
-        sensorLogic.update(sensor);
-        return result;
-    }
-    
-    @GET
-    @Path("{code}/realtimedata")
-    public List<RealTimeDataDTO> getRealTimeData(@PathParam("code") String code) {
-        SensorDTO sensor = sensorLogic.findCode(code);
-        return realtimedataLogic.findBySensorId(sensor.getId());
-    }
-    
-    @POST
-    @Path("{code}/measurements")
-    public MeasurementDTO addMeasurement(@PathParam("code") String code, MeasurementDTO dto) {
-        SensorDTO sensor = sensorLogic.findCode(code);
-        MeasurementDTO result = measurementLogic.add(dto);
-        sensor.addMeasurement(dto.getId());
-        sensorLogic.update(sensor);
-        return result;
-    }
-
     @PUT
-    public SensorDTO update(SensorDTO dto) {
+    public AlarmaDTO update(AlarmaDTO dto) {
         return sensorLogic.update(dto);
     }
 
     @GET
     @Path("/{id}")
-    public SensorDTO find(@PathParam("id") String id) {
+    public AlarmaDTO find(@PathParam("id") String id) {
         return sensorLogic.find(id);
     }
 
     @GET
-    public List<SensorDTO> all() {
+    public List<AlarmaDTO> all() {
         return sensorLogic.all();
     }
 
@@ -118,7 +86,7 @@ public class SensorService {
             sensorLogic.delete(id);
             return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Sensor was deleted").build();
         } catch (Exception e) {
-            Logger.getLogger(SensorService.class).log(Level.WARNING, e.getMessage());
+            Logger.getLogger(AlarmaService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
     }    

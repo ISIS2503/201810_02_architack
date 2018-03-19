@@ -12,7 +12,7 @@ public class JPAConnection {
     public static final String CASSANDRA = "cassandra_db";
     public static final String DERBY = "derby_db";
 
-    public static final String DB = CASSANDRA;
+    public static final String DB = DERBY;
 
     private EntityManager entityManager;
     public static final JPAConnection CONNECTION = new JPAConnection();

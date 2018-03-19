@@ -21,22 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.interfaces;
+package co.edu.uniandes.isis2503.nosqljpa.persistence;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.SensorDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.SensorEntity;
-import java.util.List;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.UnidadResidencialEntity;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface ISensorConverter {
-    public SensorDTO entityToDto(SensorEntity entity);
+public class UnidadResidencialPersistence extends Persistencer<UnidadResidencialEntity, String>{
 
-    public SensorEntity dtoToEntity(SensorDTO dto);
+    public UnidadResidencialPersistence(){
+        this.entityClass = UnidadResidencialEntity.class;
+    }
 
-    public List<SensorDTO> listEntitiesToListDTOs(List<SensorEntity> entities);
-
-    public List<SensorEntity> listDTOsToListEntities(List<SensorDTO> dtos);    
 }

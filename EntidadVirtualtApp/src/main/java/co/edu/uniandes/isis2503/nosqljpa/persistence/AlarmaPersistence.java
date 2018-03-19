@@ -23,16 +23,16 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.persistence;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.RoomEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.AlarmaEntity;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class RoomPersistence extends Persistencer<RoomEntity, String>{
+public class AlarmaPersistence extends Persistencer<AlarmaEntity, String>{
 
-    public RoomPersistence(){
-        this.entityClass = RoomEntity.class;
+    public AlarmaPersistence(){
+        this.entityClass = AlarmaEntity.class;
     }
 
 }

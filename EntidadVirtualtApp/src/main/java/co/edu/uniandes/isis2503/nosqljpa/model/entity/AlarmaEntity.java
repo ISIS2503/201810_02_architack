@@ -24,57 +24,48 @@
 package co.edu.uniandes.isis2503.nosqljpa.model.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.ejb.Timeout;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.DynamicUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "FLOOR")
-public class FloorEntity implements Serializable {
+@Table(name = "ALARMA")
+public class AlarmaEntity implements Serializable {
+    private static final int PUERTA_ABIERTA = 1;
+    private static final int MOVIMIENTO_DETECTADO = 2;
+    private static final int INTENTOS_DETECTADOS = 3;
 
     @Id
     private String id;
-    
-    private String name;
-    
-    private String code;
 
-    @ElementCollection
-    private List<String> rooms;
+    private int tipo;
+    
+    private String mensaje;
+    
+    @Temporal(TemporalType.DATE)
+    private Date tiempo;
 
-    public FloorEntity() {
-        this.rooms = new ArrayList();
+    public AlarmaEntity() {
+
     }
 
-    public FloorEntity(String id, String name, String code, List<String> rooms) {
+    public AlarmaEntity(String id, int tipo, String mensaje) {
         this.id = id;
-        this.name = name;
-        this.code = code;
-        this.rooms = rooms;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-    
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.tipo = tipo;
+        this.mensaje = mensaje;
+        tiempo = new Timestamp(System.currentTimeMillis());
     }
 
     public String getId() {
@@ -85,12 +76,28 @@ public class FloorEntity implements Serializable {
         this.id = id;
     }
 
-    public List<String> getRooms() {
-        return rooms;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setRooms(List<String> rooms) {
-        this.rooms = rooms;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public Date getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(Date tiempo) {
+        this.tiempo = tiempo;
     }
 
 }

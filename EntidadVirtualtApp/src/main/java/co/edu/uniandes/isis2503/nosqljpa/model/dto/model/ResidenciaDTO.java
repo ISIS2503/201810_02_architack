@@ -21,20 +21,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.interfaces;
+package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.FloorDTO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface IFloorLogic {
-    public FloorDTO add(FloorDTO dto);
-    public FloorDTO update(FloorDTO dto);
-    public FloorDTO find(String id);
-    public FloorDTO findCode(String code);
-    public List<FloorDTO> all();
-    public Boolean delete(String id);
+@XmlRootElement
+public class ResidenciaDTO {
+    @Id
+    private String nombre;
+    private String propietario;
+    private List<String> alarmas;
+
+
+    public ResidenciaDTO( ) {
+        alarmas = new ArrayList();
+       
+    }
+    
+    public ResidenciaDTO(String nomResidencia, String name, List<String> sensors) {
+        this.nombre = nomResidencia;
+        this.propietario = name;
+        this.alarmas = sensors;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(String propietario) {
+        this.propietario = propietario;
+    }
+
+    public List<String> getAlarmas() {
+        return alarmas;
+    }
+
+    public void setAlarmas(List<String> alarmas) {
+        this.alarmas = alarmas;
+    }
+    
+    public void addSAlarma(String id) {
+        this.alarmas.add(id);
+    }
+    
 }

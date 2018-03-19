@@ -23,20 +23,20 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RoomDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.RoomEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.UnidadResidencialEntity;
 import java.util.List;
 
 /**
  *
  * @author ca.mendoza968
  */
-public interface IRoomConverter {
-    public RoomDTO entityToDto(RoomEntity entity);
+public interface IUnidadResidencialConverter {
+    public UnidadResidencialDTO entityToDto(UnidadResidencialEntity entity);
 
-    public RoomEntity dtoToEntity(RoomDTO dto);
+    public UnidadResidencialEntity dtoToEntity(UnidadResidencialDTO dto);
 
-    public List<RoomDTO> listEntitiesToListDTOs(List<RoomEntity> entities);
+    public List<UnidadResidencialDTO> listEntitiesToListDTOs(List<UnidadResidencialEntity> entities);
 
-    public List<RoomEntity> listDTOsToListEntities(List<RoomDTO> dtos);
+    public List<UnidadResidencialEntity> listDTOsToListEntities(List<UnidadResidencialDTO> dtos);
 }
