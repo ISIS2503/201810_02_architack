@@ -136,7 +136,8 @@ void loop() {
     if(analogRead(CONTACT_PIN)) {
       if((millis()-currTime)>=30000) {
         setColor(255, 0, 0);
-        Serial.println("Door opened too much time!!");
+        //Alerta #11111 Por puerta abierta más de 30 seg
+        Serial.println(11111);
       }
     }else{
       setColor(0, 0, 255);
@@ -213,6 +214,8 @@ void loop() {
     block = true;
     //RED for 30 seconds when its block
     setColor(255, 0, 0);
+    //Alerta #33333 Numero de intentos excedidos
+    Serial.println(33333);
     delay(30000);
     setColor(0, 0, 255);
     block = false;
@@ -224,7 +227,8 @@ void loop() {
     digitalWrite(redLedPin, HIGH);  // turn LED ON
     if (pirState == LOW) {
       // we have just turned on
-      Serial.println("Motion detected!");
+      //Alerta #22222 Por detección de movimiento en el sensor
+      Serial.println(22222);
       // We only want to print on the output change, not state
       pirState = HIGH;
     }
@@ -246,7 +250,8 @@ void loop() {
   //Measured value comparison with min voltage required
   if(batteryCharge<=MIN_VOLTAGE) {
     analogWrite(BATTERY_LED, 255);
-    Serial.println("LOW BATTERY");
+    //Alerta #44444 Por batería crítica
+    Serial.println(44444);
             digitalWrite(buzzer, 20);
             delay(2000);                 // Espera
             digitalWrite(buzzer, 0);            // Apaga
