@@ -23,12 +23,9 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IConsolidatedDataLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
-import co.edu.uniandes.isis2503.nosqljpa.logic.ConsolidatedDataLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.AlarmaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ResidenciaDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.ConsolidatedDataDTO;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
 import com.sun.istack.logging.Logger;
 import java.util.List;
