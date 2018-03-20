@@ -25,7 +25,7 @@ public class AppMQTT {
 	String[] messages = new String[4];
 	String jsonCorreo = "";
 	String jsonPersistir = "";
-	private static String pUrlCorreo = "http://192.168.0.11:8080/postTest";
+	private static String pUrlCorreo = "http://172.24.42.50:8080/postTest";
 	private static String pUrlPersistir = "http://172.24.42.30:8080/alarms";
 	String resultadoFinal = "";
 	int tipo = -1;
