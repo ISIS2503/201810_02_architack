@@ -156,6 +156,6 @@ public class AppMQTT {
 				+ withFormat + "\" }";
 
 		enviardatosCorreo(jsonCorreo);
-		enviarDatosPersistir(jsonPersistir);
+		//enviarDatosPersistir(jsonPersistir);
 	}
 }
