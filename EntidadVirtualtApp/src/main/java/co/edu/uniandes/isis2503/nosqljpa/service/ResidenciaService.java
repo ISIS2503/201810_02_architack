@@ -64,10 +64,10 @@ public class ResidenciaService {
     
     @POST
     @Path("{code}/alarmas")
-    public AlarmaDTO addAlarma(@PathParam("id") String id, AlarmaDTO dto) {
+    public AlarmaDTO addAlarma(@PathParam("code") String id, AlarmaDTO dto) {
         ResidenciaDTO residencia = residenciaLogic.find(id);
         AlarmaDTO result = alarmaLogic.add(dto);
-        residencia.addSAlarma(dto.getId());
+        residencia.addSAlarma(result.getId());
         residenciaLogic.update(residencia);
         return result;
     }
