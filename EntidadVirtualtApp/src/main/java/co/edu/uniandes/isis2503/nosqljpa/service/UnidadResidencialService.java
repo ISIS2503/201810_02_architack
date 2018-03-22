@@ -46,7 +46,7 @@ import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
  *
  * @author ca.mendoza968
  */
-@Path("/floors")
+@Path("/unidadresidencial")
 @Produces(MediaType.APPLICATION_JSON)
 public class UnidadResidencialService {
 
@@ -66,10 +66,10 @@ public class UnidadResidencialService {
     @POST
     @Path("{id}/residencia")
     public ResidenciaDTO addResidencia(@PathParam("id") String id, ResidenciaDTO dto) throws Exception {
-        UnidadResidencialDTO floor = unidadResidencialLogic.find(id);
+        UnidadResidencialDTO residencia = unidadResidencialLogic.find(id);
         ResidenciaDTO result = residenciaLogic.add(dto);
-        floor.addResidencia(dto.getNombre());
-        unidadResidencialLogic.update(floor);
+        residencia.addResidencia(dto.getNombre());
+        unidadResidencialLogic.update(residencia);
         return result;
     }
 

@@ -37,13 +37,13 @@ import org.hibernate.annotations.DynamicUpdate;
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "RESIDENCIA")
+@Table(name = "UNIDAD_RESIDENCIAL")
 public class UnidadResidencialEntity implements Serializable {
 
     @Id
     private String id;
     
-    private String name;
+    private String nombre;
 
     @ElementCollection
     private List<String> residencias;
@@ -54,17 +54,17 @@ public class UnidadResidencialEntity implements Serializable {
 
     public UnidadResidencialEntity(String id, String name, List<String> residencias) {
         this.id = id;
-        this.name = name;
+        this.nombre = name;
         this.residencias = residencias;
     }
 
     
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {

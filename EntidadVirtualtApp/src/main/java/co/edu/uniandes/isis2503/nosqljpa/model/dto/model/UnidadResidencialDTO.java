@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UnidadResidencialDTO {
     private String id;
-    private String name;
+    private String nombre;
     private List<String> residencias;
 
     public UnidadResidencialDTO() {
@@ -43,16 +43,16 @@ public class UnidadResidencialDTO {
 
     public UnidadResidencialDTO(String id, String name, List<String> residencias) {
         this.id = id;
-        this.name = name;
+        this.nombre = name;
         this.residencias = residencias;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     public String getId() {

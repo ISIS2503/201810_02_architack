@@ -47,16 +47,16 @@ public class ResidenciaEntity implements Serializable {
 
 
     @ElementCollection
-    private List<String> sensors;
+    private List<String> alarmas;
 
     public ResidenciaEntity() {
-        sensors =  new ArrayList();
+        alarmas =  new ArrayList();
     }
 
     public ResidenciaEntity(String id, String name, List<String> sensors) {
         this.nombre = id;
         this.propietario = name;
-        this.sensors = sensors;
+        this.alarmas = sensors;
     }
 
     public String getNombre() {
@@ -75,12 +75,12 @@ public class ResidenciaEntity implements Serializable {
         this.propietario = propietario;
     }
 
-    public List<String> getSensors() {
-        return sensors;
+    public List<String> getAlarmas() {
+        return alarmas;
     }
 
-    public void setSensors(List<String> sensors) {
-        this.sensors = sensors;
+    public void setAlarmas(List<String> alarmas) {
+        this.alarmas = alarmas;
     }
     
 }
