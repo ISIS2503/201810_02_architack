@@ -25,7 +25,7 @@ public class AppMQTT {
 	String[] messages = new String[4];
 	String jsonCorreo = "";
 	String jsonPersistir = "";
-	private static String pUrlCorreo = "http://172.24.42.50:8080/postTest";
+	private static String pUrlCorreo = "http://172.24.42.50:8080/alarm";
 	private static String pUrlPersistir = "http://172.24.42.30:8080/alarms";
 	String resultadoFinal = "";
 	int tipo = -1;
@@ -50,15 +50,20 @@ public class AppMQTT {
 
 				public void messageArrived(String topic, MqttMessage message) throws Exception {
 					System.out.println("Message: " + message.toString());
-					messages[3] = "Hubo una alarma en su inmueble: " + message.toString();
-
+					String[] msg = message.toString().split("\"");
+					System.out.println("MENSAJE: " + msg[3]);
+					
+					messages[3] = "Hubo una alarma en su inmueble: " +  msg[3];
+					System.out.println(messages[3]);
 					jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
 							+ " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
 
-					if (messages[2].equalsIgnoreCase("puertaAbierta"))
+					if (msg[3].equalsIgnoreCase("Puerta abierta por mas 30 segundos"))
 						tipo = 1;
-					else if (messages[2].equalsIgnoreCase("movimientoDetectado"))
+					else if (msg[3].equalsIgnoreCase("Se detecto movimiento en la cerradura"))
 						tipo = 2;
+					else if (msg[3].equalsIgnoreCase("Cerradura con nivel de bateria critica"))
+						tipo = 4;
 					else
 						tipo = 3;
 					
