@@ -8,18 +8,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-//import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-//import org.eclipse.paho.client.mqttv3.MqttCallback;
-//import org.eclipse.paho.client.mqttv3.MqttClient;
-//import org.eclipse.paho.client.mqttv3.MqttException;
-//import org.eclipse.paho.client.mqttv3.MqttMessage;
 import com.sun.jmx.snmp.Timestamp;
 
 public class AppMQTT {
 
-//    MqttClient client;
-    // UnidadResdencial/Residencia/Alarma
-    // CorreoEmitente, CorreoReceptor, Asunto, Cuerpo
+    
     private static final String URLCORREO = "http://172.24.42.50:8080/alarm";
 
     public AppMQTT() {
