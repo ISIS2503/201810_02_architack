@@ -112,26 +112,31 @@ public class AppMQTT {
         messages[2] = "ALARMA!";
         String jsonCorreo = "";
         String jsonPersistir = "";
-        int tipo = -1;
+        int tipo;
+        String mens = "";
 
         String pUrlPersistir = "http://172.24.42.30:8080/" + topico[0] + "/" + topico[1]
                 + "/" + topico[2];
 
-        messages[3] = "Hubo una alarma en su inmueble: " + message;
+        if (message.equalsIgnoreCase("11111")) {
+            tipo = 1;
+            mens = "Puerta abierta por mas 30 segundos";
+        } else if (message.equalsIgnoreCase("22222")) {
+            tipo = 2;
+            mens = "Se detecto movimiento en la cerradura";
+        } else if (message.equalsIgnoreCase("44444")) {
+            tipo = 4;
+            mens = "Cerradura con nivel de bateria critica";
+        } else {
+            tipo = 3;
+            mens = "Numero de intentos excedidos";
+        }
+
+        messages[3] = "Hubo una alarma en su inmueble: " + mens;
         System.out.println(messages[3]);
 
         jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
                 + " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
-
-        if (message.equalsIgnoreCase("Puerta abierta por mas 30 segundos")) {
-            tipo = 1;
-        } else if (message.equalsIgnoreCase("Se detecto movimiento en la cerradura")) {
-            tipo = 2;
-        } else if (message.equalsIgnoreCase("Cerradura con nivel de bateria critica")) {
-            tipo = 4;
-        } else {
-            tipo = 3;
-        }
 
         String[] tiempo = (new Timestamp(System.currentTimeMillis())).toString().split("\\{");
         String withFormat = tiempo[2].substring(12, tiempo[2].length() - 1);
