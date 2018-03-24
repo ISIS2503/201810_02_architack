@@ -12,6 +12,6 @@ public class ThreadServidor extends Thread{
 	
 	@Override
 	public void run() {
-		AppMQTT.procesar(topic, message);
+		//AppMQTT.procesar(topic, message);
 	}
 }

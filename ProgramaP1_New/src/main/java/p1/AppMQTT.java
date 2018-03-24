@@ -19,8 +19,47 @@ public class AppMQTT {
     }
 
     public void messageArrived(String topic, String message) throws Exception {
-        ThreadServidor ts = new ThreadServidor(topic, message);
-        ts.start();
+               String[] topico = topic.split("/");
+        String[] messages = new String[4];
+        messages[0] = "yale@gmail.com";
+        messages[1] = "cliente@gmail.edu.co";
+        messages[2] = "ALARMA!";
+        String jsonCorreo = "";
+        String jsonPersistir = "";
+        int tipo;
+        String mens = "";
+
+        String pUrlPersistir = "http://172.24.42.30:8080/" + topico[0] + "/" + topico[1]
+                + "/" + topico[2];
+
+        if (message.equalsIgnoreCase("11111")) {
+            tipo = 1;
+            mens = "Puerta abierta por mas 30 segundos";
+        } else if (message.equalsIgnoreCase("22222")) {
+            tipo = 2;
+            mens = "Se detecto movimiento en la cerradura";
+        } else if (message.equalsIgnoreCase("44444")) {
+            tipo = 4;
+            mens = "Cerradura con nivel de bateria critica";
+        } else {
+            tipo = 3;
+            mens = "Numero de intentos excedidos";
+        }
+
+        messages[3] = "Hubo una alarma en su inmueble: " + mens;
+        System.out.println(messages[3]);
+
+        jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
+                + " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
+
+        String[] tiempo = (new Timestamp(System.currentTimeMillis())).toString().split("\\{");
+        String withFormat = tiempo[2].substring(12, tiempo[2].length() - 1);
+
+        jsonPersistir = "{\"tipo\": \"" + tipo + "\", \"mensaje\" : \"" + messages[3] + "\" , \"tiempo\" : \""
+                + withFormat + "\"}";
+
+        //enviardatosCorreo(jsonCorreo);
+        //enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
     public static String enviardatosCorreo(String jsonCorreo) {
@@ -94,50 +133,5 @@ public class AppMQTT {
         System.out.println("RESULTADO: " + resultado);
         return resultado;
 
-    }
-
-    //client.subscribe("+/+/alarma/#", 0);
-    public static void procesar(String topic, String message) {
-        String[] topico = topic.split("/");
-        String[] messages = new String[4];
-        messages[0] = "yale@gmail.com";
-        messages[1] = "cliente@gmail.edu.co";
-        messages[2] = "ALARMA!";
-        String jsonCorreo = "";
-        String jsonPersistir = "";
-        int tipo;
-        String mens = "";
-
-        String pUrlPersistir = "http://172.24.42.30:8080/" + topico[0] + "/" + topico[1]
-                + "/" + topico[2];
-
-        if (message.equalsIgnoreCase("11111")) {
-            tipo = 1;
-            mens = "Puerta abierta por mas 30 segundos";
-        } else if (message.equalsIgnoreCase("22222")) {
-            tipo = 2;
-            mens = "Se detecto movimiento en la cerradura";
-        } else if (message.equalsIgnoreCase("44444")) {
-            tipo = 4;
-            mens = "Cerradura con nivel de bateria critica";
-        } else {
-            tipo = 3;
-            mens = "Numero de intentos excedidos";
-        }
-
-        messages[3] = "Hubo una alarma en su inmueble: " + mens;
-        System.out.println(messages[3]);
-
-        jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
-                + " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
-
-        String[] tiempo = (new Timestamp(System.currentTimeMillis())).toString().split("\\{");
-        String withFormat = tiempo[2].substring(12, tiempo[2].length() - 1);
-
-        jsonPersistir = "{\"tipo\": \"" + tipo + "\", \"mensaje\" : \"" + messages[3] + "\" , \"tiempo\" : \""
-                + withFormat + "\"}";
-
-        enviardatosCorreo(jsonCorreo);
-        //enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 }
