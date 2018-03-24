@@ -23,52 +23,52 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.logic;
 
-import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.UnidadResidencialConverter.CONVERTER;
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
-import co.edu.uniandes.isis2503.nosqljpa.persistence.UnidadResidencialPersistence;
+import static co.edu.uniandes.isis2503.nosqljpa.model.dto.converter.CerraduraConverter.CONVERTER;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.CerraduraDTO;
+import co.edu.uniandes.isis2503.nosqljpa.persistence.CerraduraPersistence;
 import java.util.List;
 import java.util.UUID;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.ICerraduraLogic;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
-    
-    private final UnidadResidencialPersistence persistence;
+public class CerraduraLogic implements ICerraduraLogic {
 
-    public UnidadResidenciaLogic() {
-        this.persistence = new UnidadResidencialPersistence();
+    private final CerraduraPersistence persistence;
+
+    public CerraduraLogic() {
+        this.persistence = new CerraduraPersistence();
     }
 
     @Override
-    public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
-         if (dto.getId() == null) {
+    public CerraduraDTO add(CerraduraDTO dto) {
+        if (dto.getId() == null) {
             dto.setId(UUID.randomUUID().toString());
         }
-        UnidadResidencialDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+        CerraduraDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public UnidadResidencialDTO update(UnidadResidencialDTO dto) {
-        UnidadResidencialDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+    public CerraduraDTO update(CerraduraDTO dto) {
+        CerraduraDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
         return result;
     }
 
     @Override
-    public UnidadResidencialDTO find(String nombre) {
-        return CONVERTER.entityToDto(persistence.find(nombre));
+    public CerraduraDTO find(String id) {
+        return CONVERTER.entityToDto(persistence.find(id));
     }
 
     @Override
-    public List<UnidadResidencialDTO> all() {
+    public List<CerraduraDTO> all() {
         return CONVERTER.listEntitiesToListDTOs(persistence.all());
     }
 
     @Override
-    public Boolean delete(String nombre) {
-        return persistence.delete(nombre);
+    public Boolean delete(String id) {
+        return persistence.delete(id);
     }
 }

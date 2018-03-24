@@ -36,41 +36,23 @@ import javax.persistence.Table;
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "UNDIDADR_ENTITY")
-public class UnidadResidencialEntity implements Serializable {
+@Table(name = "HUB_ENTITY")
+public class HubEntity implements Serializable {
+
     @Id
     private String id;
     
-    private String nombreunidadresidencial;
-
     @ElementCollection
-    private List<String> residencias;
+    private List<String> cerraduras;
 
-    public UnidadResidencialEntity() {
-        this.residencias = new ArrayList();
+    public HubEntity() {
+        this.cerraduras = new ArrayList ();
+
     }
 
-    public UnidadResidencialEntity(String id, String name, List<String> residencias) {
+    public HubEntity(String id, List<String> cerraduras) {
         this.id = id;
-        this.nombreunidadresidencial = name;
-        this.residencias = residencias;
-    }
-
-    
-    public String getNombreunidadresidencial() {
-        return nombreunidadresidencial;
-    }
-
-    public void setNombreunidadresidencial(String nombreunidadresidencial) {
-        this.nombreunidadresidencial = nombreunidadresidencial;
-    }
-
-    public List<String> getResidencias() {
-        return residencias;
-    }
-
-    public void setResidencias(List<String> residencia) {
-        this.residencias = residencia;
+        this.cerraduras = cerraduras;
     }
 
     public String getId() {
@@ -80,5 +62,12 @@ public class UnidadResidencialEntity implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    public List<String> getCerraduras() {
+        return cerraduras;
+    }
+
+    public void setCerraduras(List<String> cerraduras) {
+        this.cerraduras = cerraduras;
+    }
 }

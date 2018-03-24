@@ -21,7 +21,7 @@ import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaLogic;
  *
  * @author ca.mendoza968
  */
-@Path("/alarms")
+@Path("/alarm")
 @Produces(MediaType.APPLICATION_JSON)
 public class AlarmaService {
     private final IAlarmaLogic sensorLogic;
@@ -56,7 +56,7 @@ public class AlarmaService {
     public Response delete(@PathParam("id") String id) {
         try {
             sensorLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Sensor was deleted").build();
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Alarma was deleted").build();
         } catch (Exception e) {
             Logger.getLogger(AlarmaService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

@@ -42,19 +42,23 @@ public class ResidenciaConverter implements IResidenciaConverter {
 
     @Override
     public ResidenciaDTO entityToDto(ResidenciaEntity entity) {
+        if(entity == null) return null;
         ResidenciaDTO dto = new ResidenciaDTO();
-        dto.setNombre(entity.getNombre());
+        dto.setId(entity.getId());
+        dto.setNombreResidencia(entity.getNombreresidencia());
         dto.setPropietario(entity.getPropietario());
-        dto.setAlarmas(entity.getAlarmas());
+        dto.setHubs(entity.getHubs());
         return dto;
     }
 
     @Override
     public ResidenciaEntity dtoToEntity(ResidenciaDTO dto) {
+        if(dto == null) return null;
         ResidenciaEntity entity = new ResidenciaEntity();
-        entity.setNombre(dto.getNombre());
+        entity.setId(dto.getId());
+        entity.setNombreresidencia(dto.getNombreResidencia());
         entity.setPropietario(dto.getPropietario());
-        entity.setAlarmas(dto.getAlarmas());
+        entity.setHubs(dto.getHubs());
         return entity;
     }
 

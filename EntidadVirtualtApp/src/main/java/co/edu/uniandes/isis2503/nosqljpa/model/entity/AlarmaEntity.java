@@ -24,24 +24,16 @@
 package co.edu.uniandes.isis2503.nosqljpa.model.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.ejb.Timeout;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "ALARMA")
+@Table(name = "ALARMA_ENTITY")
 public class AlarmaEntity implements Serializable {
     private static final int PUERTA_ABIERTA = 1;
     private static final int MOVIMIENTO_DETECTADO = 2;

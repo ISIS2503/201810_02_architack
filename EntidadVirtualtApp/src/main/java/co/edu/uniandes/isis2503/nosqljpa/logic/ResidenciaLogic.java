@@ -43,8 +43,8 @@ public class ResidenciaLogic implements IResidenciaLogic {
 
     @Override
     public ResidenciaDTO add(ResidenciaDTO dto) throws Exception {
-        if(dto.getNombre()==null){
-            throw new Exception("La residencia no posee nombre.");
+        if (dto.getId() == null) {
+            dto.setId(UUID.randomUUID().toString());
         }
         ResidenciaDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
         return result;

@@ -26,6 +26,7 @@ package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Id;
 
 /**
  *
@@ -33,8 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class UnidadResidencialDTO {
+    @Id
     private String id;
-    private String nombre;
+    
+    private String nombreUnidadResidencial;
+    
     private List<String> residencias;
 
     public UnidadResidencialDTO() {
@@ -43,24 +47,16 @@ public class UnidadResidencialDTO {
 
     public UnidadResidencialDTO(String id, String name, List<String> residencias) {
         this.id = id;
-        this.nombre = name;
+        this.nombreUnidadResidencial = name;
         this.residencias = residencias;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreUnidadResidencial() {
+        return nombreUnidadResidencial;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setNombreUnidadResidencial(String nombreUnidadResidencial) {
+        this.nombreUnidadResidencial = nombreUnidadResidencial;
     }
 
     public List<String> getResidencias() {
@@ -74,4 +70,14 @@ public class UnidadResidencialDTO {
     public void addResidencia(String id) {
         this.residencias.add(id);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
 }

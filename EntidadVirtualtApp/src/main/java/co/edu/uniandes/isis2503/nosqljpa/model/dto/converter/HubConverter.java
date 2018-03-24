@@ -23,59 +23,55 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.converter;
 
-import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
-import co.edu.uniandes.isis2503.nosqljpa.model.entity.AlarmaEntity;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.HubDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.HubEntity;
 import java.util.ArrayList;
 import java.util.List;
-import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaConverter;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IHubConverter;
 
 /**
  *
  * @author ca.mendoza968
  */
-public class AlarmaConverter implements IAlarmaConverter {
+public class HubConverter implements IHubConverter {
 
-    public static IAlarmaConverter CONVERTER = new AlarmaConverter();
+    public static IHubConverter CONVERTER = new HubConverter();
 
-    public AlarmaConverter() {
+    public HubConverter() {
     }
 
     @Override
-    public AlarmaDTO entityToDto(AlarmaEntity entity) {
+    public HubDTO entityToDto(HubEntity entity) {
         if(entity == null) return null;
-        AlarmaDTO dto = new AlarmaDTO();
+        HubDTO dto = new HubDTO();
         dto.setId(entity.getId());
-        dto.setMensaje(entity.getMensaje());
-        dto.setTiempo(entity.getTiempo());
-        dto.setTipo(entity.getTipo());
+        dto.setCerraduras(entity.getCerraduras());
         return dto;
     }
 
     @Override
-    public AlarmaEntity dtoToEntity(AlarmaDTO dto) {
+    public HubEntity dtoToEntity(HubDTO dto) {
         if(dto == null) return null;
-        AlarmaEntity entity = new AlarmaEntity();
+        HubEntity entity = new HubEntity();
         entity.setId(dto.getId());
-        entity.setMensaje(dto.getMensaje());
-        entity.setTiempo(dto.getTiempo());
-        entity.setTipo(dto.getTipo());  
+        entity.setCerraduras(dto.getCerraduras());
   
         return entity;
     }
 
     @Override
-    public List<AlarmaDTO> listEntitiesToListDTOs(List<AlarmaEntity> entities) {
-        ArrayList<AlarmaDTO> dtos = new ArrayList<>();
-        for (AlarmaEntity entity : entities) {
+    public List<HubDTO> listEntitiesToListDTOs(List<HubEntity> entities) {
+        ArrayList<HubDTO> dtos = new ArrayList<>();
+        for (HubEntity entity : entities) {
             dtos.add(entityToDto(entity));
         }
         return dtos;
     }
 
     @Override
-    public List<AlarmaEntity> listDTOsToListEntities(List<AlarmaDTO> dtos) {
-        ArrayList<AlarmaEntity> entities = new ArrayList<>();
-        for (AlarmaDTO dto : dtos) {
+    public List<HubEntity> listDTOsToListEntities(List<HubDTO> dtos) {
+        ArrayList<HubEntity> entities = new ArrayList<>();
+        for (HubDTO dto : dtos) {
             entities.add(dtoToEntity(dto));
         }
         return entities;

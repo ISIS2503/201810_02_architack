@@ -23,6 +23,9 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.ICerraduraLogic;
+import co.edu.uniandes.isis2503.nosqljpa.interfaces.IHubLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.UnidadResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.logic.ResidenciaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.UnidadResidencialDTO;
@@ -41,6 +44,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IResidenciaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.AlarmaLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.CerraduraLogic;
+import co.edu.uniandes.isis2503.nosqljpa.logic.HubLogic;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.CerraduraDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.HubDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.MensajeDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.RespuestaDTO;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -52,24 +67,82 @@ public class UnidadResidencialService {
 
     private final IUnidadResidencialLogic unidadResidencialLogic;
     private final IResidenciaLogic residenciaLogic;
+    private final IHubLogic hubLogic;
+    private final ICerraduraLogic cerraduraLogic;
+    private final IAlarmaLogic alarmaLogic;
 
     public UnidadResidencialService() {
         this.unidadResidencialLogic = new UnidadResidenciaLogic();
         this.residenciaLogic = new ResidenciaLogic();
+        this.hubLogic = new HubLogic();
+        this.cerraduraLogic = new CerraduraLogic();
+        this.alarmaLogic = new AlarmaLogic();
     }
 
     @POST
     public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.add(dto);
     }
+    
+    @POST
+    @Path("/persistir")
+    public List<Object> crearAlarma(MensajeDTO dto) throws Exception {
+        List<Object> list = new LinkedList<>();
+        RespuestaDTO r = new RespuestaDTO("El registro se realizo de manera exitosa");
+        list.add(r);
+        
+        AlarmaDTO alarma = new AlarmaDTO(null, dto.getTipo(), dto.getTiempo(), dto.getMensaje());
+        alarma = alarmaLogic.add(alarma);
+        list.add(alarma);
+        
+        CerraduraDTO cerradura = cerraduraLogic.find(dto.getIdCerradura());
+        if(cerradura == null) {
+            cerradura = new CerraduraDTO();
+            cerradura.setId(dto.getIdCerradura());
+            cerradura = cerraduraLogic.add(cerradura);
+            list.add(cerradura);
+        }
+        cerradura.addAlarma(alarma.getId());
+        cerraduraLogic.update(cerradura);
+        
+        HubDTO hub = hubLogic.find(dto.getIdHub());
+        if(hub == null) {
+            hub = new HubDTO();
+            hub.setId(dto.getIdHub());
+            hub = hubLogic.add(hub);
+            list.add(hub);
+        }
+        hub.addCerradura(cerradura.getId());
+        hubLogic.update(hub);
+        
+        ResidenciaDTO residencia = residenciaLogic.find(dto.getIdResidencia());
+        if(residencia == null) {
+            residencia = new ResidenciaDTO(dto.getIdResidencia(), "Residencia autogenerada", "Propietario autogenerado", new ArrayList<String>());
+            residencia = residenciaLogic.add(residencia);
+            list.add(residencia);
+        }
+        residencia.addHub(hub.getId());
+        residenciaLogic.update(residencia);
+            
+        UnidadResidencialDTO unidadR = unidadResidencialLogic.find(dto.getIdUnidadR());
+        if(unidadR == null) {
+            unidadR = new UnidadResidencialDTO(dto.getIdUnidadR(), "Unidad Residencial autogenerada", new ArrayList<String>());
+            unidadR = unidadResidencialLogic.add(unidadR);
+            list.add(unidadR);
+        }
+        unidadR.addResidencia(residencia.getId());
+        unidadResidencialLogic.update(unidadR);
+        
+        return list;
+    }
 
     @POST
-    @Path("{id}/residencia")
-    public ResidenciaDTO addResidencia(@PathParam("id") String id, ResidenciaDTO dto) throws Exception {
-        UnidadResidencialDTO residencia = unidadResidencialLogic.find(id);
+    @Path("{nombre}/residencia")
+    public ResidenciaDTO addResidencia(@PathParam("nombre") String id, ResidenciaDTO dto) throws Exception {
+        UnidadResidencialDTO unidad = unidadResidencialLogic.find(id);
         ResidenciaDTO result = residenciaLogic.add(dto);
-        residencia.addResidencia(dto.getNombre());
-        unidadResidencialLogic.update(residencia);
+        unidad.addResidencia(result.getId());
+        unidadResidencialLogic.update(unidad);
         return result;
     }
 
@@ -94,7 +167,7 @@ public class UnidadResidencialService {
     public Response delete(@PathParam("id") String id) {
         try {
             unidadResidencialLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Floor was deleted").build();
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Unidad Residencial was deleted").build();
         } catch (Exception e) {
             Logger.getLogger(UnidadResidencialService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

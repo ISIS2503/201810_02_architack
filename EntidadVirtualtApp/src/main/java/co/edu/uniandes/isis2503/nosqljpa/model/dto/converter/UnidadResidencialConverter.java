@@ -42,18 +42,20 @@ public class UnidadResidencialConverter implements IUnidadResidencialConverter {
 
     @Override
     public UnidadResidencialDTO entityToDto(UnidadResidencialEntity entity) {
+        if(entity == null) return null;
         UnidadResidencialDTO dto = new UnidadResidencialDTO();
         dto.setId(entity.getId());
-        dto.setNombre(entity.getNombre());
+        dto.setNombreUnidadResidencial(entity.getNombreunidadresidencial());
         dto.setResidencias(entity.getResidencias());
         return dto;
     }
 
     @Override
     public UnidadResidencialEntity dtoToEntity(UnidadResidencialDTO dto) {
+        if(dto == null) return null;
         UnidadResidencialEntity entity = new UnidadResidencialEntity();
         entity.setId(dto.getId());
-        entity.setNombre(dto.getNombre());
+        entity.setNombreunidadresidencial(dto.getNombreUnidadResidencial());
         entity.setResidencias(dto.getResidencias());
         return entity;
     }

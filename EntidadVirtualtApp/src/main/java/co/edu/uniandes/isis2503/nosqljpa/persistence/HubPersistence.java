@@ -21,71 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
+package co.edu.uniandes.isis2503.nosqljpa.persistence;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.HubEntity;
 
 /**
  *
  * @author ca.mendoza968
  */
-@XmlRootElement
-public class AlarmaDTO {
-    
-    @Id
-    private String id;
-    private int tipo;
-    private String mensaje;
-    private String tiempo;
+public class HubPersistence extends Persistencer<HubEntity, String>{
 
-
-    public AlarmaDTO() {
-
-    }
-
-    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje) {
-        this.id = id;
-        this.tipo = tipo;
-        this.mensaje = mensaje;
-        this.tiempo = tiempo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public String getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
+    public HubPersistence(){
+        this.entityClass = HubEntity.class;
     }
 
 }

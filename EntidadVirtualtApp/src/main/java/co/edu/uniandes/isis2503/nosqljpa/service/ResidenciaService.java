@@ -63,11 +63,11 @@ public class ResidenciaService {
     }
     
     @POST
-    @Path("{code}/alarmas")
-    public AlarmaDTO addAlarma(@PathParam("code") String id, AlarmaDTO dto) {
+    @Path("{id}/alarmas")
+    public AlarmaDTO addAlarm(@PathParam("id") String id, AlarmaDTO dto) {
         ResidenciaDTO residencia = residenciaLogic.find(id);
         AlarmaDTO result = alarmaLogic.add(dto);
-        residencia.addSAlarma(result.getId());
+        residencia.addHub(result.getId());
         residenciaLogic.update(residencia);
         return result;
     }
@@ -93,7 +93,7 @@ public class ResidenciaService {
     public Response delete(@PathParam("id") String id) {
         try {
             residenciaLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Room was deleted").build();
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Residencia was deleted").build();
         } catch (Exception e) {
             Logger.getLogger(ResidenciaService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

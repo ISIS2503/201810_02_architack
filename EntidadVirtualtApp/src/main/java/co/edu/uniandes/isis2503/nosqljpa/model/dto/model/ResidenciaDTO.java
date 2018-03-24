@@ -35,28 +35,33 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ResidenciaDTO {
     @Id
-    private String nombre;
+    private String id;
+    
+    private String nombreResidencia;
+    
     private String propietario;
-    private List<String> alarmas;
+    
+    private List<String> hubs;
 
 
     public ResidenciaDTO( ) {
-        alarmas = new ArrayList();
+        hubs = new ArrayList();
        
     }
     
-    public ResidenciaDTO(String nomResidencia, String name, List<String> sensors) {
-        this.nombre = nomResidencia;
+    public ResidenciaDTO(String id, String nomResidencia, String name, List<String> hubs) {
+        this.id = id;
+        this.nombreResidencia = nomResidencia;
         this.propietario = name;
-        this.alarmas = sensors;
+        this.hubs = hubs;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreResidencia() {
+        return nombreResidencia;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreResidencia(String nombreResidencia) {
+        this.nombreResidencia = nombreResidencia;
     }
 
     public String getPropietario() {
@@ -67,16 +72,24 @@ public class ResidenciaDTO {
         this.propietario = propietario;
     }
 
-    public List<String> getAlarmas() {
-        return alarmas;
+    public List<String> getHubs() {
+        return hubs;
     }
 
-    public void setAlarmas(List<String> alarmas) {
-        this.alarmas = alarmas;
+    public void setHubs(List<String> hubs) {
+        this.hubs = hubs;
     }
     
-    public void addSAlarma(String id) {
-        this.alarmas.add(id);
+    public void addHub(String id) {
+        this.hubs.add(id);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     
 }

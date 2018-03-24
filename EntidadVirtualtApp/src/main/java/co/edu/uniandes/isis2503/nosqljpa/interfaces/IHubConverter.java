@@ -21,71 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
+package co.edu.uniandes.isis2503.nosqljpa.interfaces;
 
-import java.util.ArrayList;
-import java.util.Date;
+import co.edu.uniandes.isis2503.nosqljpa.model.dto.model.HubDTO;
+import co.edu.uniandes.isis2503.nosqljpa.model.entity.HubEntity;
 import java.util.List;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ca.mendoza968
  */
-@XmlRootElement
-public class AlarmaDTO {
-    
-    @Id
-    private String id;
-    private int tipo;
-    private String mensaje;
-    private String tiempo;
+public interface IHubConverter {
+    public HubDTO entityToDto(HubEntity entity);
 
+    public HubEntity dtoToEntity(HubDTO dto);
 
-    public AlarmaDTO() {
+    public List<HubDTO> listEntitiesToListDTOs(List<HubEntity> entities);
 
-    }
-
-    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje) {
-        this.id = id;
-        this.tipo = tipo;
-        this.mensaje = mensaje;
-        this.tiempo = tiempo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public String getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
-    }
-
+    public List<HubEntity> listDTOsToListEntities(List<HubDTO> dtos);
 }

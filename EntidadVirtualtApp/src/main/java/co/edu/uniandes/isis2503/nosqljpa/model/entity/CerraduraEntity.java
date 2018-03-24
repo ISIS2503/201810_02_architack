@@ -31,46 +31,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 /**
  *
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "UNDIDADR_ENTITY")
-public class UnidadResidencialEntity implements Serializable {
+@Table(name = "CERRADURA_ENTITY")
+public class CerraduraEntity implements Serializable {
+
     @Id
     private String id;
-    
-    private String nombreunidadresidencial;
 
     @ElementCollection
-    private List<String> residencias;
+    private List<String> alarmas;
 
-    public UnidadResidencialEntity() {
-        this.residencias = new ArrayList();
+    public CerraduraEntity() {
+        this.alarmas = new ArrayList (); 
     }
 
-    public UnidadResidencialEntity(String id, String name, List<String> residencias) {
+    public CerraduraEntity(String id, List<String> alarmas) {
         this.id = id;
-        this.nombreunidadresidencial = name;
-        this.residencias = residencias;
-    }
-
-    
-    public String getNombreunidadresidencial() {
-        return nombreunidadresidencial;
-    }
-
-    public void setNombreunidadresidencial(String nombreunidadresidencial) {
-        this.nombreunidadresidencial = nombreunidadresidencial;
-    }
-
-    public List<String> getResidencias() {
-        return residencias;
-    }
-
-    public void setResidencias(List<String> residencia) {
-        this.residencias = residencia;
+        this.alarmas = alarmas;
     }
 
     public String getId() {
@@ -80,5 +62,12 @@ public class UnidadResidencialEntity implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
+    public List<String> getAlarmas() {
+        return alarmas;
+    }
+
+    public void setAlarmas(List<String> alarmas) {
+        this.alarmas = alarmas;
+    }
 }

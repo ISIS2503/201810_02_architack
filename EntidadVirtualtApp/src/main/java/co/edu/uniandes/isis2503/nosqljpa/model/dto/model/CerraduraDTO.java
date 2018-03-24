@@ -23,12 +23,10 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.model.dto.model;
 
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -36,26 +34,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ca.mendoza968
  */
 @XmlRootElement
-public class AlarmaDTO {
-    
+public class CerraduraDTO {
     @Id
     private String id;
-    private int tipo;
-    private String mensaje;
-    private String tiempo;
+    
+    private List<String> alarmas;
 
-
-    public AlarmaDTO() {
+    public CerraduraDTO() {
+        this.alarmas = new ArrayList();
 
     }
 
-    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje) {
+    public CerraduraDTO(String id, List<String> alarmas) {
         this.id = id;
-        this.tipo = tipo;
-        this.mensaje = mensaje;
-        this.tiempo = tiempo;
+        this.alarmas = alarmas;
     }
 
+    
     public String getId() {
         return id;
     }
@@ -64,28 +59,16 @@ public class AlarmaDTO {
         this.id = id;
     }
 
-    public int getTipo() {
-        return tipo;
+    public List<String> getAlarmas() {
+        return alarmas;
     }
 
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
+    public void setAlarmas(List<String> alarmas) {
+        this.alarmas = alarmas;
     }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
-    public String getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
+    
+    public void addAlarma(String id) {
+        this.alarmas.add(id);
     }
 
 }

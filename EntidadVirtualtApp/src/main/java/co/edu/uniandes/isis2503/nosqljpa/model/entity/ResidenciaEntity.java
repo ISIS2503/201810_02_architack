@@ -30,41 +30,42 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.DynamicUpdate;
 
 /**
  *
  * @author ca.mendoza968
  */
 @Entity
-@Table(name = "RESIDENCIA")
+@Table(name = "RESIDENCIA_ENTITY")
 public class ResidenciaEntity implements Serializable {
 
     @Id
-    private String nombre;
+    private String id;
+
+    private String nombreresidencia;
 
     private String propietario;
 
-
     @ElementCollection
-    private List<String> alarmas;
+    private List<String> hubs;
 
     public ResidenciaEntity() {
-        alarmas =  new ArrayList();
+        hubs = new ArrayList();
     }
 
-    public ResidenciaEntity(String id, String name, List<String> sensors) {
-        this.nombre = id;
-        this.propietario = name;
-        this.alarmas = sensors;
+    public ResidenciaEntity(String id, String nombre, String propietario, List<String> hubs) {
+        this.id = id;
+        this.nombreresidencia = nombre;
+        this.propietario = propietario;
+        this.hubs = hubs;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreresidencia() {
+        return nombreresidencia;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreresidencia(String nombreresidencia) {
+        this.nombreresidencia = nombreresidencia;
     }
 
     public String getPropietario() {
@@ -75,12 +76,20 @@ public class ResidenciaEntity implements Serializable {
         this.propietario = propietario;
     }
 
-    public List<String> getAlarmas() {
-        return alarmas;
+    public List<String> getHubs() {
+        return hubs;
     }
 
-    public void setAlarmas(List<String> alarmas) {
-        this.alarmas = alarmas;
+    public void setHubs(List<String> hubs) {
+        this.hubs = hubs;
     }
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }
