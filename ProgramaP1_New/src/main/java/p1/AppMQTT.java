@@ -58,8 +58,8 @@ public class AppMQTT {
         jsonPersistir = "{\"tipo\": \"" + tipo + "\", \"mensaje\" : \"" + messages[3] + "\" , \"tiempo\" : \""
                 + withFormat + "\"}";
 
-        //enviardatosCorreo(jsonCorreo);
-        //enviarDatosPersistir(jsonPersistir, pUrlPersistir);
+        enviardatosCorreo(jsonCorreo);
+        enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
     public static String enviardatosCorreo(String jsonCorreo) {
