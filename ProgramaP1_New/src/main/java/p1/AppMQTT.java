@@ -29,8 +29,7 @@ public class AppMQTT {
         int tipo;
         String mens = "";
 
-        String pUrlPersistir = "http://172.24.42.30:8080/" + topico[0] + "/" + topico[1]
-                + "/" + topico[2];
+        String pUrlPersistir = "http://172.24.42.30:8080/unidadresidencial/persistir";
 
         if (message.equalsIgnoreCase("11111")) {
             tipo = 1;
@@ -55,11 +54,11 @@ public class AppMQTT {
         String[] tiempo = (new Timestamp(System.currentTimeMillis())).toString().split("\\{");
         String withFormat = tiempo[2].substring(12, tiempo[2].length() - 1);
 
-        jsonPersistir = "{\"tipo\": \"" + tipo + "\", \"mensaje\" : \"" + messages[3] + "\" , \"tiempo\" : \""
-                + withFormat + "\"}";
-
-        //enviardatosCorreo(jsonCorreo);
-        //enviarDatosPersistir(jsonPersistir, pUrlPersistir);
+          jsonPersistir = "{\"idUnidadR\": \"" + topico[0] + "\", \"idResidencia\" : \"" + topico[1] + "\" , \"idHub\" : \"" + topico[2] + "\" , \"idCerradura\" : \""
+                  + topico[3] + "\" , \"tipo\" :" + tipo + ", \"mensaje\" : \"" + messages[3] + "\" ," + " \"tiempo\" : \"" + withFormat + "\"}";
+       
+        enviardatosCorreo(jsonCorreo);
+        enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
     public static String enviardatosCorreo(String jsonCorreo) {

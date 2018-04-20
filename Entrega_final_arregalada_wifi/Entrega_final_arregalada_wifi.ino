@@ -1,7 +1,5 @@
 #include <Keypad.h>
 
-const int buzzer = A5;
-
 //Minimum voltage required for an alert
 const double MIN_VOLTAGE = 1.2;
 
@@ -14,7 +12,6 @@ const int BATTERY_PIN = A2;
 //Current battery charge
 double batteryCharge;
 
-
 int inputPin = 2;               // choose the input pin (for PIR sensor)
 int pirState = LOW;             // we start, assuming no motion detected
 int val = 0;                    // variable for reading the pin status
@@ -26,8 +23,8 @@ long currTime;
 int redPin= 13;
 int greenPin = 10;
 int bluePin = 12;
-int redLedPin = 11;
-int CONTACT_PIN = A0;
+int redLedPin = A0;
+int CONTACT_PIN = 11;
 boolean buttonState;
 
 //Specified password
@@ -86,7 +83,7 @@ boolean block;
 void setup() {
 
   pinMode(inputPin, INPUT);     // declare sensor as input
-  
+  pinMode(CONTACT_PIN, INPUT);
   //LED 
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
@@ -104,14 +101,14 @@ void setup() {
   setColor(0, 0, 255);
   digitalWrite(redLedPin, LOW);
 
+    // Iniciamos el monitor serie
+  Serial.begin(9600);
+
   // Ouput pin definition for BATTERY_LED
   pinMode(BATTERY_LED,OUTPUT);
 
   //Input pin definition for battery measure
   pinMode(BATTERY_PIN,INPUT);
-
-  pinMode(buzzer, OUTPUT);
-
 }
 
 void setColor(int redValue, int greenValue, int blueValue) {
@@ -123,17 +120,17 @@ void setColor(int redValue, int greenValue, int blueValue) {
 void loop() {
   //Button input read and processing 
   if(!buttonState) {
-    if(analogRead(CONTACT_PIN)) {
+    if(digitalRead(CONTACT_PIN)) {
       currTime = millis();
       buttonState = true;
       setColor(0, 255, 0);
       open = true;
       attempts = 0;
-      Serial.println("Door opened!!");
+      //Serial.println("Door Opened");
     }
   }
   else {
-    if(analogRead(CONTACT_PIN)) {
+    if(digitalRead(CONTACT_PIN)) {
       if((millis()-currTime)>=30000) {
         setColor(255, 0, 0);
         //Alerta #11111 Por puerta abierta más de 30 seg
@@ -143,7 +140,7 @@ void loop() {
       setColor(0, 0, 255);
       open = false;
       buttonState = false;
-      Serial.println("Door closed!!");
+      //Serial.println("Door closed!!");
     }
   }
 
@@ -154,20 +151,20 @@ void loop() {
     customKey = customKeypad.getKey();
   }
   else {
-    Serial.println("Number of attempts exceeded");
+    //Serial.println("Number of attempts exceeded");
     while(true);
   }
 
   //Verification of input and appended value
   if (customKey) {  
     currentKey+=String(customKey);
-    Serial.println(currentKey);
+    //Serial.println(currentKey);
   }
 
   //If the current key contains '*' and door is open
   if(open && currentKey.endsWith("*")) {
     open = false;
-    Serial.println("Door closed");
+    //Serial.println("Door closed");
     digitalWrite(10,LOW);
     currentKey = "";
     //BLUE when the door is closed (standby)
@@ -177,7 +174,7 @@ void loop() {
   //If the current key contains '#' reset attempt
   if(currentKey.endsWith("#")&&currentKey.length()<=KEY.length()) {
     currentKey = "";
-    Serial.println("Attempt deleted");
+    //Serial.println("Attempt deleted");
   }
 
   //If current key matches the key length
@@ -185,7 +182,7 @@ void loop() {
     if(currentKey == KEY) {
       digitalWrite(10,HIGH);
       open = true;
-      Serial.println("Door opened!!");
+      //Serial.println("Door opened!!");
       attempts = 0;
       //GREEN when doors is open
       setColor(0, 255, 0);
@@ -194,7 +191,7 @@ void loop() {
     } else {
       attempts++;
       currentKey = "";
-      Serial.println("Number of attempts: "+String(attempts));
+      //Serial.println("Number of attempts: "+String(attempts));
       //RED for 1 second when the pass is wrong
       setColor(255, 0, 0);
       delay(1000);
@@ -203,10 +200,11 @@ void loop() {
   } else if(currentKey.length()> KEY.length()){
     //If times >= 30000 led go RED
     if ((millis() - currTime) >= 30000){
-      Serial.println("Door opened way too long!!");
+      //Alerta #11111 Por puerta abierta más de 30 seg
+      Serial.println(11111);
       setColor(255, 0, 0);
     } else {
-      Serial.println("Door opened!!");
+      //Serial.println("Door opened!!");
     }
   }
 
@@ -226,7 +224,6 @@ void loop() {
   if (val == HIGH) {            // check if the input is HIGH
     digitalWrite(redLedPin, HIGH);  // turn LED ON
     if (pirState == LOW) {
-      // we have just turned on
       //Alerta #22222 Por detección de movimiento en el sensor
       Serial.println(22222);
       // We only want to print on the output change, not state
@@ -236,7 +233,7 @@ void loop() {
     digitalWrite(redLedPin, LOW); // turn LED OFF
     if (pirState == HIGH){
       // we have just turned of
-      Serial.println("Motion ended!");
+      //Serial.println("Motion ended!");
       // We only want to print on the output change, not state
       pirState = LOW;
     }
@@ -244,24 +241,15 @@ void loop() {
 
   //Value conversion from digital to voltage
   batteryCharge = (analogRead(BATTERY_PIN)*5.4)/1024;
-  //batteryCharge = 1;
-  //0Serial.println(batteryCharge);
   
   //Measured value comparison with min voltage required
   if(batteryCharge<=MIN_VOLTAGE) {
-    analogWrite(BATTERY_LED, 255);
-    //Alerta #44444 Por batería crítica
-    Serial.println(44444);
-            digitalWrite(buzzer, 20);
-            delay(2000);                 // Espera
-            digitalWrite(buzzer, 0);            // Apaga
-            delay(30000);                 // Espera
+    digitalWrite(BATTERY_LED,HIGH);
+    Serial.println(4444);
   }
   else {
-  analogWrite(BATTERY_LED, 0);
+    digitalWrite(BATTERY_LED,LOW);
   }
-
 
   delay(100);
 }
-

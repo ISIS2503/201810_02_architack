@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.arquitach.app.AppTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
