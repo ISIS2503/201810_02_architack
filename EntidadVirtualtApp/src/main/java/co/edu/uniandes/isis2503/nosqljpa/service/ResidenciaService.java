@@ -92,8 +92,10 @@ public class ResidenciaService {
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {
-            residenciaLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Residencia was deleted").build();
+            ResidenciaDTO r = residenciaLogic.find(id);
+            r.setActiva(false);
+            residenciaLogic.update(r);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Residencia was disabled").build();
         } catch (Exception e) {
             Logger.getLogger(ResidenciaService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

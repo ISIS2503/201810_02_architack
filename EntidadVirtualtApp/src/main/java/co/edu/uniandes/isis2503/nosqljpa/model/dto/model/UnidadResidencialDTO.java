@@ -40,15 +40,19 @@ public class UnidadResidencialDTO {
     private String nombreUnidadResidencial;
     
     private List<String> residencias;
+    
+    private Boolean activa;
 
     public UnidadResidencialDTO() {
         this.residencias = new ArrayList();
+        this.activa = true;
     }
 
-    public UnidadResidencialDTO(String id, String name, List<String> residencias) {
+    public UnidadResidencialDTO(String id, String name, List<String> residencias, Boolean activa) {
         this.id = id;
         this.nombreUnidadResidencial = name;
         this.residencias = residencias;
+        this.activa = activa;
     }
 
     public String getNombreUnidadResidencial() {
@@ -77,6 +81,20 @@ public class UnidadResidencialDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * @return the activa
+     */
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    /**
+     * @param activa the activa to set
+     */
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
     }
     
     

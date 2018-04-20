@@ -47,6 +47,7 @@ public class CerraduraConverter implements ICerraduraConverter {
         CerraduraDTO dto = new CerraduraDTO();
         dto.setId(entity.getId());
         dto.setAlarmas(entity.getAlarmas());
+        dto.setActiva(entity.getActiva());
 
         return dto;
     }
@@ -57,6 +58,7 @@ public class CerraduraConverter implements ICerraduraConverter {
         CerraduraEntity entity = new CerraduraEntity();
         entity.setId(dto.getId());
         entity.setAlarmas(dto.getAlarmas());
+        entity.setActiva(dto.getActiva());
   
         return entity;
     }

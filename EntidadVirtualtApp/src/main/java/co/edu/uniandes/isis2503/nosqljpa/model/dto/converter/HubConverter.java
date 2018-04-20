@@ -46,6 +46,7 @@ public class HubConverter implements IHubConverter {
         HubDTO dto = new HubDTO();
         dto.setId(entity.getId());
         dto.setCerraduras(entity.getCerraduras());
+        dto.setActivo(entity.getActivo());
         return dto;
     }
 
@@ -55,7 +56,8 @@ public class HubConverter implements IHubConverter {
         HubEntity entity = new HubEntity();
         entity.setId(dto.getId());
         entity.setCerraduras(dto.getCerraduras());
-  
+        entity.setActivo(dto.getActivo());
+        
         return entity;
     }
 

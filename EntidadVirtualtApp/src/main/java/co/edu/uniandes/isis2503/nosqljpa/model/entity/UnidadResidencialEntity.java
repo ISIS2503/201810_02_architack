@@ -1,4 +1,4 @@
-/*
+    /*
  * The MIT License
  *
  * Copyright 2017 Universidad De Los Andes - Departamento de Ingeniería de Sistemas.
@@ -45,6 +45,8 @@ public class UnidadResidencialEntity implements Serializable {
 
     @ElementCollection
     private List<String> residencias;
+    
+    private Boolean activa = true;
 
     public UnidadResidencialEntity() {
         this.residencias = new ArrayList();
@@ -80,5 +82,20 @@ public class UnidadResidencialEntity implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+
+    /**
+     * @return the activa
+     */
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    /**
+     * @param activa the activa to set
+     */
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+    
     
 }

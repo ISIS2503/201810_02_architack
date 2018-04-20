@@ -117,7 +117,7 @@ public class UnidadResidencialService {
         
         ResidenciaDTO residencia = residenciaLogic.find(dto.getIdResidencia());
         if(residencia == null) {
-            residencia = new ResidenciaDTO(dto.getIdResidencia(), "Residencia autogenerada", "Propietario autogenerado", new ArrayList<String>());
+            residencia = new ResidenciaDTO(dto.getIdResidencia(), "Residencia autogenerada", "Propietario autogenerado", new ArrayList<String>(), true);
             residencia = residenciaLogic.add(residencia);
             list.add(residencia);
         }
@@ -126,7 +126,7 @@ public class UnidadResidencialService {
             
         UnidadResidencialDTO unidadR = unidadResidencialLogic.find(dto.getIdUnidadR());
         if(unidadR == null) {
-            unidadR = new UnidadResidencialDTO(dto.getIdUnidadR(), "Unidad Residencial autogenerada", new ArrayList<String>());
+            unidadR = new UnidadResidencialDTO(dto.getIdUnidadR(), "Unidad Residencial autogenerada", new ArrayList<String>(), true);
             unidadR = unidadResidencialLogic.add(unidadR);
             list.add(unidadR);
         }
@@ -166,8 +166,10 @@ public class UnidadResidencialService {
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {
-            unidadResidencialLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Unidad Residencial was deleted").build();
+            UnidadResidencialDTO unidad = unidadResidencialLogic.find(id);
+            unidad.setActiva(false);
+            unidadResidencialLogic.update(unidad);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Unidad Residencial was disabled").build();
         } catch (Exception e) {
             Logger.getLogger(UnidadResidencialService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

@@ -48,6 +48,8 @@ public class ResidenciaEntity implements Serializable {
 
     @ElementCollection
     private List<String> hubs;
+    
+    private Boolean activa = true;
 
     public ResidenciaEntity() {
         hubs = new ArrayList();
@@ -92,4 +94,19 @@ public class ResidenciaEntity implements Serializable {
         this.id = id;
     }
 
+    /**
+     * @return the activa
+     */
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    /**
+     * @param activa the activa to set
+     */
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+
+    
 }

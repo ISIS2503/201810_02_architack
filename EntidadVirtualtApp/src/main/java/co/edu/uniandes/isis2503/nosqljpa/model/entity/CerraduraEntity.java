@@ -45,6 +45,8 @@ public class CerraduraEntity implements Serializable {
 
     @ElementCollection
     private List<String> alarmas;
+    
+    private Boolean activa = true;
 
     public CerraduraEntity() {
         this.alarmas = new ArrayList (); 
@@ -70,4 +72,20 @@ public class CerraduraEntity implements Serializable {
     public void setAlarmas(List<String> alarmas) {
         this.alarmas = alarmas;
     }
+
+    /**
+     * @return the activa
+     */
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    /**
+     * @param activa the activa to set
+     */
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+    
+    
 }

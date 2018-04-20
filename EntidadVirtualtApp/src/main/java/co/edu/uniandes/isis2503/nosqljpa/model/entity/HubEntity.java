@@ -44,6 +44,8 @@ public class HubEntity implements Serializable {
     
     @ElementCollection
     private List<String> cerraduras;
+    
+    private Boolean activo = true;
 
     public HubEntity() {
         this.cerraduras = new ArrayList ();
@@ -70,4 +72,20 @@ public class HubEntity implements Serializable {
     public void setCerraduras(List<String> cerraduras) {
         this.cerraduras = cerraduras;
     }
+
+    /**
+     * @return the activo
+     */
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+    
+    
 }

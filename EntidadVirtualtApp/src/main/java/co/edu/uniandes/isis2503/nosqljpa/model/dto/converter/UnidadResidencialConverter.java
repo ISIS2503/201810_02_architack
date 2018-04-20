@@ -47,6 +47,7 @@ public class UnidadResidencialConverter implements IUnidadResidencialConverter {
         dto.setId(entity.getId());
         dto.setNombreUnidadResidencial(entity.getNombreunidadresidencial());
         dto.setResidencias(entity.getResidencias());
+        dto.setActiva(entity.getActiva());
         return dto;
     }
 
@@ -57,6 +58,7 @@ public class UnidadResidencialConverter implements IUnidadResidencialConverter {
         entity.setId(dto.getId());
         entity.setNombreunidadresidencial(dto.getNombreUnidadResidencial());
         entity.setResidencias(dto.getResidencias());
+        entity.setActiva(dto.getActiva());
         return entity;
     }
 

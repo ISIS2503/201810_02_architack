@@ -39,15 +39,18 @@ public class CerraduraDTO {
     private String id;
     
     private List<String> alarmas;
+    
+    private Boolean activa;
 
     public CerraduraDTO() {
         this.alarmas = new ArrayList();
-
+        this.activa = true;
     }
 
-    public CerraduraDTO(String id, List<String> alarmas) {
+    public CerraduraDTO(String id, List<String> alarmas, Boolean activa) {
         this.id = id;
         this.alarmas = alarmas;
+        this.activa = activa;
     }
 
     
@@ -70,5 +73,21 @@ public class CerraduraDTO {
     public void addAlarma(String id) {
         this.alarmas.add(id);
     }
+
+    /**
+     * @return the activa
+     */
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    /**
+     * @param activa the activa to set
+     */
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+    
+    
 
 }

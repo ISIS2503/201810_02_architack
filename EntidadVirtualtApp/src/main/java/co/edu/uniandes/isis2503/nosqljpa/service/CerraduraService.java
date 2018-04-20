@@ -56,8 +56,10 @@ public class CerraduraService {
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {
-            cerraduraLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Cerradura was deleted").build();
+            CerraduraDTO c = cerraduraLogic.find(id);
+            c.setActiva(false);
+            cerraduraLogic.update(c);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Cerradura was disabled").build();
         } catch (Exception e) {
             Logger.getLogger(CerraduraService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();

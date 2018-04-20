@@ -37,7 +37,7 @@
     <properties>
       <property name="kundera.nodes" value="localhost"/>
       <property name="kundera.port" value="9160"/>
-      <property name="kundera.keyspace" value="ArquisoftDB"/>
+      <property name="kundera.keyspace" value="Arquisoft_DB"/>
       <property name="kundera.dialect" value="cassandra"/>
       <property name="kundera.client.lookup.class" value="com.impetus.client.cassandra.thrift.ThriftClientFactory"/>
       <property name="kundera.pool.size.min.idle" value="25"/>

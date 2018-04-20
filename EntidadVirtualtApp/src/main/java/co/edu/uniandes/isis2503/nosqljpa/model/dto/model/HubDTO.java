@@ -40,16 +40,17 @@ public class HubDTO {
     
     private List<String> cerraduras;
 
-
+    private Boolean activo;
 
     public HubDTO() {
         this.cerraduras = new ArrayList();
-
+        this.activo = true;
     }
 
-    public HubDTO(String id, List<String> cerraduras) {
+    public HubDTO(String id, List<String> cerraduras, Boolean activo) {
         this.id = id;
         this.cerraduras = cerraduras;
+        this.activo = activo;
     }
 
 
@@ -72,4 +73,20 @@ public class HubDTO {
     public void addCerradura(String id) {
         this.cerraduras.add(id);
     }
+
+    /**
+     * @return the activo
+     */
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    /**
+     * @param activo the activo to set
+     */
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+    
+    
  }

@@ -55,8 +55,10 @@ public class HubService {
     @Path("/{id}")
     public Response delete(@PathParam("id") String id) {
         try {
-            HubLogic.delete(id);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Hub was deleted").build();
+            HubDTO hub = HubLogic.find(id);
+            hub.setActivo(false);
+            HubLogic.update(hub);
+            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Hub was disabled").build();
         } catch (Exception e) {
             Logger.getLogger(HubService.class).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
