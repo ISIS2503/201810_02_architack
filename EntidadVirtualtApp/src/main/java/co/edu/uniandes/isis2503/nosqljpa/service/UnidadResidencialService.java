@@ -23,6 +23,8 @@
  */
 package co.edu.uniandes.isis2503.nosqljpa.service;
 
+import co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter.Role;
+import co.edu.uniandes.isis2503.nosqljpa.auth.Secured;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IAlarmaLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.ICerraduraLogic;
 import co.edu.uniandes.isis2503.nosqljpa.interfaces.IHubLogic;
@@ -63,6 +65,7 @@ import java.util.LinkedList;
  */
 @Path("/unidadresidencial")
 @Produces(MediaType.APPLICATION_JSON)
+@Secured({Role.admin})
 public class UnidadResidencialService {
 
     private final IUnidadResidencialLogic unidadResidencialLogic;
@@ -158,6 +161,7 @@ public class UnidadResidencialService {
     }
 
     @GET
+    @Secured({Role.admin})
     public List<UnidadResidencialDTO> all() {
         return unidadResidencialLogic.all();
     }

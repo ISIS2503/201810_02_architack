@@ -91,6 +91,24 @@
             <artifactId>kundera-cassandra-ds-driver</artifactId>
             <version>3.5</version>
         </dependency>
+        
+        <!-- ### Auth0 ### -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>jwks-rsa</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <scope>runtime</scope>
+            <version>2.26</version>
+        </dependency>
                 
     </dependencies>
 

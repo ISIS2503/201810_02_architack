@@ -43,6 +43,22 @@ THE SOFTWARE.
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
+        <servlet-name>CORS Filter</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.container.ContainerResponseFilter</param-name>
+            <param-value>co.edu.uniandes.isis2503.nosqljpa.auth.CORSFilter</param-value>
+        </init-param>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.container.ContainerRequestFilter</param-name>
+            <param-value>co.edu.uniandes.isis2503.nosqljpa.auth.AuthenticationFilter</param-value>
+        </init-param>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.container.ContainerRequestFilter</param-name>
+            <param-value>co.edu.uniandes.isis2503.nosqljpa.auth.AuthorizationFilter</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
