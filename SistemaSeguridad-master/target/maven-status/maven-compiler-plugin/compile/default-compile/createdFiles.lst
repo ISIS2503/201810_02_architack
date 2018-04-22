@@ -35,7 +35,6 @@ co\edu\uniandes\isis2503\sistemaseguridad\auth\Secured.class
 co\edu\uniandes\isis2503\sistemaseguridad\service\CerraduraService.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHubConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHubLogic.class
-.netbeans_automatic_build
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\CerraduraEntity.class
 co\edu\uniandes\isis2503\sistemaseguridad\entidadFisica\PasswordDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\ResidenciaLogic.class
