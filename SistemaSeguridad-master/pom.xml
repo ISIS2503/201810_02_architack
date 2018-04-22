@@ -96,6 +96,13 @@
             <scope>runtime</scope>
             <version>2.26</version>
         </dependency>
+        
+        <!-- # MQTT Paho Client # -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.1.0</version>
+        </dependency>
                 
     </dependencies>
 
