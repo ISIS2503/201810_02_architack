@@ -1,6 +1,8 @@
 
 package co.edu.uniandes.isis2503.sistemaseguridad.service;
 
+import co.edu.uniandes.isis2503.sistemaseguridad.auth.AuthorizationFilter.Role;
+import co.edu.uniandes.isis2503.sistemaseguridad.auth.Secured;
 import co.edu.uniandes.isis2503.sistemaseguridad.entidadFisica.AppClaves;
 import co.edu.uniandes.isis2503.sistemaseguridad.entidadFisica.MessageDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.entidadFisica.PasswordDTO;
@@ -12,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("claves")
+@Secured({Role.prop})
 public class PasswordService {
     
     private AppClaves appClaves;
