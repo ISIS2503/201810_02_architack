@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IHubLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
 import java.util.logging.Logger;
 
 /**
@@ -66,5 +67,12 @@ public class HubService {
             Logger.getLogger(HubService.class.getName()).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }    
+    } 
+    
+    @GET
+    @Path("/{id}/alarms")
+    @Secured({Role.yale, Role.admin, Role.seguridad, Role.prop})
+    public List<AlarmaDTO> findAlarms(@PathParam("id") String id) {
+        return HubLogic.findAlarms(id);
+    }
 }

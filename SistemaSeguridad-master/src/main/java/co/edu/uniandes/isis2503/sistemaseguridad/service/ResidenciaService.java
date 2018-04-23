@@ -107,5 +107,12 @@ public class ResidenciaService {
             Logger.getLogger(ResidenciaService.class.getName()).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }    
+    }  
+    
+    @GET
+    @Path("/{id}/alarms")
+    @Secured({Role.yale, Role.admin, Role.seguridad, Role.prop})
+    public List<AlarmaDTO> findAlarms(@PathParam("id") String id) {
+        return residenciaLogic.findAlarms(id);
+    }
 }
