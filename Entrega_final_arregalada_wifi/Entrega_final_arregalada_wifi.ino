@@ -1,4 +1,24 @@
 #include <Keypad.h>
+#include <EEPROM.h>
+
+#define SIZE_BUFFER_DATA       50
+
+//Buffer
+char        bufferData [SIZE_BUFFER_DATA];
+
+//Arreglo con comandos
+//String resultado[3];
+String *resultado;
+
+String param0;
+String param1;
+String param2;
+
+//String recibido por serial
+String inputString;
+
+//Flag para saber si ya se completo el String
+boolean stringComplete = false;
 
 //Minimum voltage required for an alert
 const double MIN_VOLTAGE = 1.2;
@@ -109,12 +129,98 @@ void setup() {
 
   //Input pin definition for battery measure
   pinMode(BATTERY_PIN,INPUT);
+
+
+  //Prueba EEPROM añadir contraseña
+//  addPassword(1111, 1);
+//  addPassword(2222, 2);
+//  addPassword(3333, 3);
+//  addPassword(4444, 4);
+//  addPassword(5555, 5);
+//  addPassword(6666, 6);
+//  addPassword(7777, 7);
+//  addPassword(8888, 8);
+//  addPassword(9999, 9);
+//  addPassword(1010, 10);
+//
+//  addPassword(1001, 11);
+//  addPassword(1212, 12);
+//  addPassword(1313, 13);
+//  addPassword(1414, 14);
+//  addPassword(1515, 15);
+//  addPassword(1616, 16);
+//  addPassword(1717, 17);
+//  addPassword(1818, 18);
+//  addPassword(1919, 19);
+//  addPassword(2020, 20);
+//
+//  updatePassword(1234,7);
+//  deletePassword(9);
+//  deleteAllPasswords();
+//  
+  
 }
 
 void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(redPin, redValue);
   analogWrite(greenPin, greenValue);
   analogWrite(bluePin, blueValue);
+}
+
+void verificarEEPROM(){
+    receiveData();
+
+    if(inputString != "")
+    {
+      Serial.println(inputString);
+      stringComplete = true;
+    }
+    
+    
+
+    if(stringComplete){
+    //processCommand(resultado,inputString);
+    procesarComandoPropio(inputString);
+
+    Serial.println(param0);
+    Serial.println(param1);
+    Serial.println(param2);
+    if(param0=="CHANGE_PASSWORD"){
+        updatePassword(param2.toInt(),param1.toInt());
+      }
+    else if(param0=="ADD_PASSWORD"){
+      addPassword(param2.toInt(),param1.toInt());
+    }
+    else if(param0=="DELETE_PASSWORD"){
+      deletePassword(param1.toInt());
+    }
+    else if(param0=="DELETE_ALL"){
+      deleteAllPasswords();
+    }
+
+    }
+
+    param0 = "";
+    param1 = "";
+    param2 = "";
+    inputString = "";
+    stringComplete = false;
+    
+}
+
+void receiveData() {
+  while (Serial.available()) {
+    // get the new byte:
+    char inChar = (char)Serial.read();
+    // add it to the inputString:
+    inputString += inChar;
+    // if the incoming character is a newline, set a flag
+    // so the main loop can do something about it:
+    if (inChar == '\n') {
+      inputString.toCharArray(bufferData, SIZE_BUFFER_DATA);
+      stringComplete = true;
+    }
+  }
 }
 
 void loop() {
@@ -179,7 +285,9 @@ void loop() {
 
   //If current key matches the key length
   if (currentKey.length()== KEY.length()) {
-    if(currentKey == KEY) {
+
+    //Abertura desde la EEPROM
+    if(compareKey(currentKey)) {
       digitalWrite(10,HIGH);
       open = true;
       //Serial.println("Door opened!!");
@@ -245,11 +353,115 @@ void loop() {
   //Measured value comparison with min voltage required
   if(batteryCharge<=MIN_VOLTAGE) {
     digitalWrite(BATTERY_LED,HIGH);
-    Serial.println(4444);
+    Serial.println(44444);
   }
   else {
     digitalWrite(BATTERY_LED,LOW);
   }
 
+  verificarEEPROM();
+
   delay(100);
 }
+
+// Method that compares a key with stored keys
+boolean compareKey(String key) {
+  int acc = 3;
+  int codif, arg0, arg1; 
+  for(int i=0; i<3; i++) {
+    codif = EEPROM.read(i);
+    while(codif!=0) {
+      if(codif%2==1) {
+        arg0 = EEPROM.read(acc);
+        arg1 = EEPROM.read(acc+1)*256;
+        arg1+= arg0;
+        if(String(arg1)==key) {
+          return true;
+        }
+      }
+      acc+=2;
+      codif>>=1;
+    }
+    acc=(i+1)*16+3;
+  }
+  return false;
+}
+
+// Methods that divides the command by parameters
+void processCommand(String* result, String command) {
+  char buf[sizeof(command)];
+  String vars = "";
+  vars.toCharArray(buf, sizeof(buf));
+  char *p = buf;
+  char *str;
+  int i = 0;
+  while ((str = strtok_r(p, ";", &p)) != NULL) {
+    // delimiter is the semicolon
+    result[i++] = str;
+  }
+}
+
+//Method that adds a password in the specified index
+void addPassword(int val, int index) {
+  byte arg0 = val%256;
+  byte arg1 = val/256;
+  EEPROM.write((index*2)+3,arg0);
+  EEPROM.write((index*2)+4,arg1);
+  byte i = 1;
+  byte location = index/8;
+  byte position = index%8;
+  i<<=position;
+  byte j = EEPROM.read(location);
+  j |= i;
+  EEPROM.write(location,j);
+}
+
+//Method that updates a password in the specified index
+void updatePassword(int val, int index) {
+  byte arg0 = val%256;
+  byte arg1 = val/256;
+  EEPROM.write((index*2)+3,arg0);
+  EEPROM.write((index*2)+4,arg1);
+}
+
+//Method that deletes a password in the specified index
+void deletePassword(int index) {
+  byte i = 1;
+  byte location = index/8;
+  byte position = index%8;
+  i<<=position;
+  byte j = EEPROM.read(location);
+  j ^= i;
+  EEPROM.write(location,j);
+}
+
+//Method that deletes all passwords
+void deleteAllPasswords() {
+  //Password reference to inactive
+  EEPROM.write(0,0);
+  EEPROM.write(1,0);
+  EEPROM.write(2,0);
+}
+
+void procesarComandoPropio(String recibido){
+   param0 = getValue(recibido,';',0);
+   param1 = getValue(recibido,';',1);
+   param2 = getValue(recibido,';',2);
+}
+
+String getValue(String data, char separator, int index)
+{
+    int found = 0;
+    int strIndex[] = { 0, -1 };
+    int maxIndex = data.length() - 1;
+
+    for (int i = 0; i <= maxIndex && found <= index; i++) {
+        if (data.charAt(i) == separator || i == maxIndex) {
+            found++;
+            strIndex[0] = strIndex[1] + 1;
+            strIndex[1] = (i == maxIndex) ? i+1 : i;
+        }
+    }
+    return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
+
