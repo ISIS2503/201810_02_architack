@@ -55,7 +55,8 @@ public class AuthorizationFilter implements ContainerRequestFilter {
         admin,
         yale,
         prop,
-        seguridad
+        seguridad,
+        notAvailable
     }
 
     @Context
