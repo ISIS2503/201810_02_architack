@@ -13,12 +13,13 @@ import com.sun.jmx.snmp.Timestamp;
 public class AppMQTT {
 
     
-    private static final String URLCORREO = "http://172.24.42.50:8080/alarm";
+    private static final String URLCORREO = "http://localhost:8088/alarm";
 
     public AppMQTT() {
     }
 
     public void messageArrived(String topic, String message) throws Exception {
+        topic = "123/12/12/12";
                String[] topico = topic.split("/");
         String[] messages = new String[4];
         messages[0] = "yale@gmail.com";
@@ -29,15 +30,17 @@ public class AppMQTT {
         int tipo;
         String mens = "";
 
+        System.out.print("TOPICO : " + topic);
+        System.out.print("MENSAJE : " + message);
         String pUrlPersistir = "http://172.24.42.30:8080/unidadresidencial/persistir";
 
-        if (message.equalsIgnoreCase("11111")) {
+        if (message.trim().equalsIgnoreCase("11111")) {
             tipo = 1;
             mens = "Puerta abierta por mas 30 segundos";
-        } else if (message.equalsIgnoreCase("22222")) {
+        } else if (message.trim().equalsIgnoreCase("22222")) {
             tipo = 2;
             mens = "Se detecto movimiento en la cerradura";
-        } else if (message.equalsIgnoreCase("44444")) {
+        } else if (message.trim().equalsIgnoreCase("44444")) {
             tipo = 4;
             mens = "Cerradura con nivel de bateria critica";
         } else {
@@ -57,7 +60,9 @@ public class AppMQTT {
           jsonPersistir = "{\"idUnidadR\": \"" + topico[0] + "\", \"idResidencia\" : \"" + topico[1] + "\" , \"idHub\" : \"" + topico[2] + "\" , \"idCerradura\" : \""
                   + topico[3] + "\" , \"tipo\" :" + tipo + ", \"mensaje\" : \"" + messages[3] + "\" ," + " \"tiempo\" : \"" + withFormat + "\"}";
        
-        enviardatosCorreo(jsonCorreo);
+          System.out.print("Correo : " + jsonCorreo);
+          System.out.print("Por persistir :" + jsonPersistir);
+//        enviardatosCorreo(jsonCorreo);
         enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
