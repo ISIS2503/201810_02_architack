@@ -6,6 +6,7 @@ co\edu\uniandes\isis2503\sistemaseguridad\service\ResidenciaService.class
 co\edu\uniandes\isis2503\sistemaseguridad\auth\AuthorizationFilter.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\UnidadResidenciaLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\JPAConnection.class
+co\edu\uniandes\isis2503\sistemaseguridad\service\UsuariosService.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IAlarmaLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\ResidenciaPersistence.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\RespuestaDTO.class
@@ -16,6 +17,7 @@ co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IResidenciaLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\UnidadResidencialConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\AlarmaDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\entidadFisica\AppClaves.class
+co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\UsuarioDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\HubLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\HubConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\HubEntity.class

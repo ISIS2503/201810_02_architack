@@ -30,6 +30,10 @@ public class MensajeDTO {
 
     public MensajeDTO() {
     }
+    
+    public MensajeDTO(String mensaje) { 
+        this.mensaje = mensaje;
+    }
 
     /**
      * @return the idUnidadR
