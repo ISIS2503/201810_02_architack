@@ -33,7 +33,7 @@ import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
  */
 public interface IUsuarioLogic {
     
-    public UsuarioDTO add(UsuarioDTO dto);
+    public UsuarioDTO add(UsuarioDTO dto)throws Exception;
     public UsuarioDTO update(UsuarioDTO dto);
     public UsuarioDTO find(String id);
     public List<UsuarioDTO> all();

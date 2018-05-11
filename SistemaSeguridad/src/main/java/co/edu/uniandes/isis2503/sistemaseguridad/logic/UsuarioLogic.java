@@ -25,44 +25,59 @@ package co.edu.uniandes.isis2503.sistemaseguridad.logic;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import static co.edu.uniandes.isis2503.sistemaseguridad.model.dto.converter.UsuarioConverter.CONVERTER;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.persistence.UsuarioPersistence;
 
 /**
  *
  * @author ja.gomez1
  */
 public class UsuarioLogic implements IUsuarioLogic {
+    
+    private final UsuarioPersistence persistence;
+    private final ResidenciaLogic residenciaLogic;
+
+    public UsuarioLogic() {
+        this.persistence = new UsuarioPersistence();
+        this.residenciaLogic = new ResidenciaLogic();
+    }
 
     @Override
-    public UsuarioDTO add(UsuarioDTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UsuarioDTO add(UsuarioDTO dto) throws Exception
+    {
+        if (dto.getEmail()== null) {
+            throw new Exception();   
+        }
+        UsuarioDTO result = CONVERTER.entityToDto(persistence.add(CONVERTER.dtoToEntity(dto)));
+        return result;
     }
 
     @Override
     public UsuarioDTO update(UsuarioDTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        UsuarioDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+        return result;
     }
 
     @Override
     public UsuarioDTO find(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return CONVERTER.entityToDto(persistence.find(id));
     }
 
     @Override
     public List<UsuarioDTO> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return CONVERTER.listEntitiesToListDTOs(persistence.all());
     }
 
     @Override
     public Boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return persistence.delete(id);
     }
 
     @Override
     public List<AlarmaDTO> findAlarms(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return residenciaLogic.findAlarms(persistence.find(id).getResidencia());
     }
 }
