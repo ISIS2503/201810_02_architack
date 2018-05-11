@@ -47,8 +47,7 @@ public class UsuarioEntity {
     
     @ElementCollection
     private List <String> horarios;
-    
-    @ElementCollection
+   
     private String residencia;
     
 

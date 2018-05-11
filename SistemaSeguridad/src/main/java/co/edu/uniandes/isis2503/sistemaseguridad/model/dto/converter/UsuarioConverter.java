@@ -23,10 +23,65 @@
  */
 package co.edu.uniandes.isis2503.sistemaseguridad.model.dto.converter;
 
+import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioConverter;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.entity.UsuarioEntity;
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  *
  * @author ja.gomez1
  */
-public class UsuarioConverter {
+public class UsuarioConverter implements IUsuarioConverter {
+    
+    public static IUsuarioConverter CONVERTER = new UsuarioConverter();
+
+    public UsuarioConverter() {
+    }
+
+    @Override
+    public UsuarioDTO entityToDto(UsuarioEntity entity) {
+        if(entity == null) return null;
+        UsuarioDTO dto = new UsuarioDTO();
+        dto.setEmail(entity.getEmail());
+        dto.setUserName(entity.getUserName());
+        dto.setResidencia(entity.getResidencia());
+        dto.setGrupo(entity.getPassword());
+        dto.setHorarios(entity.getHorarios());
+        dto.setPassword(entity.getPassword());
+        return dto;
+    }
+
+    @Override
+    public UsuarioEntity dtoToEntity(UsuarioDTO dto) {
+        if(dto == null) return null;
+        UsuarioEntity entity = new UsuarioEntity();
+        entity.setEmail(dto.getEmail());
+        entity.setUserName(dto.getUserName());
+        entity.setResidencia(dto.getResidencia());
+        entity.setGrupo(dto.getPassword());
+        entity.setHorarios(dto.getHorarios());
+        entity.setPassword(dto.getPassword());
+        return entity;
+    }
+
+    @Override
+    public List<UsuarioDTO> listEntitiesToListDTOs(List<UsuarioEntity> entities) {
+        ArrayList<UsuarioDTO> dtos = new ArrayList<>();
+        for (UsuarioEntity entity : entities) {
+            dtos.add(entityToDto(entity));
+        }
+        return dtos;
+    }
+
+    @Override
+    public List<UsuarioEntity> listDTOsToListEntities(List<UsuarioDTO> dtos) {
+        ArrayList<UsuarioEntity> entities = new ArrayList<>();
+        for (UsuarioDTO dto : dtos) {
+            entities.add(dtoToEntity(dto));
+        }
+        return entities;
+    }
     
 }

@@ -7,7 +7,6 @@ co\edu\uniandes\isis2503\sistemaseguridad\service\ResidenciaService.class
 co\edu\uniandes\isis2503\sistemaseguridad\auth\AuthorizationFilter.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\UnidadResidenciaLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\JPAConnection.class
-co\edu\uniandes\isis2503\sistemaseguridad\service\UsuariosService.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IAlarmaLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\ResidenciaPersistence.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\RespuestaDTO.class

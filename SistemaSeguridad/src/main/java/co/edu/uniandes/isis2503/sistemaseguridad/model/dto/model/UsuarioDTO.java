@@ -23,6 +23,9 @@
  */
 package co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author mdr.leon10
@@ -32,9 +35,23 @@ public class UsuarioDTO {
     private String userName;
     private String password;
     private String grupo;
+    private String residencia;
+    
+    private List<String> horarios;
 
     public UsuarioDTO() {
+        this.horarios = new ArrayList<>();
     }
+
+    public UsuarioDTO(String email, String userName, String password, String grupo, String residencia, List<String> horarios) {
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.grupo = grupo;
+        this.residencia = residencia;
+        this.horarios = horarios;
+    }
+    
 
     /**
      * @return the email
@@ -91,4 +108,27 @@ public class UsuarioDTO {
     public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
+
+    public String getResidencia() {
+        return residencia;
+    }
+
+    public void setResidencia(String residencia) {
+        this.residencia = residencia;
+    }
+    
+    public void addHorario(String id)
+    {
+        horarios.add(id);
+    }
+
+    public List<String> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<String> horarios) {
+        this.horarios = horarios;
+    }
+    
+    
 }
