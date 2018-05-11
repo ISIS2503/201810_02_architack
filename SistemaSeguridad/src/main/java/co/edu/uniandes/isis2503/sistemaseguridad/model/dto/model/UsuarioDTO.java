@@ -35,7 +35,8 @@ public class UsuarioDTO {
     private String userName;
     private String password;
     private String grupo;
-    private String residencia;
+   
+    private List <String> residencia;
     
     private List<String> horarios;
 
@@ -43,7 +44,7 @@ public class UsuarioDTO {
         this.horarios = new ArrayList<>();
     }
 
-    public UsuarioDTO(String email, String userName, String password, String grupo, String residencia, List<String> horarios) {
+    public UsuarioDTO(String email, String userName, String password, String grupo, List <String> residencia, List<String> horarios) {
         this.email = email;
         this.userName = userName;
         this.password = password;
@@ -109,11 +110,11 @@ public class UsuarioDTO {
         this.grupo = grupo;
     }
 
-    public String getResidencia() {
+    public List <String> getResidencias() {
         return residencia;
     }
 
-    public void setResidencia(String residencia) {
+    public void setResidencias(List <String> residencia) {
         this.residencia = residencia;
     }
     
