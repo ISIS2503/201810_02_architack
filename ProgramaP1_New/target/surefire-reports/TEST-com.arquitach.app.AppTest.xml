@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="com.arquitach.app.AppTest" time="0" errors="0" skipped="0">
+=======
+<<<<<<< HEAD
+<testsuite tests="1" failures="0" name="com.arquitach.app.AppTest" time="0.016" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="com.arquitach.app.AppTest" time="0.001" errors="0" skipped="0">
+>>>>>>> 8cf4ed39b49987f2f696f8a8439f5160c65f037c
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
@@ -16,12 +24,32 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<<<<<<< HEAD
     <property name="user.dir" value="C:\Users\jc.ruiz\Documents\201810_02_architack\ProgramaP1_New"/>
+=======
+<<<<<<< HEAD
+    <property name="user.dir" value="C:\Users\ja.gomez1\Documents\NetBeansProjects\201810_02_architack\ProgramaP1_New"/>
+=======
+<<<<<<< HEAD
+    <property name="user.dir" value="C:\Users\mdr.leon10\Documents\NetBeansProjects\201810_02_architack\ProgramaP1_New"/>
+=======
+    <property name="user.dir" value="C:\Users\af.lopezf\Documents\NetBeansProjects\201810_02_architack\ProgramaP1_New"/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+>>>>>>> 8cf4ed39b49987f2f696f8a8439f5160c65f037c
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
     <property name="java.runtime.version" value="1.8.0_121-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
+<<<<<<< HEAD
     <property name="java.io.tmpdir" value="C:\Users\JC0AF1~1.RUI\AppData\Local\Temp\"/>
+=======
+<<<<<<< HEAD
+    <property name="java.io.tmpdir" value="C:\Users\MDR~1.LEO\AppData\Local\Temp\"/>
+=======
+    <property name="java.io.tmpdir" value="C:\Users\AFACAB~1.LOP\AppData\Local\Temp\"/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
@@ -30,20 +58,45 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Users\jc.ruiz\Documents\Maven\bin\..\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
+<<<<<<< HEAD
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ISIS2503\Play-activator\bin;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Users\jc.ruiz\Documents\Maven\bin\;."/>
     <property name="maven.conf" value="C:\Users\jc.ruiz\Documents\Maven\bin\../conf"/>
+=======
+<<<<<<< HEAD
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ISIS2503\Play-activator\bin;C:\Program Files\Java\jdk1.8.0_121\bin;C:\Program Files\Git\cmd;."/>
+=======
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\ISIS2503\Play-activator\bin;C:\Program Files\Java\jdk1.8.0_121\bin;C:\dev\tools\zookeeper-3.4.5\bin;C:\Program Files\nodejs\;C:\Users\af.lopezf\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\af.lopezf\AppData\Local\Programs\Python\Python36\;C:\Users\af.lopezf\AppData\Roaming\npm;."/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="6.1"/>
+<<<<<<< HEAD
     <property name="library.jansi.path" value="C:\Users\jc.ruiz\Documents\Maven\bin\..\lib\jansi-native"/>
     <property name="user.home" value="C:\Users\jc.ruiz"/>
+=======
+<<<<<<< HEAD
+    <property name="user.home" value="C:\Users\mdr.leon10"/>
+=======
+    <property name="user.home" value="C:\Users\af.lopezf"/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
     <property name="user.timezone" value="America/Bogota"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
+<<<<<<< HEAD
     <property name="user.name" value="jc.ruiz"/>
     <property name="java.class.path" value="C:\Users\jc.ruiz\Documents\Maven\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+=======
+<<<<<<< HEAD
+    <property name="user.name" value="mdr.leon10"/>
+=======
+    <property name="user.name" value="af.lopezf"/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+    <property name="java.class.path" value="C:\Program Files\NetBeans 8.2\java\maven\boot\plexus-classworlds-2.4.jar"/>
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_121\jre"/>
@@ -64,5 +117,17 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="com.arquitach.app.AppTest" name="testApp" time="0"/>
+=======
+<<<<<<< HEAD
+  <testcase classname="com.arquitach.app.AppTest" name="testApp" time="0"/>
+=======
+<<<<<<< HEAD
+  <testcase classname="com.arquitach.app.AppTest" name="testApp" time="0"/>
+=======
+  <testcase classname="com.arquitach.app.AppTest" name="testApp" time="0.002"/>
+>>>>>>> 92b65b777b7c616c9f6ff8ae4a2ca8e34c2a68d6
+>>>>>>> 8cf4ed39b49987f2f696f8a8439f5160c65f037c
+>>>>>>> 0d850a530050f335505689a78ffeeb52b63d99f2
 </testsuite>

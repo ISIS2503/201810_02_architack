@@ -1,0 +1,211 @@
+/*
+ * The MIT License
+ *
+ * Copyright 2018 Universidad De Los Andes - Departamento de Ingeniería de Sistemas.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package co.edu.uniandes.isis2503.sistemaseguridad.service;
+
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+/**
+ *
+ * @author mdr.leon10
+ */
+
+@Path("/usuarios")
+@Produces(MediaType.APPLICATION_JSON)
+public class UsuariosService {
+    private static final String DENIED = "access_denied";
+    private static final String DOMAIN = "isis2503-jagomez1.auth0.com";
+    private static final String EXTENSION_URL = "https://isis2503-jagomez1.us.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api";
+    private static final long TIME_OUT = 2000;
+    
+    @GET
+    @Path("/token")
+    public RespuestaDTO obtenerAPIToken() {
+        String token = "";
+        try {
+            HttpResponse<String> response = Unirest.post("https://isis2503-jagomez1.auth0.com/oauth/token")
+            .header("content-type", "application/json")
+            .body("{\"grant_type\":\"client_credentials\",\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\",\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\",\"audience\": \"https://isis2503-jagomez1.auth0.com/api/v2/\"}").asString();
+            String body = response.getBody();
+            if(body.contains(DENIED)) {
+                token = DENIED;
+            } else {
+                token = body.split("\"")[3];
+            }
+            
+        } catch(Exception e) {}
+        RespuestaDTO respuesta = new RespuestaDTO();
+        respuesta.setMsg(token);
+        return respuesta;
+    }
+    
+    @GET
+    @Path("/authToken")
+    public RespuestaDTO obtenerAuthToken() {
+        String token = "";
+        try {
+            HttpResponse<String> response = Unirest.post("https://isis2503-jagomez1.auth0.com/oauth/token")
+            .header("content-type", "application/json")
+            .body("{\"grant_type\":\"client_credentials\",\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\",\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\",\"audience\": \"urn:auth0-authz-api\"}").asString();
+            String body = response.getBody();
+            if(body.contains(DENIED)) {
+                token = DENIED;
+            } else {
+                token = body.split("\"")[3];
+            }
+            
+        } catch(Exception e) {}
+        RespuestaDTO respuesta = new RespuestaDTO();
+        respuesta.setMsg(token);
+        return respuesta;
+    }
+    
+    @POST
+    @Path("/registrar")
+    public RespuestaDTO registrarUsuario(UsuarioDTO usuario) {
+        HttpResponse<String> request = null;
+        RespuestaDTO respuesta = new RespuestaDTO();
+        String apiToken = obtenerAPIToken().getMsg();
+        String authToken = obtenerAuthToken().getMsg();
+        String userID = "";
+        String groupID = "";
+        
+        String userBody = "{" +
+            "  \"connection\": \"Username-Password-Authentication\",\n" +
+            "  \"email\": \"" + usuario.getEmail() + "\",\n" +
+            "  \"username\": \"" + usuario.getUserName() + "\",\n" +
+            "  \"password\": \"" + usuario.getPassword() + "\",\n" +
+            "  \"user_metadata\": {},\n" +
+            "  \"email_verified\": false,\n" +
+            "  \"app_metadata\": {}\n" +
+            "}";
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.post("https://"+ DOMAIN +"/api/v2/users")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .body(userBody)
+                    .asString();
+            
+            JSONObject body = new JSONObject(request.getBody());
+            userID = body.getString("user_id");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.get(EXTENSION_URL + "/groups")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + authToken)
+                    .asString();
+            JSONObject body = new JSONObject(request.getBody());
+            
+            JSONArray grupos = body.getJSONArray("groups");
+            int cant = grupos.length();
+            for(int i = 0; i < cant; i++) {
+                JSONObject grupo = grupos.getJSONObject(i);
+                if(grupo.getString("name").equals(usuario.getGrupo())) {
+                    groupID = grupo.getString("_id"); break;
+                }
+            }
+            
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.patch(EXTENSION_URL + "/groups/" + groupID + "/members")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + authToken)
+                    .body("[\"" + userID + "\"]")
+                    .asString();
+        } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
+        
+        respuesta.setMsg("El usuario se registro exitosamente");
+        return respuesta;
+    }
+    
+    @POST
+    @Path("/grupo")
+    public RespuestaDTO asignarGrupoUsuario(UsuarioDTO usuario) {
+        HttpResponse<String> request = null;
+        RespuestaDTO respuesta = new RespuestaDTO();
+        String apiToken = obtenerAPIToken().getMsg();
+        String authToken = obtenerAuthToken().getMsg();
+        String userID = "";
+        String groupID = "";
+        
+        try {
+            request = Unirest.get("https://"+ DOMAIN +"/api/v2/users-by-email?email=" + usuario.getEmail().toLowerCase())
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .asString();
+            
+            JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
+            userID = body.getString("user_id");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        try {
+            request = Unirest.get(EXTENSION_URL + "/groups")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + authToken)
+                    .asString();
+            
+            JSONObject body = new JSONObject(request.getBody());
+            
+            JSONArray grupos = body.getJSONArray("groups");
+            int cant = grupos.length();
+            for(int i = 0; i < cant; i++) {
+                JSONObject grupo = grupos.getJSONObject(i);
+                String temp_id = grupo.getString("_id");
+                if(grupo.getString("name").equals(usuario.getGrupo())) {
+                    groupID = temp_id;
+                } else {
+                    request = Unirest.delete(EXTENSION_URL + "/groups/" + temp_id + "/members")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + authToken)
+                    .body("[\"" + userID + "\"]")
+                    .asString();
+                }
+            }
+            
+            request = Unirest.patch(EXTENSION_URL + "/groups/" + groupID + "/members")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + authToken)
+                    .body("[\"" + userID + "\"]")
+                    .asString();
+            
+        } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
+        
+        respuesta.setMsg("Se le asigno correctamente el nuevo grupo al usuario.");
+        return respuesta;
+    }
+}
