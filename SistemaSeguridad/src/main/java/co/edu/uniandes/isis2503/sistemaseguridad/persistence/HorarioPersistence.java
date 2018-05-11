@@ -21,25 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package co.edu.uniandes.isis2503.sistemaseguridad.interfaces;
+package co.edu.uniandes.isis2503.sistemaseguridad.persistence;
 
-import java.util.List;
-import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
-import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
-import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.entity.HorarioEntity;
 
 /**
  *
  * @author ja.gomez1
  */
-public interface IUsuarioLogic {
+public class HorarioPersistence extends Persistencer<HorarioEntity, String>{
     
-    public UsuarioDTO add(UsuarioDTO dto)throws Exception;
-    public UsuarioDTO update(UsuarioDTO dto);
-    public UsuarioDTO find(String id);
-    public List<UsuarioDTO> all();
-    public Boolean delete(String id);
-    public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception;
-    public List<HorarioDTO> darHorarios(String id);
+    public HorarioPersistence(){
+        this.entityClass = HorarioEntity.class;
+    }
+
     
 }

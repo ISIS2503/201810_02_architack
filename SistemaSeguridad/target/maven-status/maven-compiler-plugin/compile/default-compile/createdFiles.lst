@@ -24,7 +24,9 @@ co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\UsuarioConverter.c
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\UsuarioDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\HubLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\HubConverter.class
+co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHorarioLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\HubEntity.class
+co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\HorarioDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\UnidadResidencialDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\ResidenciaConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\ICerraduraConverter.class
@@ -32,15 +34,19 @@ co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\CerraduraConverter
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\CerraduraPersistence.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\AlarmaEntity.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\HubPersistence.class
+co\edu\uniandes\isis2503\sistemaseguridad\persistence\HorarioPersistence.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\ICerraduraLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\auth\AuthenticationFilter$1.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\UsuarioLogic.class
+co\edu\uniandes\isis2503\sistemaseguridad\model\entity\HorarioEntity.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\AlarmaLogic.class
+co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHorarioConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\CerraduraDTO.class
 co\edu\uniandes\isis2503\sistemaseguridad\logic\CerraduraLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\auth\Secured.class
 co\edu\uniandes\isis2503\sistemaseguridad\service\CerraduraService.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHubConverter.class
+co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\HorarioConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IHubLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\CerraduraEntity.class
 co\edu\uniandes\isis2503\sistemaseguridad\entidadFisica\PasswordDTO.class
@@ -52,6 +58,7 @@ co\edu\uniandes\isis2503\sistemaseguridad\persistence\AlarmaPersistence.class
 co\edu\uniandes\isis2503\sistemaseguridad\interfaces\IAlarmaConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\converter\AlarmaConverter.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\UnidadResidencialPersistence.class
+co\edu\uniandes\isis2503\sistemaseguridad\logic\HorarioLogic.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\entity\UsuarioEntity.class
 co\edu\uniandes\isis2503\sistemaseguridad\persistence\Persistencer.class
 co\edu\uniandes\isis2503\sistemaseguridad\model\dto\model\HubDTO.class
