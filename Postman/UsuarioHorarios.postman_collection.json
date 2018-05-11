@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "4e62979b-b8ff-41cf-9a6e-cd8373bb0cfa",
+		"name": "UsuarioHorarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear Usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"jc.ruiz3@gmail.com\",\n\t\"userName\": \"jc.ruiz3\",\n\t\"password\": \"jc.ruiz31234\",\n\t\"grupo\": \"Propietarios\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/dar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"dar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Postear horario a usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"02:30\",\n\t\"horarioFinal\" : \"20:45\",\n\t\"principal\" : true,\n\t\"clave\":\"1234\",\n\t\"slot\" : 4\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/jc.ruiz3@gmail.com/horarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"jc.ruiz3@gmail.com",
+						"horarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get de un horario por id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/1/darHorario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"1",
+						"darHorario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar un horario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"00:00\",\n\t\"horarioFinal\" : \"00:00\",\n\t\"principal\" : true,\n\t\"clave\":\"4321\",\n\t\"slot\" : 5\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/modificarHorario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"modificarHorario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un horario ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/eliminarHorario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"jc.ruiz@gmail.com",
+						"eliminarHorario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get horarios de un usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/jc.ruiz3@gmail.com/darHorariosUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"jc.ruiz3@gmail.com",
+						"darHorariosUser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
