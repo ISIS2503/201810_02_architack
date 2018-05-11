@@ -22,6 +22,7 @@ public class P1Service {
     @Consumes("application/json")
     @Produces("application/json")
     public MessageDTO add(MqttDTO dto) throws Exception {
+        System.out.println(" MENSAJE " + dto.getMessage());
        mqtt.messageArrived(dto.getTopic(), dto.getMessage());
        return new MessageDTO("La alarma se registro y notifico exitosamente en nuestro sistema de seguridad.");
     }
