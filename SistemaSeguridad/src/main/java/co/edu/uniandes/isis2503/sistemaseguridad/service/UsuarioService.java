@@ -32,11 +32,8 @@ import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-<<<<<<< HEAD
 import java.util.List;
-=======
 import java.net.URLEncoder;
->>>>>>> 62ebffd975ae32886ddd7fa0d4e8518e0019511b
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
