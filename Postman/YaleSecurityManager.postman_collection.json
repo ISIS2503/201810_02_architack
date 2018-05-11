@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Usuarios",
+			"name": "Registro",
 			"description": null,
 			"item": [
 				{
@@ -212,6 +212,28 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3c4daa7f-453f-4189-8348-3af03664eba6",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3cb6b610-9d18-4772-b2a8-ef9dcfc68ad9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -801,6 +823,63 @@
 									"key": "email",
 									"value": "jc.ruiz@gmail.com"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Horario",
+			"description": "",
+			"item": [
+				{
+					"name": "Asignar Horario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"02:30\",\n\t\"horarioFinal\" : \"20:00\",\n\t\"principal\" : false,\n\t\"clave\" : \"1234\",\n\t\"slot\" : 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/jc.ruiz3@gmail.com/horarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"jc.ruiz3@gmail.com",
+								"horarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dar Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/dar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"dar"
 							]
 						}
 					},

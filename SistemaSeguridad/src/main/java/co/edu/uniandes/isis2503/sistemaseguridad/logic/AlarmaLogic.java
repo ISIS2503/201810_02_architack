@@ -29,6 +29,9 @@ import co.edu.uniandes.isis2503.sistemaseguridad.persistence.AlarmaPersistence;
 import java.util.List;
 import java.util.UUID;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IAlarmaLogic;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -75,5 +78,28 @@ public class AlarmaLogic implements IAlarmaLogic {
     @Override
     public Boolean delete(String id) {
         return persistence.delete(id);
+    }
+    
+    public List<AlarmaDTO> findAlarmsByMonth (List<AlarmaDTO> lista){
+        List <AlarmaDTO> alarmas = new ArrayList();
+        List <AlarmaDTO> alarmasBuscadas = new ArrayList();
+        alarmas = lista;
+        String pattern = "d-MM-YYYY";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        String[] partes = date.split("-");
+        String month = partes[2];
+        int año = Integer.parseInt(partes[3]);
+        
+        for (AlarmaDTO alarma : alarmas) {
+            String s = alarma.getTiempo();
+            String[] token = s.split(" ");
+            
+            if (token[1].equals(month) && Integer.parseInt(token[2])== año)
+            {
+                alarmasBuscadas.add(alarma);
+            } 
+        }
+      return alarmasBuscadas;  
     }
 }

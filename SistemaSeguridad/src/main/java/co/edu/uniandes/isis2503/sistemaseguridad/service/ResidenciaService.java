@@ -115,4 +115,11 @@ public class ResidenciaService {
     public List<AlarmaDTO> findAlarms(@PathParam("id") String id) {
         return residenciaLogic.findAlarms(id);
     }
+    
+    @GET
+    @Path("mes/{id}")
+    @Secured({Role.yale, Role.admin, Role.seguridad})
+    public List<AlarmaDTO> findAlarmsByMonth(@PathParam("id") String id) {
+        return residenciaLogic.findAlarmsByMonth(id);
+    }
 }

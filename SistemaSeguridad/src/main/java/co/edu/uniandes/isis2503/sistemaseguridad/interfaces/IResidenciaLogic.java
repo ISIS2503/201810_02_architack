@@ -38,4 +38,5 @@ public interface IResidenciaLogic {
     public List<ResidenciaDTO> all();
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String id);
+    public List<AlarmaDTO> findAlarmsByMonth (String id);
 }

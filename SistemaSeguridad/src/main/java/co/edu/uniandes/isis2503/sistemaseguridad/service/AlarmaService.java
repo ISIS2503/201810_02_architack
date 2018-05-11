@@ -66,5 +66,5 @@ public class AlarmaService {
             Logger.getLogger(AlarmaService.class.getName()).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }    
+    }   
 }

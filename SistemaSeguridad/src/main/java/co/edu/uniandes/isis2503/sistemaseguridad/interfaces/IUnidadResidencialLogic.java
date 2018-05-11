@@ -39,4 +39,5 @@ public interface IUnidadResidencialLogic {
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String id);
     public List<AlarmaDTO> findAlarmsBarrio(String barrio);
+    public List<AlarmaDTO> findAlarmsByMonth (String id);
 }
