@@ -56,14 +56,17 @@ public class AppMQTT {
 
         String[] tiempo = (new Timestamp(System.currentTimeMillis())).toString().split("\\{");
         String withFormat = tiempo[2].substring(12, tiempo[2].length() - 1);
-
+        System.out.print(withFormat);
+        
+        System.out.print("-------------------");
+        
           jsonPersistir = "{\"idUnidadR\": \"" + topico[0] + "\", \"idResidencia\" : \"" + topico[1] + "\" , \"idHub\" : \"" + topico[2] + "\" , \"idCerradura\" : \""
                   + topico[3] + "\" , \"tipo\" :" + tipo + ", \"mensaje\" : \"" + messages[3] + "\" ," + " \"tiempo\" : \"" + withFormat + "\"}";
        
           System.out.print("Correo : " + jsonCorreo);
           System.out.print("Por persistir :" + jsonPersistir);
 //        enviardatosCorreo(jsonCorreo);
-        enviarDatosPersistir(jsonPersistir, pUrlPersistir);
+//        enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
     public static String enviardatosCorreo(String jsonCorreo) {
