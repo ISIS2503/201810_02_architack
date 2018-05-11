@@ -134,7 +134,7 @@ public class UsuarioService {
                     .asString();
             
             JSONObject body = new JSONObject(request.getBody());
-            token = body.getString("id_token");
+            token = body.toString();
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         respuesta.setMsg(token);
@@ -183,8 +183,6 @@ public class UsuarioService {
         return respuesta;
     }
     
-    @POST
-    @Path("/crear")
     public UsuarioDTO crearUsuario(UsuarioDTO usuario) throws Exception{
        return usuarioLogic.add(usuario);
     }
@@ -225,6 +223,7 @@ public class UsuarioService {
             
             JSONObject body = new JSONObject(request.getBody());
             userID = body.getString("user_id");
+            crearUsuario(usuario);
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         try {
@@ -251,7 +250,6 @@ public class UsuarioService {
                     .body("[\"" + userID + "\"]")
                     .asString();
         } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
-        usuarioLogic.add(usuario);
         respuesta.setMsg("El usuario se registro exitosamente");
         return respuesta;
     }
@@ -275,6 +273,11 @@ public class UsuarioService {
             
             JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
             userID = body.getString("user_id");
+            
+            UsuarioDTO user = usuarioLogic.find(usuario.getEmail());
+            user.setGrupo(usuario.getGrupo());
+            usuarioLogic.update(user);
+            
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         try {
@@ -364,6 +367,11 @@ public class UsuarioService {
             
             JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
             userID = body.getString("user_id");
+           
+            UsuarioDTO user = usuarioLogic.find(usuario.getEmail());
+            user.setPassword(usuario.getPassword());
+            usuarioLogic.update(user);
+           
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         try {

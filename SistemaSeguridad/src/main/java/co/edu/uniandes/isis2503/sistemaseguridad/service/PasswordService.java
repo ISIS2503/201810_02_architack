@@ -14,7 +14,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("claves")
-@Secured({Role.prop})
 public class PasswordService {
     
     private AppClaves appClaves;
@@ -29,7 +28,23 @@ public class PasswordService {
     @Path("actualizar")
     @Consumes("application/json")
     @Produces("application/json")
+    @Secured({Role.prop})
     public MessageDTO updatePassword(PasswordDTO dto) throws Exception {
+        dto.setComando("CHANGE_PASSWORD");
+        System.out.println(dto.getComando());
+        System.out.println(dto.getIdClave());
+        System.out.println(dto.getNuevaClave());
+
+        appClaves.publishMessage(dto.getComando(), dto.getIdClave(), dto.getNuevaClave());
+        
+       return  new MessageDTO("Se cambi� la contrase�a satisfactoriamente.");
+    }
+    
+    @PUT
+    @Path("/nosec/actualizar")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public MessageDTO updatePasswordNoSec(PasswordDTO dto) throws Exception {
         dto.setComando("CHANGE_PASSWORD");
         System.out.println(dto.getComando());
         System.out.println(dto.getIdClave());
@@ -45,7 +60,23 @@ public class PasswordService {
     @Path("agregar")
     @Consumes("application/json")
     @Produces("application/json")
+    @Secured({Role.prop})
     public MessageDTO addPassword(PasswordDTO dto) throws Exception {
+        dto.setComando("ADD_PASSWORD");
+        System.out.println(dto.getComando());
+        System.out.println(dto.getIdClave());
+        System.out.println(dto.getNuevaClave());
+        
+        appClaves.publishMessage(dto.getComando(), dto.getIdClave(), dto.getNuevaClave());
+        
+       return  new MessageDTO("Se agreg� la contrase�a satisfactoriamente.");
+    }
+    
+    @POST
+    @Path("nosec/agregar")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public MessageDTO addPasswordNoSec(PasswordDTO dto) throws Exception {
         dto.setComando("ADD_PASSWORD");
         System.out.println(dto.getComando());
         System.out.println(dto.getIdClave());
@@ -60,6 +91,7 @@ public class PasswordService {
     @Path("eliminar")
     @Consumes("application/json")
     @Produces("application/json")
+    @Secured({Role.prop})
     public MessageDTO deletePassword(PasswordDTO dto) throws Exception {
         dto.setComando("DELETE_PASSWORD");
         System.out.println(dto.getComando());
@@ -68,12 +100,28 @@ public class PasswordService {
         
         appClaves.publishMessage(dto.getComando(), dto.getIdClave(), dto.getNuevaClave());
         
-       return  new MessageDTO("Se elimin� la contrase�a satisfactoriamente.");
+       return  new MessageDTO("Se elimin� la contrasenia satisfactoriamente.");
+    }
+    
+    @DELETE
+    @Path("/nosec/eliminar")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public MessageDTO deletePasswordNoSec(PasswordDTO dto) throws Exception {
+        dto.setComando("DELETE_PASSWORD");
+        System.out.println(dto.getComando());
+        System.out.println(dto.getIdClave());
+        System.out.println(dto.getNuevaClave());
+        
+        appClaves.publishMessage(dto.getComando(), dto.getIdClave(), dto.getNuevaClave());
+        
+       return  new MessageDTO("Se elimin� la contrasenia satisfactoriamente.");
     }
     
     @DELETE
     @Path("eliminarTodas")
     @Produces("application/json")
+    @Secured({Role.prop})
     public MessageDTO deleteAllPasswords() throws Exception {
         PasswordDTO dto = new PasswordDTO();
         dto.setComando("DELETE_ALL");
@@ -88,4 +136,20 @@ public class PasswordService {
        return  new MessageDTO("Se eliminaron todas las contrase�as satisfactoriamente.");
     }
     
+    @DELETE
+    @Path("/nosec/eliminarTodas")
+    @Produces("application/json")
+    public MessageDTO deleteAllPasswordsNoSec() throws Exception {
+        PasswordDTO dto = new PasswordDTO();
+        dto.setComando("DELETE_ALL");
+        dto.setIdClave(00);
+        dto.setNuevaClave(0000);
+        System.out.println(dto.getComando());
+        System.out.println(dto.getIdClave());
+        System.out.println(dto.getNuevaClave());
+        
+        appClaves.publishMessage(dto.getComando(), dto.getIdClave(), dto.getNuevaClave());
+        
+       return  new MessageDTO("Se eliminaron todas las contrase�as satisfactoriamente.");
+    }
 }
