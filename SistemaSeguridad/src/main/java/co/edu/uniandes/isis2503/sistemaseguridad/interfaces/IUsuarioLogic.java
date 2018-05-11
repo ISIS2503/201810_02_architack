@@ -26,6 +26,7 @@ package co.edu.uniandes.isis2503.sistemaseguridad.interfaces;
 import java.util.List;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
 
 /**
  *
@@ -39,6 +40,6 @@ public interface IUsuarioLogic {
     public List<UsuarioDTO> all();
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception;
-    
+    public List<HorarioDTO> darHorarios(String id);
     
 }

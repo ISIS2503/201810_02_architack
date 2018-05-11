@@ -28,6 +28,7 @@ import java.util.List;
 import static co.edu.uniandes.isis2503.sistemaseguridad.model.dto.converter.UsuarioConverter.CONVERTER;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.persistence.UsuarioPersistence;
 
@@ -39,10 +40,12 @@ public class UsuarioLogic implements IUsuarioLogic {
     
     private final UsuarioPersistence persistence;
     private final ResidenciaLogic residenciaLogic;
+    private final HorarioLogic horarioLogic;
 
     public UsuarioLogic() {
         this.persistence = new UsuarioPersistence();
         this.residenciaLogic = new ResidenciaLogic();
+        this.horarioLogic = new HorarioLogic();
     }
 
     @Override
@@ -86,5 +89,20 @@ public class UsuarioLogic implements IUsuarioLogic {
         
         return residenciaLogic.findAlarms(idResidencia);
     }
+    
+    @Override
+    public List<HorarioDTO> darHorarios(String id){
+        List hors = persistence.find(id).getHorarios();
+        List <HorarioDTO> horarios = new ArrayList();
+        ArrayList yaEstan = new ArrayList();
+        for (int i = 0; i < hors.size(); i++){
+            if (!yaEstan.contains(Integer.parseInt((String)hors.get(i)))){
+              horarios.add(horarioLogic.find((String) hors.get(i)));
+              yaEstan.add(Integer.parseInt((String)hors.get(i)));
+            }
+        }
+        return horarios;
+    }
+    
 
 }
