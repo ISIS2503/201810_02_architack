@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "803cd3de-f68c-4156-bd1f-496c5114246b",
+		"_postman_id": "5b1ddc98-06b5-4988-bb06-cec42f09857c",
 		"name": "YaleSecurityManager",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Registro",
-			"description": null,
+			"name": "Usuarios",
+			"description": "",
 			"item": [
 				{
 					"name": "Crear un Usuario",
@@ -24,7 +24,7 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/registrar",
+							"raw": "http://localhost:8080/usuarios/crear",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -32,36 +32,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"registrar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Token Usuario",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/token",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"token"
+								"crear"
 							]
 						}
 					},
@@ -79,7 +50,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"grupo\": \"Yale\"\n}"
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Yale\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/usuarios/grupo",
@@ -97,7 +68,7 @@
 					"response": []
 				},
 				{
-					"name": "Asignar Password Usuario",
+					"name": "Get Token Usuario",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -108,138 +79,29 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"password\": \"jc.ruiz4567\"\n}"
+							"raw": "{\r\n\"grant_type\":\"http://auth0.com/oauth/grant-type/password-realm\",\r\n\"username\": \"jc.ruiz\",\r\n\"password\": \"jc.ruiz1234\",\r\n\"audience\": \"uniandes.edu.co/thermalcomfort\", \r\n\"scope\": \"openid\",\r\n\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\", \r\n\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\", \r\n\"realm\": \"Username-Password-Authentication\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/clave",
-							"protocol": "http",
+							"raw": "https://isis2503-jagomez1.auth0.com/oauth/token",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"isis2503-jagomez1",
+								"auth0",
+								"com"
 							],
-							"port": "8080",
 							"path": [
-								"usuarios",
-								"clave"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Asignar Username Usuario",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruizTestChange\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/username",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"username"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Token Usuario Cambiado",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruizTestChange\",\n\t\"password\": \"jc.ruiz4567\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/token",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
+								"oauth",
 								"token"
 							]
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Eliminar un usuario",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/eliminar/jc.ruiz@gmail.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"eliminar",
-								"jc.ruiz@gmail.com"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "3c4daa7f-453f-4189-8348-3af03664eba6",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "3cb6b610-9d18-4772-b2a8-ef9dcfc68ad9",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				}
 			]
 		},
 		{
 			"name": "UnidadR",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Crear UnidadR",
@@ -341,7 +203,7 @@
 		},
 		{
 			"name": "Residencia",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Crear Residencia",
@@ -443,7 +305,7 @@
 		},
 		{
 			"name": "Hub",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Crear Hub",
@@ -545,7 +407,7 @@
 		},
 		{
 			"name": "Cerradura",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Crear Cerradura",
@@ -637,7 +499,7 @@
 		},
 		{
 			"name": "Persistir",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Persistir cuando todo existe",
@@ -701,17 +563,14 @@
 		},
 		{
 			"name": "Alarma",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Obtener alarmas",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8080/alarm/",
 							"protocol": "http",
@@ -731,19 +590,16 @@
 		},
 		{
 			"name": "Auth0",
-			"description": null,
+			"description": "",
 			"item": [
 				{
 					"name": "Get API Token",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/apiToken",
+							"raw": "http://localhost:8080/usuarios/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -751,7 +607,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"apiToken"
+								"token"
 							]
 						}
 					},
@@ -762,10 +618,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "http://localhost:8080/usuarios/authToken",
 							"protocol": "http",
@@ -801,10 +654,7 @@
 								"value": ""
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
+						"body": {},
 						"url": {
 							"raw": "https://isis2503-jagomez1.auth0.com/api/v2/users-by-email?email=jc.ruiz@gmail.com",
 							"protocol": "https",
@@ -823,63 +673,6 @@
 									"key": "email",
 									"value": "jc.ruiz@gmail.com"
 								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Horario",
-			"description": "",
-			"item": [
-				{
-					"name": "Asignar Horario",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"02:30\",\n\t\"horarioFinal\" : \"20:00\",\n\t\"principal\" : false,\n\t\"clave\" : \"1234\",\n\t\"slot\" : 1\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/jc.ruiz3@gmail.com/horarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"jc.ruiz3@gmail.com",
-								"horarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Dar Usuarios",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/dar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"dar"
 							]
 						}
 					},
