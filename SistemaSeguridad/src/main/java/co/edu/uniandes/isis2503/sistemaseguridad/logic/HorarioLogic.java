@@ -57,7 +57,8 @@ public class HorarioLogic implements IHorarioLogic {
 
     @Override
     public HorarioDTO update(HorarioDTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        HorarioDTO result = CONVERTER.entityToDto(persistence.update(CONVERTER.dtoToEntity(dto)));
+        return result;    
     }
 
     @Override
@@ -72,7 +73,7 @@ public class HorarioLogic implements IHorarioLogic {
 
     @Override
     public Boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return persistence.delete(id);
     }
 
 

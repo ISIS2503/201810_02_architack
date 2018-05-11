@@ -43,8 +43,8 @@ public class HorarioEntity implements Serializable{
     
     @Id
     private String id;
-    private Date horarioInicio;
-    private Date horarioFinal;
+    private String horarioInicio;
+    private String horarioFinal;
     private boolean principal;
     private String clave;
     private int slot;
@@ -61,11 +61,11 @@ public class HorarioEntity implements Serializable{
         this.id = id;
     }
 
-    public void setHorarioInicio(Date horarioInicio) {
+    public void setHorarioInicio(String horarioInicio) {
         this.horarioInicio = horarioInicio;
     }
 
-    public void setHorarioFinal(Date horarioFinal) {
+    public void setHorarioFinal(String horarioFinal) {
         this.horarioFinal = horarioFinal;
     }
 
@@ -82,11 +82,11 @@ public class HorarioEntity implements Serializable{
     }
 
 
-    public Date getHorarioInicio() {
+    public String getHorarioInicio() {
         return horarioInicio;
     }
 
-    public Date getHorarioFinal() {
+    public String getHorarioFinal() {
         return horarioFinal;
     }
 
@@ -103,7 +103,7 @@ public class HorarioEntity implements Serializable{
     }
 
 
-    public HorarioEntity(String id, Date horarioInicio, Date horarioFinal, boolean principal, String clave, int slot) {
+    public HorarioEntity(String id, String horarioInicio, String horarioFinal, boolean principal, String clave, int slot) {
         this.id = id;
         this.horarioInicio = horarioInicio;
         this.horarioFinal = horarioFinal;

@@ -32,8 +32,8 @@ import java.util.Date;
 public class HorarioDTO {
     
     private String id;
-    private Date horarioInicio;
-    private Date horarioFinal;
+    private String horarioInicio;
+    private String horarioFinal;
     private boolean principal;
     private String clave;
     private int slot;
@@ -45,11 +45,11 @@ public class HorarioDTO {
         this.id = id;
     }
 
-    public void setHorarioInicio(Date horarioInicio) {
+    public void setHorarioInicio(String horarioInicio) {
         this.horarioInicio = horarioInicio;
     }
 
-    public void setHorarioFinal(Date horarioFinal) {
+    public void setHorarioFinal(String horarioFinal) {
         this.horarioFinal = horarioFinal;
     }
 
@@ -69,11 +69,11 @@ public class HorarioDTO {
         return id;
     }
 
-    public Date getHorarioInicio() {
+    public String getHorarioInicio() {
         return horarioInicio;
     }
 
-    public Date getHorarioFinal() {
+    public String getHorarioFinal() {
         return horarioFinal;
     }
 

@@ -33,12 +33,15 @@ import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import java.util.List;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -65,11 +68,29 @@ public class UsuarioService {
     @Path("{id}/horarios")
     public HorarioDTO agregarHorario(@PathParam("id") String id,HorarioDTO dto) throws Exception {
         
+        if (dto.getHorarioFinal().split(":").length != 2 || dto.getHorarioInicio().split(":").length != 2) throw new Exception("Formato de horario incorrecto");
         UsuarioDTO user = usuarioLogic.find(id);
         HorarioDTO horario = horarioLogic.add(dto);
         user.addHorario(horario.getId());
         usuarioLogic.update(user);
         return horario;
+    }
+    
+    @PUT
+    @Path("/modificarHorario")
+    public HorarioDTO modificarHorario(HorarioDTO dto) throws Exception {
+        if (dto.getHorarioFinal().split(":").length != 2 || dto.getHorarioInicio().split(":").length != 2) throw new Exception("Formato de horario incorrecto");
+        HorarioDTO horario = horarioLogic.update(dto);
+        return horario;
+    }
+    
+    @DELETE
+    @Path("{idUser}/eliminarHorario/{id}")
+    public void delete(@PathParam("id") String id, @PathParam("idUser") String idUser){
+        UsuarioDTO user = usuarioLogic.find(idUser);
+        user.getHorarios().remove(id);
+        usuarioLogic.update(user);
+        horarioLogic.delete(id);
     }
     
     @GET
