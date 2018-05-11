@@ -111,4 +111,9 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
         
         return lista; 
     }
+
+    @Override
+    public List<AlarmaDTO> findAlarmsBarrio(String barrio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
