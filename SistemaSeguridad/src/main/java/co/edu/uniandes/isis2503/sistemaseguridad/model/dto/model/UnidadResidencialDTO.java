@@ -42,17 +42,20 @@ public class UnidadResidencialDTO {
     private List<String> residencias;
     
     private Boolean activa;
+    
+    private String barrio;
 
     public UnidadResidencialDTO() {
         this.residencias = new ArrayList();
         this.activa = true;
     }
 
-    public UnidadResidencialDTO(String id, String name, List<String> residencias, Boolean activa) {
+    public UnidadResidencialDTO(String id, String name, List<String> residencias, Boolean activa, String barrio) {
         this.id = id;
         this.nombreUnidadResidencial = name;
         this.residencias = residencias;
         this.activa = activa;
+        this.barrio = barrio;
     }
 
     public String getNombreUnidadResidencial() {
@@ -96,6 +99,18 @@ public class UnidadResidencialDTO {
     public void setActiva(Boolean activa) {
         this.activa = activa;
     }
-    
-    
+
+    /**
+     * @return the barrio
+     */
+    public String getBarrio() {
+        return barrio;
+    }
+
+    /**
+     * @param barrio the barrio to set
+     */
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
 }

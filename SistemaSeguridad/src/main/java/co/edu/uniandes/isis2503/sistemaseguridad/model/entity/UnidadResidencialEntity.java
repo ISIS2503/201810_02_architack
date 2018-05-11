@@ -47,14 +47,17 @@ public class UnidadResidencialEntity implements Serializable {
     private List<String> residencias;
     
     private Boolean activa = true;
+    
+    private String barrio;
 
     public UnidadResidencialEntity() {
         this.residencias = new ArrayList();
     }
-    public UnidadResidencialEntity(String id, String name, List<String> residencias) {
+    public UnidadResidencialEntity(String id, String name, List<String> residencias, String barrio) {
         this.id = id;
         this.nombreunidadresidencial = name;
         this.residencias = residencias;
+        this.barrio = barrio;
     }
 
     
@@ -95,6 +98,19 @@ public class UnidadResidencialEntity implements Serializable {
     public void setActiva(Boolean activa) {
         this.activa = activa;
     }
-    
+
+    /**
+     * @return the barrio
+     */
+    public String getBarrio() {
+        return barrio;
+    }
+
+    /**
+     * @param barrio the barrio to set
+     */
+    public void setBarrio(String barrio) {
+        this.barrio = barrio;
+    }
     
 }
