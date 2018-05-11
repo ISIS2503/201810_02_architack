@@ -27,6 +27,7 @@ import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import java.net.URLEncoder;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -49,8 +50,43 @@ public class UsuarioService {
     private static final String EXTENSION_URL = "https://isis2503-jagomez1.us.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api";
     private static final long TIME_OUT = 2000;
     
-    @GET
+    @POST
     @Path("/token")
+    public RespuestaDTO obtenerUserToken(UsuarioDTO usuario) {
+        RespuestaDTO respuesta = new RespuestaDTO();
+        HttpResponse<String> request = null;
+        String token = "";
+        String apiToken = obtenerAPIToken().getMsg();
+        
+        try {
+            String jsonBody = "{\n" +
+            "\"grant_type\":\"http://auth0.com/oauth/grant-type/password-realm\",\n" +
+            "\"username\": \""+usuario.getUserName()+"\",\n" +
+            "\"password\": \""+usuario.getPassword()+"\",\n" +
+            "\"audience\": \"uniandes.edu.co/thermalcomfort\", \n" +
+            "\"scope\": \"openid\",\n" +
+            "\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\", \n" +
+            "\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\", \n" +
+            "\"realm\": \"Username-Password-Authentication\"\n" +
+            "}";
+        
+            Unirest.setTimeouts(0, 0);
+            request = Unirest.post("https://isis2503-jagomez1.auth0.com/oauth/token")
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .body(jsonBody)
+                    .asString();
+            
+            JSONObject body = new JSONObject(request.getBody());
+            token = body.getString("id_token");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        respuesta.setMsg(token);
+        return respuesta;
+    }
+    
+    @GET
+    @Path("/apiToken")
     public RespuestaDTO obtenerAPIToken() {
         String token = "";
         try {
@@ -233,13 +269,79 @@ public class UsuarioService {
         
         try {
             Unirest.setTimeouts(TIME_OUT, TIME_OUT);
-            request = Unirest.delete("https://"+ DOMAIN +"/api/v2/users/" + userID)
+            request = Unirest.delete("https://"+ DOMAIN +"/api/v2/users/" + URLEncoder.encode(userID, "UTF-8"))
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + apiToken)
                     .asString();
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         respuesta.setMsg("Se elimino el usuario con correo " + email + " correctamente.");
+        return respuesta;
+    }
+    
+    @POST
+    @Path("/clave")
+    public RespuestaDTO asignarClaveUsuario(UsuarioDTO usuario) {
+        HttpResponse<String> request = null;
+        RespuestaDTO respuesta = new RespuestaDTO();
+        String apiToken = obtenerAPIToken().getMsg();
+        String userID = "";
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.get("https://"+ DOMAIN +"/api/v2/users-by-email?email=" + usuario.getEmail().toLowerCase())
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .asString();
+            
+            JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
+            userID = body.getString("user_id");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.patch("https://"+ DOMAIN +"/api/v2/users/" + URLEncoder.encode(userID, "UTF-8"))
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .body("{\"password\":\"" + usuario.getPassword() + "\"}")
+                    .asString();
+            
+        } catch(Exception e) { return new RespuestaDTO("No se pudo cambiar la clave al usuario."); }
+        
+        respuesta.setMsg("Se le cambio correctamente la clave al usuario.");
+        return respuesta;
+    }
+    
+    @POST
+    @Path("/username")
+    public RespuestaDTO asignarNombreUsuario(UsuarioDTO usuario) {
+        HttpResponse<String> request = null;
+        RespuestaDTO respuesta = new RespuestaDTO();
+        String apiToken = obtenerAPIToken().getMsg();
+        String userID = "";
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.get("https://"+ DOMAIN +"/api/v2/users-by-email?email=" + usuario.getEmail().toLowerCase())
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .asString();
+            
+            JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
+            userID = body.getString("user_id");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.patch("https://"+ DOMAIN +"/api/v2/users/" + URLEncoder.encode(userID, "UTF-8"))
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .body("{\"username\":\"" + usuario.getUserName()+ "\"}")
+                    .asString();
+            
+        } catch(Exception e) { return new RespuestaDTO("No se pudo cambiar el username del usuario."); }
+        
+        respuesta.setMsg("Se le cambio correctamente el username al usuario.");
         return respuesta;
     }
 }
