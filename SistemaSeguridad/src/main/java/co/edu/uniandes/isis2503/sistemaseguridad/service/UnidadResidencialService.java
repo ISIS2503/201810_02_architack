@@ -184,4 +184,10 @@ public class UnidadResidencialService {
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
     }
+    
+    @GET
+    @Path("/{barrio}")
+    public List<AlarmaDTO> alarmasBarrio(@PathParam("barrio") String barrio) {
+        return unidadResidencialLogic.findAlarmsBarrio(barrio);
+    }
 }

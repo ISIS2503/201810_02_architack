@@ -96,4 +96,19 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
         
         return lista;
     }
+    
+    public List<AlarmaDTO> findAlarmasBarrio(String barrio) {
+        List<AlarmaDTO> lista = new ArrayList<>();
+        
+        List<UnidadResidencialDTO> urList = CONVERTER.listEntitiesToListDTOs(persistence.all());
+        for(UnidadResidencialDTO ur : urList) {
+            if(barrio.equals(ur.getBarrio())) {
+                String id = ur.getId();
+                lista.addAll(findAlarms(id));
+            }
+            
+        }
+        
+        return lista; 
+    }
 }

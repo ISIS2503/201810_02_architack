@@ -38,4 +38,5 @@ public interface IUnidadResidencialLogic {
     public List<UnidadResidencialDTO> all();
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String id);
+    public List<AlarmaDTO> findAlarmsBarrio(String barrio);
 }
