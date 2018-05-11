@@ -26,5 +26,4 @@ public class AppClaves {
         client.publish("UnidadResidencial/Inmueble/Hub/Cerradura/Configuracion", message);
         client.disconnect();
     }
-    
 }

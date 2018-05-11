@@ -51,7 +51,6 @@ public class UnidadResidencialEntity implements Serializable {
     public UnidadResidencialEntity() {
         this.residencias = new ArrayList();
     }
-
     public UnidadResidencialEntity(String id, String name, List<String> residencias) {
         this.id = id;
         this.nombreunidadresidencial = name;
