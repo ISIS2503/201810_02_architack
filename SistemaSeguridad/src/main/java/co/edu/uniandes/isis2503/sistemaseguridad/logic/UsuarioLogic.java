@@ -75,9 +75,16 @@ public class UsuarioLogic implements IUsuarioLogic {
     public Boolean delete(String id) {
         return persistence.delete(id);
     }
-
+    
     @Override
-    public List<AlarmaDTO> findAlarms(String id) {
-        return residenciaLogic.findAlarms(persistence.find(id).getResidencia());
+    public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception
+    {
+        if (residenciaLogic.find(idResidencia).getPropietario().equals(idDueño))
+        {
+            throw new Exception();
+        }
+        
+        return residenciaLogic.findAlarms(idResidencia);
     }
+
 }

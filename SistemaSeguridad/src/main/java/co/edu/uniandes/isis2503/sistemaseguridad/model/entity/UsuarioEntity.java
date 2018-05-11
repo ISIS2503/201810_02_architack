@@ -48,15 +48,17 @@ public class UsuarioEntity implements Serializable {
     
     @ElementCollection
     private List <String> horarios;
-   
-    private String residencia;
+    
+   @ElementCollection
+    private List <String> residencia;
     
 
     public UsuarioEntity() {
         this.horarios = new ArrayList();
+        this.residencia = new ArrayList();
     }
     
-    public UsuarioEntity(String email, String password, String grupo, String residencia) {
+    public UsuarioEntity(String email, String password, String grupo, List <String> residencia) {
         this.email = email;
         this.password = password;
         this.grupo = grupo;
@@ -103,12 +105,11 @@ public class UsuarioEntity implements Serializable {
         this.horarios = horarios;
     }  
 
-    public String getResidencia() {
+    public List <String> getResidencia() {
         return residencia;
     }
 
-    public void setResidencia(String residencia) {
+    public void setResidencia(List <String> residencia) {
         this.residencia = residencia;
     }
-    
 }
