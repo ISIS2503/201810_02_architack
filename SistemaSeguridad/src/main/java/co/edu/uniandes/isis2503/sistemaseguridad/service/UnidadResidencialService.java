@@ -127,7 +127,7 @@ public class UnidadResidencialService {
             
         UnidadResidencialDTO unidadR = unidadResidencialLogic.find(dto.getIdUnidadR());
         if(unidadR == null) {
-            unidadR = new UnidadResidencialDTO(dto.getIdUnidadR(), "Unidad Residencial autogenerada", new ArrayList<String>(), true);
+            unidadR = new UnidadResidencialDTO(dto.getIdUnidadR(), "Unidad Residencial autogenerada", new ArrayList<String>(), true, "Barrio por defecto");
             unidadR = unidadResidencialLogic.add(unidadR);
             list.add(unidadR);
         }
