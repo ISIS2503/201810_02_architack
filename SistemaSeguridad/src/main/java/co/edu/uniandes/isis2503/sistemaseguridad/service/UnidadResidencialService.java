@@ -190,4 +190,12 @@ public class UnidadResidencialService {
     public List<AlarmaDTO> alarmasBarrio(@PathParam("barrio") String barrio) {
         return unidadResidencialLogic.findAlarmsBarrio(barrio);
     }
+    
+    @GET
+    @Path("mes/{id}")
+    @Secured({Role.yale, Role.admin, Role.seguridad})
+    public List<AlarmaDTO> findAlarmsByMonth(@PathParam("id") String id) {
+        return unidadResidencialLogic.findAlarmsByMonth(id);
+    }
+    
 }

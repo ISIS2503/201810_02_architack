@@ -30,10 +30,6 @@ import java.util.List;
 import java.util.UUID;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
-import co.edu.uniandes.isis2503.sistemaseguridad.persistence.AlarmaPersistence;
-import co.edu.uniandes.isis2503.sistemaseguridad.persistence.CerraduraPersistence;
-import co.edu.uniandes.isis2503.sistemaseguridad.persistence.HubPersistence;
-import co.edu.uniandes.isis2503.sistemaseguridad.persistence.ResidenciaPersistence;
 import java.util.ArrayList;
 
 /**
@@ -44,10 +40,12 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
     
     private final UnidadResidencialPersistence persistence;
     private final ResidenciaLogic residenciaLogic;
+    private final AlarmaLogic alarmaLogic;
 
     public UnidadResidenciaLogic() {
         this.persistence = new UnidadResidencialPersistence();
         this.residenciaLogic = new ResidenciaLogic();
+        this.alarmaLogic = new AlarmaLogic();
     }
 
     @Override
@@ -111,5 +109,11 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
         }
         
         return lista;
+    }
+    
+    @Override
+    public List<AlarmaDTO> findAlarmsByMonth (String id)
+    {
+        return alarmaLogic.findAlarmsByMonth(findAlarms(id));
     }
 }
