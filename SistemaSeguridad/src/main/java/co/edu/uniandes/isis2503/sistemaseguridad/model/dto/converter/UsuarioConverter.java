@@ -46,7 +46,7 @@ public class UsuarioConverter implements IUsuarioConverter {
         UsuarioDTO dto = new UsuarioDTO();
         dto.setEmail(entity.getEmail());
         dto.setUserName(entity.getUserName());
-        dto.setResidencia(entity.getResidencia());
+        dto.setResidencias(entity.getResidencia());
         dto.setGrupo(entity.getPassword());
         dto.setHorarios(entity.getHorarios());
         dto.setPassword(entity.getPassword());
@@ -59,7 +59,7 @@ public class UsuarioConverter implements IUsuarioConverter {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setEmail(dto.getEmail());
         entity.setUserName(dto.getUserName());
-        entity.setResidencia(dto.getResidencia());
+        entity.setResidencia(dto.getResidencias());
         entity.setGrupo(dto.getPassword());
         entity.setHorarios(dto.getHorarios());
         entity.setPassword(dto.getPassword());

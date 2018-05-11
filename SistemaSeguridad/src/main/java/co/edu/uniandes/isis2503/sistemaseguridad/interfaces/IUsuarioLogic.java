@@ -38,6 +38,7 @@ public interface IUsuarioLogic {
     public UsuarioDTO find(String id);
     public List<UsuarioDTO> all();
     public Boolean delete(String id);
-    public List<AlarmaDTO> findAlarms(String id);
+    public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception;
+    
     
 }
