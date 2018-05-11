@@ -23,13 +23,20 @@
  */
 package co.edu.uniandes.isis2503.sistemaseguridad.service;
 
+import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IHorarioLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.logic.HorarioLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.logic.UsuarioLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
@@ -46,6 +53,36 @@ public class UsuarioService {
     private static final String DOMAIN = "isis2503-jagomez1.auth0.com";
     private static final String EXTENSION_URL = "https://isis2503-jagomez1.us.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api";
     private static final long TIME_OUT = 2000;
+    private final IUsuarioLogic usuarioLogic;
+    private final IHorarioLogic horarioLogic;
+    
+    public UsuarioService(){
+        this.usuarioLogic = new UsuarioLogic();
+        this.horarioLogic = new HorarioLogic();
+    }
+    
+    @POST
+    @Path("{id}/horarios")
+    public HorarioDTO agregarHorario(@PathParam("id") String id,HorarioDTO dto) throws Exception {
+        
+        UsuarioDTO user = usuarioLogic.find(id);
+        HorarioDTO horario = horarioLogic.add(dto);
+        user.addHorario(horario.getId());
+        usuarioLogic.update(user);
+        return horario;
+    }
+    
+    @GET
+    @Path("{id}/darHorario")
+    public HorarioDTO darHorarios (@PathParam("id") String id){
+        return horarioLogic.find(id);
+    }
+    
+    @GET
+    @Path("{id}/darHorarioUser")
+    public List<String> darHorariosUser (@PathParam("id") String id){
+        return usuarioLogic.find(id).getHorarios();
+    }
     
     @GET
     @Path("/token")
@@ -90,8 +127,20 @@ public class UsuarioService {
     }
     
     @POST
+    @Path("/crear")
+    public UsuarioDTO crearUsuario(UsuarioDTO usuario) throws Exception{
+       return usuarioLogic.add(usuario);
+    }
+    
+    @GET
+    @Path("/dar")
+    public List<UsuarioDTO> darusuarios(){
+        return usuarioLogic.all();
+    }
+    
+    @POST
     @Path("/registrar")
-    public RespuestaDTO registrarUsuario(UsuarioDTO usuario) {
+    public RespuestaDTO registrarUsuario(UsuarioDTO usuario) throws Exception{
         HttpResponse<String> request = null;
         RespuestaDTO respuesta = new RespuestaDTO();
         String apiToken = obtenerAPIToken().getMsg();
@@ -145,7 +194,7 @@ public class UsuarioService {
                     .body("[\"" + userID + "\"]")
                     .asString();
         } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
-        
+        usuarioLogic.add(usuario);
         respuesta.setMsg("El usuario se registro exitosamente");
         return respuesta;
     }

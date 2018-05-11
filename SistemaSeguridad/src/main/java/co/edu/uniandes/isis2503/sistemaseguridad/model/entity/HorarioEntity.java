@@ -25,6 +25,7 @@ package co.edu.uniandes.isis2503.sistemaseguridad.model.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -37,78 +38,79 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "USUARIO_ENTITY")
-public class UsuarioEntity implements Serializable {
+@Table(name = "HORARIO_ENTITY")
+public class HorarioEntity implements Serializable{
     
     @Id
-    private String email;
-    private String userName;
-    private String password;
-    private String grupo;
-    
-    @ElementCollection
-    private List <String> horarios;
-   
-    private String residencia;
-    
-
-    public UsuarioEntity() {
-        this.horarios = new ArrayList();
+    private String id;
+    private Date horarioInicio;
+    private Date horarioFinal;
+    private boolean principal;
+    private String clave;
+    private int slot;
+  
+    public HorarioEntity(){
+        
     }
     
-    public UsuarioEntity(String email, String password, String grupo, String residencia) {
-        this.email = email;
-        this.password = password;
-        this.grupo = grupo;
-        this.residencia = residencia;
+    public String getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setHorarioInicio(Date horarioInicio) {
+        this.horarioInicio = horarioInicio;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setHorarioFinal(Date horarioFinal) {
+        this.horarioFinal = horarioFinal;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setPrincipal(boolean principal) {
+        this.principal = principal;
     }
 
-    public String getPassword() {
-        return password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSlot(int slot) {
+        this.slot = slot;
     }
 
-    public String getGrupo() {
-        return grupo;
+
+    public Date getHorarioInicio() {
+        return horarioInicio;
     }
 
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
+    public Date getHorarioFinal() {
+        return horarioFinal;
     }
 
-    public List<String> getHorarios() {
-        return horarios;
+    public boolean isPrincipal() {
+        return principal;
     }
 
-    public void setHorarios(List<String> horarios) {
-        this.horarios = horarios;
-    }  
-
-    public String getResidencia() {
-        return residencia;
+    public String getClave() {
+        return clave;
     }
 
-    public void setResidencia(String residencia) {
-        this.residencia = residencia;
+    public int getSlot() {
+        return slot;
     }
+
+
+    public HorarioEntity(String id, Date horarioInicio, Date horarioFinal, boolean principal, String clave, int slot) {
+        this.id = id;
+        this.horarioInicio = horarioInicio;
+        this.horarioFinal = horarioFinal;
+        this.principal = principal;
+        this.clave = clave;
+        this.slot = slot;
+    }
+    
     
 }
