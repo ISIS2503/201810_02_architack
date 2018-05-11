@@ -186,7 +186,7 @@ public class UnidadResidencialService {
     }
     
     @GET
-    @Path("/{barrio}")
+    @Path("/barrio/{barrio}")
     public List<AlarmaDTO> alarmasBarrio(@PathParam("barrio") String barrio) {
         return unidadResidencialLogic.findAlarmsBarrio(barrio);
     }
