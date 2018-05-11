@@ -66,5 +66,17 @@ public class AlarmaService {
             Logger.getLogger(AlarmaService.class.getName()).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }    
+    }  
+    
+    @GET
+    @Path("/{month}/{year}")
+    public List<AlarmaDTO> findAlarmByMonth(@PathParam("month") String month, @PathParam("year") int year) throws Exception {
+        try {
+            return sensorLogic.findAlarmsByMonth(month, year);
+        } catch (Exception e) {
+            Logger.getLogger(AlarmaService.class.getName()).log(Level.WARNING, e.getMessage());
+           throw new Exception();
+        }
+    } 
+   
 }

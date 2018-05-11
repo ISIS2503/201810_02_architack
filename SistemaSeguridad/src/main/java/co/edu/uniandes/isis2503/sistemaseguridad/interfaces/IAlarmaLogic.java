@@ -37,4 +37,5 @@ public interface IAlarmaLogic {
     public AlarmaDTO findCode(String code);
     public List<AlarmaDTO> all();
     public Boolean delete(String id);
+    public List<AlarmaDTO> findAlarmsByMonth (String month, int año);
 }
