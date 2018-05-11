@@ -48,6 +48,7 @@ public class UsuariosService {
     private static final String DENIED = "access_denied";
     private static final String DOMAIN = "isis2503-jagomez1.auth0.com";
     private static final String EXTENSION_URL = "https://isis2503-jagomez1.us.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api";
+    private static final long TIME_OUT = 2000;
     
     @GET
     @Path("/token")
@@ -112,6 +113,7 @@ public class UsuariosService {
             "}";
         
         try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.post("https://"+ DOMAIN +"/api/v2/users")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + apiToken)
@@ -123,6 +125,7 @@ public class UsuariosService {
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.get(EXTENSION_URL + "/groups")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + authToken)
@@ -138,12 +141,12 @@ public class UsuariosService {
                 }
             }
             
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.patch(EXTENSION_URL + "/groups/" + groupID + "/members")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + authToken)
                     .body("[\"" + userID + "\"]")
                     .asString();
-            
         } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
         
         respuesta.setMsg("El usuario se registro exitosamente");
