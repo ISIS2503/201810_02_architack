@@ -47,7 +47,7 @@ public class ResidenciaLogic implements IResidenciaLogic {
     }
 
     @Override
-    public ResidenciaDTO add(ResidenciaDTO dto) throws Exception {
+    public ResidenciaDTO add(ResidenciaDTO dto) {
         if (dto.getId() == null) {
             dto.setId(UUID.randomUUID().toString());
         }
