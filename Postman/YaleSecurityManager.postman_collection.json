@@ -6,6 +6,100 @@
 	},
 	"item": [
 		{
+			"name": "Usuarios",
+			"description": "",
+			"item": [
+				{
+					"name": "Crear un Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/registrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"registrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Asignar Grupo Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Yale\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/grupo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"grupo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Token Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"grant_type\":\"http://auth0.com/oauth/grant-type/password-realm\",\r\n\"username\": \"jc.ruiz\",\r\n\"password\": \"jc.ruiz1234\",\r\n\"audience\": \"uniandes.edu.co/thermalcomfort\", \r\n\"scope\": \"openid\",\r\n\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\", \r\n\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\", \r\n\"realm\": \"Username-Password-Authentication\"\r\n}"
+						},
+						"url": {
+							"raw": "https://isis2503-jagomez1.auth0.com/oauth/token",
+							"protocol": "https",
+							"host": [
+								"isis2503-jagomez1",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "UnidadR",
 			"description": "",
 			"item": [
@@ -142,6 +236,16 @@
 				{
 					"name": "Obtener Residencia",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -234,6 +338,16 @@
 				{
 					"name": "Obtener Hub",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -467,6 +581,98 @@
 							"path": [
 								"alarm",
 								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth0",
+			"description": "",
+			"item": [
+				{
+					"name": "Get API Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/authToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"authToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9pc2lzMjUwMy1qYWdvbWV6MS5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTUyNTQ2ODA1NiwiZXhwIjoxNTI1NTU0NDU2LCJhenAiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsInNjb3BlIjoicmVhZDpjbGllbnRfZ3JhbnRzIGNyZWF0ZTpjbGllbnRfZ3JhbnRzIGRlbGV0ZTpjbGllbnRfZ3JhbnRzIHVwZGF0ZTpjbGllbnRfZ3JhbnRzIHJlYWQ6dXNlcnMgdXBkYXRlOnVzZXJzIGRlbGV0ZTp1c2VycyBjcmVhdGU6dXNlcnMgcmVhZDp1c2Vyc19hcHBfbWV0YWRhdGEgdXBkYXRlOnVzZXJzX2FwcF9tZXRhZGF0YSBkZWxldGU6dXNlcnNfYXBwX21ldGFkYXRhIGNyZWF0ZTp1c2Vyc19hcHBfbWV0YWRhdGEgY3JlYXRlOnVzZXJfdGlja2V0cyByZWFkOmNsaWVudHMgdXBkYXRlOmNsaWVudHMgZGVsZXRlOmNsaWVudHMgY3JlYXRlOmNsaWVudHMgcmVhZDpjbGllbnRfa2V5cyB1cGRhdGU6Y2xpZW50X2tleXMgZGVsZXRlOmNsaWVudF9rZXlzIGNyZWF0ZTpjbGllbnRfa2V5cyByZWFkOmNvbm5lY3Rpb25zIHVwZGF0ZTpjb25uZWN0aW9ucyBkZWxldGU6Y29ubmVjdGlvbnMgY3JlYXRlOmNvbm5lY3Rpb25zIHJlYWQ6cmVzb3VyY2Vfc2VydmVycyB1cGRhdGU6cmVzb3VyY2Vfc2VydmVycyBkZWxldGU6cmVzb3VyY2Vfc2VydmVycyBjcmVhdGU6cmVzb3VyY2Vfc2VydmVycyByZWFkOmRldmljZV9jcmVkZW50aWFscyB1cGRhdGU6ZGV2aWNlX2NyZWRlbnRpYWxzIGRlbGV0ZTpkZXZpY2VfY3JlZGVudGlhbHMgY3JlYXRlOmRldmljZV9jcmVkZW50aWFscyByZWFkOnJ1bGVzIHVwZGF0ZTpydWxlcyBkZWxldGU6cnVsZXMgY3JlYXRlOnJ1bGVzIHJlYWQ6cnVsZXNfY29uZmlncyB1cGRhdGU6cnVsZXNfY29uZmlncyBkZWxldGU6cnVsZXNfY29uZmlncyByZWFkOmVtYWlsX3Byb3ZpZGVyIHVwZGF0ZTplbWFpbF9wcm92aWRlciBkZWxldGU6ZW1haWxfcHJvdmlkZXIgY3JlYXRlOmVtYWlsX3Byb3ZpZGVyIGJsYWNrbGlzdDp0b2tlbnMgcmVhZDpzdGF0cyByZWFkOnRlbmFudF9zZXR0aW5ncyB1cGRhdGU6dGVuYW50X3NldHRpbmdzIHJlYWQ6bG9ncyByZWFkOnNoaWVsZHMgY3JlYXRlOnNoaWVsZHMgZGVsZXRlOnNoaWVsZHMgdXBkYXRlOnRyaWdnZXJzIHJlYWQ6dHJpZ2dlcnMgcmVhZDpncmFudHMgZGVsZXRlOmdyYW50cyByZWFkOmd1YXJkaWFuX2ZhY3RvcnMgdXBkYXRlOmd1YXJkaWFuX2ZhY3RvcnMgcmVhZDpndWFyZGlhbl9lbnJvbGxtZW50cyBkZWxldGU6Z3VhcmRpYW5fZW5yb2xsbWVudHMgY3JlYXRlOmd1YXJkaWFuX2Vucm9sbG1lbnRfdGlja2V0cyByZWFkOnVzZXJfaWRwX3Rva2VucyBjcmVhdGU6cGFzc3dvcmRzX2NoZWNraW5nX2pvYiBkZWxldGU6cGFzc3dvcmRzX2NoZWNraW5nX2pvYiByZWFkOmN1c3RvbV9kb21haW5zIGRlbGV0ZTpjdXN0b21fZG9tYWlucyBjcmVhdGU6Y3VzdG9tX2RvbWFpbnMgcmVhZDplbWFpbF90ZW1wbGF0ZXMgY3JlYXRlOmVtYWlsX3RlbXBsYXRlcyB1cGRhdGU6ZW1haWxfdGVtcGxhdGVzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.OthhVpseGZjqaEjTa3e7aRKVjHtb509a2pDt-sxeHFpQ3PiKABe4Zss0NCFEFCXy-NnRG-UYABRiWBmiqYZ2MxtWadjkMQerAGHiK5_wzgFUStudEL5um8-aae0vAJwMSHXayU-odyI7OOZ8pk2mZvutxc_N0uyVVFb0SC82xfGpirAZlD8Q0CXKPUaMz222G-IZLM7HuvjJ7HE_f7Ih1-5hqnbvJVG7zn8JGEE_czWDVwpeCQPbPVgYakCZPP1oE3L8FwnNZljnt2toBkagkQ5Wh_fnA0GKMy9d78lKy1rku8B9tOy7MJBoFIU6vSegb412annuVeneGl1kpWKKNw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": ""
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://isis2503-jagomez1.auth0.com/api/v2/users-by-email?email=jc.ruiz@gmail.com",
+							"protocol": "https",
+							"host": [
+								"isis2503-jagomez1",
+								"auth0",
+								"com"
+							],
+							"path": [
+								"api",
+								"v2",
+								"users-by-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jc.ruiz@gmail.com"
+								}
 							]
 						}
 					},

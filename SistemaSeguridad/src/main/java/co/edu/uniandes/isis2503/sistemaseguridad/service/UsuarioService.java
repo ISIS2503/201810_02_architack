@@ -27,9 +27,11 @@ import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.json.JSONArray;
@@ -161,6 +163,7 @@ public class UsuarioService {
         String groupID = "";
         
         try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.get("https://"+ DOMAIN +"/api/v2/users-by-email?email=" + usuario.getEmail().toLowerCase())
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + apiToken)
@@ -171,6 +174,7 @@ public class UsuarioService {
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.get(EXTENSION_URL + "/groups")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + authToken)
@@ -186,6 +190,7 @@ public class UsuarioService {
                 if(grupo.getString("name").equals(usuario.getGrupo())) {
                     groupID = temp_id;
                 } else {
+                    Unirest.setTimeouts(TIME_OUT, TIME_OUT);
                     request = Unirest.delete(EXTENSION_URL + "/groups/" + temp_id + "/members")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + authToken)
@@ -194,6 +199,7 @@ public class UsuarioService {
                 }
             }
             
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
             request = Unirest.patch(EXTENSION_URL + "/groups/" + groupID + "/members")
                     .header("content-type", "application/json")
                     .header("Authorization","Bearer " + authToken)
@@ -203,6 +209,37 @@ public class UsuarioService {
         } catch(Exception e) { return new RespuestaDTO("No se pudo asociar un grupo al usuario."); }
         
         respuesta.setMsg("Se le asigno correctamente el nuevo grupo al usuario.");
+        return respuesta;
+    }
+    
+    @DELETE
+    @Path("/eliminar/{email}")
+    public RespuestaDTO eliminarUsuario(@PathParam("email") String email) {
+        HttpResponse<String> request = null;
+        RespuestaDTO respuesta = new RespuestaDTO();
+        String apiToken = obtenerAPIToken().getMsg();
+        String userID = "";
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.get("https://"+ DOMAIN +"/api/v2/users-by-email?email=" + email.toLowerCase())
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .asString();
+            
+            JSONObject body = new JSONArray(request.getBody()).getJSONObject(0);
+            userID = body.getString("user_id");
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        try {
+            Unirest.setTimeouts(TIME_OUT, TIME_OUT);
+            request = Unirest.delete("https://"+ DOMAIN +"/api/v2/users/" + userID)
+                    .header("content-type", "application/json")
+                    .header("Authorization","Bearer " + apiToken)
+                    .asString();
+        } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
+        
+        respuesta.setMsg("Se elimino el usuario con correo " + email + " correctamente.");
         return respuesta;
     }
 }
