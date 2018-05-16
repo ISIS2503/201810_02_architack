@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "5b1ddc98-06b5-4988-bb06-cec42f09857c",
+		"_postman_id": "22f92b8d-6f70-413e-a400-23207a2a65cd",
 		"name": "YaleSecurityManager",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Usuarios",
+			"name": "Usuarios ",
 			"description": "",
 			"item": [
 				{
@@ -24,7 +24,7 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/crear",
+							"raw": "http://localhost:8080/usuarios/registrar",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -32,7 +32,7 @@
 							"port": "8080",
 							"path": [
 								"usuarios",
-								"crear"
+								"registrar"
 							]
 						}
 					},
@@ -50,7 +50,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Yale\"\n}"
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"grupo\": \"Yale\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/usuarios/grupo",
@@ -68,7 +68,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Token Usuario",
+					"name": "Asignar Password Usuario",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -79,19 +79,173 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"grant_type\":\"http://auth0.com/oauth/grant-type/password-realm\",\r\n\"username\": \"jc.ruiz\",\r\n\"password\": \"jc.ruiz1234\",\r\n\"audience\": \"uniandes.edu.co/thermalcomfort\", \r\n\"scope\": \"openid\",\r\n\"client_id\": \"Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y\", \r\n\"client_secret\": \"KgCeooHTX37S5LvbD-_FKhyFSr8GuzIcC0NANtB1sJtl8sMv3JcQP6ypCJtvezFH\", \r\n\"realm\": \"Username-Password-Authentication\"\r\n}"
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"password\": \"jc.ruiz4567\"\n}"
 						},
 						"url": {
-							"raw": "https://isis2503-jagomez1.auth0.com/oauth/token",
-							"protocol": "https",
+							"raw": "http://localhost:8080/usuarios/clave",
+							"protocol": "http",
 							"host": [
-								"isis2503-jagomez1",
-								"auth0",
-								"com"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"oauth",
-								"token"
+								"usuarios",
+								"clave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dar Todos Los Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/dar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"dar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Horario Para Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"02:30\",\n\t\"horarioFinal\" : \"20:45\",\n\t\"principal\" : true,\n\t\"clave\":\"1234\",\n\t\"slot\" : 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/horarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"jc.ruiz@gmail.com",
+								"horarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dar Horarios Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/horarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"jc.ruiz@gmail.com",
+								"horarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar un horario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"00:00\",\n\t\"horarioFinal\" : \"00:00\",\n\t\"principal\" : true,\n\t\"clave\":\"4321\",\n\t\"slot\" : 5\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/modificarHorario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"modificarHorario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un horario ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/eliminarHorario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"jc.ruiz@gmail.com",
+								"eliminarHorario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/eliminar/jc.ruiz@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"eliminar",
+								"jc.ruiz@gmail.com"
 							]
 						}
 					},
@@ -102,111 +256,14 @@
 		{
 			"name": "UnidadR",
 			"description": "",
-			"item": [
-				{
-					"name": "Crear UnidadR",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDQtMjFUMjM6NTc6MDAuODEyWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNDM1NTAyMiwiZXhwIjoxNTI0MzkxMDIyfQ.Mn9Ukb95vC4UiaCBlZEHk8G7rZX29fkaaMm-h-TXN7g_4bDAoui4cn7PvJfV3OFmkUW7KKwTUI06WOnQSVuSocR8joxX6VNQI8Or4wMlCVBFURuV4DI9_DjIFHsQWCcvsZx4wn57ecgQntk482Ikx1qd-0wy-n29nGEldgCSEK4HghcxpexyY1aKpymcoEG6jKnjbraA0lMA7d7qsEHw9y_7xSA8CGxnG0V347LXoCzWN6XNnZaNVj1ddAEAQ3_AIpp3a8X0ihFGEg9ZF7p2l54sOPbr_Nq_VMmiKYCfbQQTwbcw35xvI9psQ53Sv7Ykwu9BiukH76HMwGdMVIpE_Q",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\" : 5121,\n\t\"nombreUnidadResidencial\" : \"Miracolina\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/unidadresidencial",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"unidadresidencial"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener UnidadR",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/unidadresidencial/52121",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"unidadresidencial",
-								"52121"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete UnidadR",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/unidadresidencial/52121",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"unidadresidencial",
-								"52121"
-							]
-						}
-					},
-					"response": []
-				}
-			]
+			"item": []
 		},
 		{
-			"name": "Residencia",
+			"name": "Tokens",
 			"description": "",
 			"item": [
 				{
-					"name": "Crear Residencia",
+					"name": "Obtener Token New User",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -217,387 +274,8 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
 						},
-						"url": {
-							"raw": "http://localhost:8080/residencia",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"residencia"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Residencia",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/residencia/1245",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"residencia",
-								"1245"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Residencia",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/residencia/1245",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"residencia",
-								"1245"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Hub",
-			"description": "",
-			"item": [
-				{
-					"name": "Crear Hub",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": \"41351\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/hub",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"hub"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Hub",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": \"41351\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/hub/41351",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"hub",
-								"41351"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Hub",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": \"41351\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/hub/41351",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"hub",
-								"41351"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Cerradura",
-			"description": "",
-			"item": [
-				{
-					"name": "Crear Cerradura",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\":\"51451\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/cerradura",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cerradura"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Obtener Cerradura",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\":\"51451\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/cerradura/51451",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cerradura",
-								"51451"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Cerradura",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\":\"51451\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/cerradura/51451",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cerradura",
-								"51451"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Persistir",
-			"description": "",
-			"item": [
-				{
-					"name": "Persistir cuando todo existe",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"idUnidadR\": \"52121\",\n\t\"idResidencia\": \"1245\",\n\t\"idHub\": \"41351\",\n\t\"idCerradura\": \"51451\",\n\t\"tipo\": 1,\n\t\"mensaje\": \"Alguien abrio la puerta\",\n\t\"tiempo\": \"10:00 am 02/10/08\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/unidadresidencial/persistir",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"unidadresidencial",
-								"persistir"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Persistir cuando nada existe",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"idUnidadR\": \"76235\",\n\t\"idResidencia\": \"6235\",\n\t\"idHub\": \"62531\",\n\t\"idCerradura\": \"54364\",\n\t\"tipo\": 4,\n\t\"mensaje\": \"La bateria esta en un nivel critico\",\n\t\"tiempo\": \"1:00 am 09/11/12\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/unidadresidencial/persistir",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"unidadresidencial",
-								"persistir"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Alarma",
-			"description": "",
-			"item": [
-				{
-					"name": "Obtener alarmas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "http://localhost:8080/alarm/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"alarm",
-								""
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Auth0",
-			"description": "",
-			"item": [
-				{
-					"name": "Get API Token",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
 						"url": {
 							"raw": "http://localhost:8080/usuarios/token",
 							"protocol": "http",
@@ -614,11 +292,102 @@
 					"response": []
 				},
 				{
+					"name": "Obtener Token Propietario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"prop@prop.com\",\n\t\"userName\": \"prop\",\n\t\"password\": \"Prop1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Token Yale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"yale@yale.com\",\n\t\"userName\": \"yale\",\n\t\"password\": \"Yale1234\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth0",
+			"description": null,
+			"item": [
+				{
+					"name": "Get API Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/apiToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"apiToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Auth Token",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8080/usuarios/authToken",
 							"protocol": "http",
@@ -654,7 +423,10 @@
 								"value": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "https://isis2503-jagomez1.auth0.com/api/v2/users-by-email?email=jc.ruiz@gmail.com",
 							"protocol": "https",

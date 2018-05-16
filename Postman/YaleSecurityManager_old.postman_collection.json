@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "7295e300-515d-4226-9035-96f03d9bf96b",
+		"name": "YaleSecurityManager_old",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"description": null,
+			"item": [
+				{
+					"name": "Asignar Username Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruizTestChange\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/username",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"username"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UnidadR",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear UnidadR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDQtMjFUMjM6NTc6MDAuODEyWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNDM1NTAyMiwiZXhwIjoxNTI0MzkxMDIyfQ.Mn9Ukb95vC4UiaCBlZEHk8G7rZX29fkaaMm-h-TXN7g_4bDAoui4cn7PvJfV3OFmkUW7KKwTUI06WOnQSVuSocR8joxX6VNQI8Or4wMlCVBFURuV4DI9_DjIFHsQWCcvsZx4wn57ecgQntk482Ikx1qd-0wy-n29nGEldgCSEK4HghcxpexyY1aKpymcoEG6jKnjbraA0lMA7d7qsEHw9y_7xSA8CGxnG0V347LXoCzWN6XNnZaNVj1ddAEAQ3_AIpp3a8X0ihFGEg9ZF7p2l54sOPbr_Nq_VMmiKYCfbQQTwbcw35xvI9psQ53Sv7Ykwu9BiukH76HMwGdMVIpE_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5121,\n\t\"nombreUnidadResidencial\" : \"Miracolina\",\n\t\"barrio\": \"Andes\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener UnidadR",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial/52121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial",
+								"52121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alarmas por mes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial/mes/5121/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial",
+								"mes",
+								"5121",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete UnidadR",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial/52121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial",
+								"52121"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Residencia",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear Residencia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/residencia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residencia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/residencia/1245",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residencia",
+								"1245"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Residencia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/residencia/1245",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residencia",
+								"1245"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hub",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear Hub",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"41351\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/hub",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hub"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Hub",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsicHJvcCJdLCJuaWNrbmFtZSI6InByb3AiLCJuYW1lIjoicHJvcEBwcm9waWV0YXJpby5jbyIsInBpY3R1cmUiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci83MWYyZWVhMDFkMjkwMjUwNGM3ZjBjZjgyYWQ5NGU3MT9zPTQ4MCZyPXBnJmQ9aHR0cHMlM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRnByLnBuZyIsInVwZGF0ZWRfYXQiOiIyMDE4LTA0LTIyVDAyOjAwOjI5LjYzOVoiLCJlbWFpbCI6InByb3BAcHJvcGlldGFyaW8uY28iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImlzcyI6Imh0dHBzOi8vaXNpczI1MDMtamFnb21lejEuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVhZGJjMmNjNWZiM2JjMWI2ZDdiMzU0NiIsImF1ZCI6IllfQlpULVR5YjRaMDltZ2JSa2tmWnJSN0dXTjF3SjR5IiwiaWF0IjoxNTI0MzYyNDMxLCJleHAiOjE1MjQzOTg0MzF9.FzLAIBFFWgQqnwJWX7J0PcuIEGIsGdr8zB5oVuAuO0qxSkjwJ0KQfN7Or7JR5W2EEY6UqGEYm6dNl25ZdoAPRT3Po4khswtsK7o4OHXdcD9_qZq85IyVc8FG1T_2XlcwyZ3zND2xGADU5schXZbgzhf4Zn5HL6pHdRcYogZSt6ex4UysIJt6rMjldX1YDbnp9AD5yR1_KlHtYzFtgjQeChaueaKaPPqyX16lxODcB9HPGpjtGTa52Vqi4u906kWD7Htyfv9n3m_u6viQbGgD_wzVtBT45bUGTIU5_SxCDbBmpw9UfpbOqJtn5byWSc_4bZKzdpOurjzCf9IbtrdS0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"41351\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/hub/41351",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hub",
+								"41351"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Hub",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"41351\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/hub/41351",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hub",
+								"41351"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cerradura",
+			"description": null,
+			"item": [
+				{
+					"name": "Crear Cerradura",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"51451\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cerradura",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cerradura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cerradura",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"51451\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cerradura/51451",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cerradura",
+								"51451"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cerradura",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"51451\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cerradura/51451",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cerradura",
+								"51451"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Persistir",
+			"description": null,
+			"item": [
+				{
+					"name": "Persistir cuando todo existe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUnidadR\": \"52121\",\n\t\"idResidencia\": \"1245\",\n\t\"idHub\": \"41351\",\n\t\"idCerradura\": \"51451\",\n\t\"tipo\": 1,\n\t\"mensaje\": \"Alguien abrio la puerta\",\n\t\"tiempo\": \"10:00 am 02/10/08\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial/persistir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial",
+								"persistir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persistir cuando nada existe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUnidadR\": \"76235\",\n\t\"idResidencia\": \"6235\",\n\t\"idHub\": \"62531\",\n\t\"idCerradura\": \"54364\",\n\t\"tipo\": 4,\n\t\"mensaje\": \"La bateria esta en un nivel critico\",\n\t\"tiempo\": \"1:00 am 09/11/12\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/unidadresidencial/persistir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"unidadresidencial",
+								"persistir"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alarma",
+			"description": null,
+			"item": [
+				{
+					"name": "Obtener alarmas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/alarm/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alarm",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6e891eef-7a33-4bf4-b46c-665d7c55a813",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ea9cab2c-9845-4d97-832a-37b8b9bd401f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
