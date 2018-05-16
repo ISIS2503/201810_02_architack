@@ -24,13 +24,14 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/registrar",
+							"raw": "http://localhost:8080/api/usuarios/registrar",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"registrar"
 							]
@@ -53,13 +54,14 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"grupo\": \"Yale\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/grupo",
+							"raw": "http://localhost:8080/api/usuarios/grupo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"grupo"
 							]
@@ -82,13 +84,14 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"password\": \"jc.ruiz4567\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/clave",
+							"raw": "http://localhost:8080/api/usuarios/clave",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"clave"
 							]
@@ -103,13 +106,14 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/dar",
+							"raw": "http://localhost:8080/api/usuarios/dar",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"dar"
 							]
@@ -132,13 +136,14 @@
 							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"02:30\",\n\t\"horarioFinal\" : \"20:45\",\n\t\"principal\" : true,\n\t\"clave\":\"1234\",\n\t\"slot\" : 1\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/horarios",
+							"raw": "http://localhost:8080/api/usuarios/jc.ruiz@gmail.com/horarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"jc.ruiz@gmail.com",
 								"horarios"
@@ -154,13 +159,14 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/horarios",
+							"raw": "http://localhost:8080/api/usuarios/jc.ruiz@gmail.com/horarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"jc.ruiz@gmail.com",
 								"horarios"
@@ -184,13 +190,14 @@
 							"raw": "{\n\t\"id\" : \"1\",\n\t\"horarioInicio\" : \"00:00\",\n\t\"horarioFinal\" : \"00:00\",\n\t\"principal\" : true,\n\t\"clave\":\"4321\",\n\t\"slot\" : 5\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/modificarHorario",
+							"raw": "http://localhost:8080/api/usuarios/modificarHorario",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"modificarHorario"
 							]
@@ -205,13 +212,14 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/jc.ruiz@gmail.com/eliminarHorario/1",
+							"raw": "http://localhost:8080/api/usuarios/jc.ruiz@gmail.com/eliminarHorario/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"jc.ruiz@gmail.com",
 								"eliminarHorario",
@@ -236,13 +244,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/eliminar/jc.ruiz@gmail.com",
+							"raw": "http://localhost:8080/api/usuarios/eliminar/jc.ruiz@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"eliminar",
 								"jc.ruiz@gmail.com"
@@ -254,9 +263,570 @@
 			]
 		},
 		{
+			"name": "Persistir",
+			"description": "",
+			"item": [
+				{
+					"name": "Persistir cuando todo existe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUnidadR\": \"5121\",\n\t\"idResidencia\": \"1245\",\n\t\"idHub\": \"41351\",\n\t\"idCerradura\": \"51451\",\n\t\"tipo\": 1,\n\t\"mensaje\": \"Alguien abrio la puerta\",\n\t\"tiempo\": \"Wed May 16 10:16:41 COT 2018\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/persistir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"persistir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Persistir cuando nada existe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUnidadR\": \"76235\",\n\t\"idResidencia\": \"6235\",\n\t\"idHub\": \"62531\",\n\t\"idCerradura\": \"54364\",\n\t\"tipo\": 4,\n\t\"mensaje\": \"La bateria esta en un nivel critico\",\n\t\"tiempo\": \"Wed May 16 10:16:41 COT 2018\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/persistir",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"persistir"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "UnidadR",
 			"description": "",
-			"item": []
+			"item": [
+				{
+					"name": "Obtener todos los UnidadR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear UnidadR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5121,\n\t\"nombreUnidadResidencial\" : \"Miracolina\",\n\t\"barrio\": \"Andes\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar UnidadR ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : 5121,\n\t\"nombreUnidadResidencial\" : \"Nombre Editado\",\n\t\"barrio\": \"Barrio Editado\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener UnidadR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/5121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"5121"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alarmas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/5121/alarms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"5121",
+								"alarms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alarmas por mes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/5121/alarmasUltimoMes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"5121",
+								"alarmasUltimoMes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete UnidadR",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreUnidadResidencial\": \"Miracolina\",\n\t\"id\": \"52121\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/unidadresidencial/5121",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"unidadresidencial",
+								"5121"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Residencia",
+			"description": null,
+			"item": [
+				{
+					"name": "Obtener todos los Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/residencia/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"residencia",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/residencia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"residencia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"Editado T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez Editado\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/residencia",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"residencia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/residencia/1245",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"residencia",
+								"1245"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Residencia",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombreResidencia\": \"APTO401 T2\",\n\t\"id\": \"1245\",\n\t\"propietario\": \"Jorge Gomez\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/residencia/1245",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"residencia",
+								"1245"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Tokens",
@@ -277,13 +847,14 @@
 							"raw": "{\n\t\"email\": \"jc.ruiz@gmail.com\",\n\t\"userName\": \"jc.ruiz\",\n\t\"password\": \"jc.ruiz1234\",\n\t\"grupo\": \"Propietarios\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/token",
+							"raw": "http://localhost:8080/api/usuarios/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"token"
 							]
@@ -306,13 +877,14 @@
 							"raw": "{\n\t\"email\": \"prop@prop.com\",\n\t\"userName\": \"prop\",\n\t\"password\": \"Prop1234\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/token",
+							"raw": "http://localhost:8080/api/usuarios/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"token"
 							]
@@ -335,13 +907,14 @@
 							"raw": "{\n\t\"email\": \"yale@yale.com\",\n\t\"userName\": \"yale\",\n\t\"password\": \"Yale1234\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/token",
+							"raw": "http://localhost:8080/api/usuarios/token",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"token"
 							]
@@ -365,13 +938,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/apiToken",
+							"raw": "http://localhost:8080/api/usuarios/apiToken",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"apiToken"
 							]
@@ -389,13 +963,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/authToken",
+							"raw": "http://localhost:8080/api/usuarios/authToken",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
 								"usuarios",
 								"authToken"
 							]
