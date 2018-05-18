@@ -11,7 +11,9 @@
     </head>
     <body class="home">
         <div class="container">
-            <h4>{{unidades}}</h4>
+        {% for x in unidades %}
+            <h2>{{x.id}}</h2>
+        {% endfor %}
         </div>
     </body>
 </html>
