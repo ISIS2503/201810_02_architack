@@ -13,6 +13,7 @@ boolean     stringComplete = false;
 boolean     init_flag = false;
 String      inputString = "";
 char        bufferData [SIZE_BUFFER_DATA];
+int         contador = 0;
  
 // WIFI & MQTT CLIENT
 WiFiClientSecure clientWIFI;
@@ -150,7 +151,7 @@ void connectWIFI() {
   // Obtain MAC Address
   uint8_t mac[6];
   WiFi.macAddress(mac);
-  idDevice = macToStr(mac);
+  idDevice = "Isis2503.";
   Serial.print("MAC Address: ");
   Serial.println(idDevice);
  
@@ -194,7 +195,7 @@ void processData() {
  
       boolean conectMQTT = false;
       if (!clientMQTT.connected()) {
-        if (!clientMQTT.connect(idDevice.c_str(), usernameMQTT, passwordMQTT)) {
+        if (!clientMQTT.connect(idDevice, usernameMQTT, passwordMQTT)) {
           conectMQTT = false;
         }
         conectMQTT = true;
@@ -219,10 +220,15 @@ void processData() {
         }
         init_flag = false;
       }
-      String enviar = "conectado";
-      char bufferDataHB [SIZE_BUFFER_DATA];
-      enviar.toCharArray(bufferDataHB, SIZE_BUFFER_DATA);
-      clientMQTT.publish(TOPIC_PUBLISH_HB, bufferDataHB);
+      
+      if(contador==50000)
+      {
+        contador = 0;
+        String enviar = "conectado";
+        char bufferDataHB [SIZE_BUFFER_DATA];
+        enviar.toCharArray(bufferDataHB, SIZE_BUFFER_DATA);
+        clientMQTT.publish(TOPIC_PUBLISH_HB, bufferDataHB);
+      }
     }
   }
   else {
@@ -248,4 +254,5 @@ void receiveData() {
 void loop() {
   receiveData();
   processData();
+  contador = contador + 1;
 }
