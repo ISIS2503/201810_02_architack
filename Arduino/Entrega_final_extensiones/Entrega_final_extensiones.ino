@@ -14,6 +14,24 @@ String param0;
 String param1;
 String param2;
 
+//Sonido del buzzer
+int buzzer = A4;
+
+//Sensor MQ2
+int mq2 = A4;
+// Valor para notificar alarma MQ2
+int limiteMQ2 = 200;
+
+//Sensor MQ7
+int mq7 = A3;
+//Valor para notificar alarma MQ7
+int limiteMQ7 = 350;
+
+//Sensor ventanas
+int ventana = A5;
+//Valor para notificar alarma MQ7
+int limiteVentana = 50;
+
 //String recibido por serial
 String inputString;
 
@@ -104,12 +122,16 @@ void setup() {
 
   pinMode(inputPin, INPUT);     // declare sensor as input
   pinMode(CONTACT_PIN, INPUT);
-  //LED 
+  pinMode(mq2, INPUT); //MQ2
+  pinMode(mq7, INPUT); //MQ7
+  pinMode(ventana, INPUT); //Ventana
+  //LED
+  pinMode(buzzer, OUTPUT);
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
   pinMode(redLedPin, OUTPUT);
-
+  
   Serial.begin(9600);
   currentKey = "";
   open = false;
@@ -353,12 +375,42 @@ void loop() {
   //Measured value comparison with min voltage required
   if(batteryCharge<=MIN_VOLTAGE) {
     digitalWrite(BATTERY_LED,HIGH);
+    //tone(buzzer, 500, 200);
     Serial.println(44444);
   }
   else {
     digitalWrite(BATTERY_LED,LOW);
   }
 
+  //MQ2
+  int analogMQ2 = analogRead(mq2);
+  //analogSensor = 402; //Prueba de funcionamiento del sensor
+  if (analogMQ2 > limiteMQ2)
+  {
+    //Detección de humo en el ambiente fuera de lo normal
+    Serial.println(55555);
+    //tone(buzzer, 1000, 200);
+  }
+
+  //MQ7
+  int analogMQ7 = analogRead(mq7);
+  if (analogMQ7 > limiteMQ7)
+  {
+    //Detección de monoxido de carbono en el ambiente fuera de lo normal
+    Serial.println(66666);
+    //tone(buzzer, 1500, 200);
+  }
+
+  //Sensor de movimiento
+  int analogVentana = analogRead(ventana);
+  //analogSensor = 402; //Prueba de funcionamiento del sensor
+  if (analogVentana > limiteVentana)
+  {
+    //Detección de ventanas abiertas
+    Serial.println(77777);
+    //tone(buzzer, 2000, 200);
+  }
+  
   verificarEEPROM();
 
   delay(100);
