@@ -1,15 +1,32 @@
 <html>
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- font awesome from BootstrapCDN -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- <link href="/css/app.css" rel="stylesheet"> -->
+        
+        <!-- CSS por Andres -->
+        <link href="/css/dashboard.css" rel="stylesheet"> 
+    </head>
     <body class="home">
         <div class="container">
-            <div class="login-page clearfix">
-                <div class="logged-in-box auth0-box logged-in">
-                    <h1 id="logo"><img src="//cdn.auth0.com/samples/auth0_logo_final_blue_RGB.png" /></h1>
-                    <img class="avatar" src="{{userinfo['picture']}}"/>
-                    <h2>Welcome {{userinfo['name']}}</h2>
-                    <pre>{{userinfo_pretty}}</pre>
-                    <a class="btn btn-primary btn-lg btn-logout btn-block" href="/logout">Logout</a>
-                </div>
-            </div>
+        <table>
+        <h1> Mapa de Residencias </h1>
+        <div id="mapa2" class="container" >
+        {% for x in residenciasUnidad %}
+        <div class="row">
+          <div>
+            <img id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
+            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas!</p>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        </table>
         </div>
     </body>
 </html>
