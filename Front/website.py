@@ -67,10 +67,12 @@ def callback_handling():
     return redirect('/unidades')
 @app.route('/dashboard')
 def dashboard():
-    print(session['profile'])
+    unidadId = request.args.get('idUnidad')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+    
     return render_template('dashboard.html',
-                           userinfo=session['profile'],
-                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+                           residenciasUnidad = data)
                            
                            
                            

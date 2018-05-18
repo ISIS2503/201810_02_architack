@@ -1,103 +1,32 @@
 <html>
     <head>
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- font awesome from BootstrapCDN -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
         <!-- <link href="/css/app.css" rel="stylesheet"> -->
+        
+        <!-- CSS por Andres -->
+        <link href="/css/dashboard.css" rel="stylesheet"> 
     </head>
     <body class="home">
         <div class="container">
-            <div class="login-page clearfix">
-                <div class="logged-in-box auth0-box logged-in">
-                    <h1 id="logo"><img src="https://ferreteriacaball.com/wp-content/uploads/2017/09/Yale-logo-01-1.png" width="300" height="200"/></h1>
-                    <img class="avatar" src="{{userinfo['picture']}}"/>
-                    <h2>Bienvenido {{userinfo['name']}}</h2>
-                    <pre>{{userinfo_pretty}}</pre>
-					<h4>{{userinfo['id_token']}}</h4>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
-                    <script>
-                    
-                    
-                    <!-- var xhr = new XMLHttpRequest(); -->
-                    <!-- var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMThUMTY6NDI6MjQuOTY1WiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjY2MTc0NywiZXhwIjoxNTI2Njk3NzQ3fQ.oq8cHYXAiRX2KitT_NhASbnC7XubjOz0rVHuZR714zO_CWN_5eTHsIUtL5UYDFsoENUM2FUGJrJxiJWokkzmO9AlrI6iCYKVLZxkv44sJLY39i4AQ7bo0JwQsHh2nbBVMetTQKnHv21emW7MD1PgGqqwqJjKLOpt9kJB1AtYWPRLeFBQG-iWM1vOT8Mp6k-rBdQNv5QP4KLTQM0OVbe4om3QaHa4jxpF7jA68sJHtXOT4YSFyI2fNMVCdY69FrcJ2Bv_ya7vjabDaW9MzGmgWQ_C1K09yNtZYe-86Jcm2UUSXZ_InktZwlXs6rQbHqzX8GepvZimMiDanspQ62mXaw"; -->
-                    
-                    <!-- while(true){ -->
-                    <!-- xhr.open('GET', "http://172.24.42.30:8080/api/unidadresidencial/5121/alarms", true); -->
-                    <!-- xhr.setRequestHeader('Authorization', 'Bearer ' + token); -->
-                    <!-- xhr.send(); -->
-                    <!-- xhr.addEventListener("readystatechange", processRequest, false); -->
-                    <!-- } -->
-                    
-                    <!-- function processRequest(e) { -->
-                    <!-- if (xhr.readyState == 4) { -->
-                        <!-- console.log(xhr.status); -->
-                        <!-- var response = JSON.parse(xhr.responseText); -->
-                        <!-- console.log(response); -->
-                        <!-- } -->
-                    <!-- } -->
-                    
-                    <!-- var mqtt; -->
-                    <!-- var reconnectTimeout = 2000; -->
-                    
-                    <!-- function onConnect(){ -->
-                    <!-- console.log("Se conecto"); -->
-                        <!-- mqtt.subscribe("#"); -->
-                    <!-- } -->
-                    
-                     <!-- function MQTTconnect(){ -->
-                        
-                        <!-- console.log("ENTRO A MQTTconnect"); -->
-                        <!-- mqtt = new Paho.MQTT.Client("http://172.24.42.106", 9001, "clientejs"); -->
-                        <!-- var options = { -->
-                        <!-- timeout:3, -->
-                        <!-- onSuccess: onConnect, -->
-                        <!-- onFailure: onFailure, -->
-                        <!-- }; -->
-                        <!-- mqtt.onMessageArrived = onMessageArrived; -->
-                        <!-- mqtt.connect(options); -->
-                    <!-- } -->
-                    
-                    <!-- function onFailure(message){ -->
-                        <!-- setTimeout(MQTTconnect, reconnectTimeout); -->
-                    <!-- } -->
-                    
-                    <!-- function onMessageArrived(msg){ -->
-                        
-                        <!-- console.log("Llego algo"); -->
-                        <!-- console.log(msg.destinationName); -->
-                    
-                    <!-- } -->
-                    
-                    
-                    
-                     <!-- $(document).ready(function() { -->
-                     
-                     <!-- // Use a "/yale" namespace. -->
-                    <!-- namespace = '/yale'; -->
-                    <!-- // Connect to the Socket.IO server. -->
-                    <!-- var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace); -->
-
-                    <!-- // Event handler for server receive data. -->
-                    <!-- socket.on('alarms', function(msg) { -->
-                    <!-- if(msg!="Connected!!!"){ -->
-                        <!-- var str = JSON.stringify(eval('('+msg+')')); -->
-                        <!-- var data = JSON.parse(str); -->
-                        <!-- var residencia = data.residencia; -->
-                        
-                        <!-- como putas cambiamos la imagen teniendo la residencia men     -->
-                        
-                        <!-- document.getElementById("img"+residencia).src = "casaAlarma.png"; -->
-                        <!-- document.getElementById("texto"+residencia).innerHTML = "ALARMA!"; -->
-                        
-                    <!-- }}} -->
-                    
-                    </script>
-                    <!-- <script> MQTTconnect(); </script> -->
-                    <a class="btn btn-primary btn-lg btn-logout btn-block" href="/logout">Logout</a>
-                </div>
-            </div>
+        <table>
+        <h1> Mapa de Residencias </h1>
+        <div id="mapa2" class="container" >
+        {% for x in residenciasUnidad %}
+        <div class="row">
+          <div>
+            <img id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
+            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas!</p>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+        </table>
         </div>
     </body>
 </html>

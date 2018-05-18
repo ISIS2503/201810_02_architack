@@ -7,13 +7,20 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-        <link href="/css/app.css" rel="stylesheet">
+        <!-- <link href="/css/app.css" rel="stylesheet"> -->
     </head>
     <body class="home">
         <div class="container">
+        <table>
+        <tr> <th><h1> Unidades residenciales </h1></th> </tr>
         {% for x in unidades %}
-            <h2>{{x.id}}</h2>
+            <tr>
+                <th>
+                    <a href="http://localhost:9080/dashboard?idUnidad={{x.id}}">Unidad {{x.nombreUnidadResidencial}}</a>
+                </th>
+            </tr>
         {% endfor %}
+        </table>
         </div>
     </body>
 </html>

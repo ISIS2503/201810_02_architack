@@ -1,0 +1,26 @@
+
+
+.colImagenes{
+  
+  margin-top: 50px;
+  margin-left: 80px;
+  margin-bottom:50px;
+}
+
+#mapa{
+  background-color: #bdedf9;
+  border: 2px solid black;
+}
+
+#mapa2{
+  background-image: url("https://preview.ibb.co/ndst6J/mapa_Fondov2.png");
+  border: 2px solid black;
+
+}
+
+.textoAlarma{
+  
+  margin-left: 30px;
+  font-size: 14px;
+  font-weight: bold;
+}

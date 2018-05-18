@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Index ArquiSoft</title>
+  <meta charset="utf-8">
+  <!-- viewport for dynamic scale of website -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+  <!-- Angular JS and Router -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'website/index/index.css' %}">
+
+  <!-- Angular controllers -->
+  <script src={% static "website/index/indexCtrl.js"%}></script>
+
+  <!-- JS Functions -->
+</head>
+<body>
+<div ng-app="myApp" ng-controller="indexCtrl">
+  <div class="jumbotron text-center" id="header">
+    <div class="row" id="headerRow">
+      <div class="col-md-2" id="logoDiv">
+        <img src="https://preview.ibb.co/c36rRJ/yaleLogo.png" alt="Logo" id="logoIMG" height="250"/>
+      </div>
+      <div class="col-md-8">
+        <h1 id="mainTitle">Tablero de Control</h1>
+        <div class="wrapper">
+          <p id="slogan">Para la seguridad privada</p>
+        </div> 
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  <div id="mainView" ng-view></div>
+ 
+  
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Filtros</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#">Todas las alarmas</a></li>
+      <li><a href="#">Solo alarmas</a></li>
+      <li><a href="#">Solo fallos</a></li>
+    </ul>
+  </div>
+</nav>
+  
+  
+<div id="mapa2" class="container" >
+  <div class="row">
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde1" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200" onclick="cambiarEstado('casaVerde1', 'estadoCasa1', 1)">
+      <p class="textoAlarma" id="estadoCasa1">Sin alarmas!</p>
+    </div>
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde2" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200" onclick="cambiarEstado('casaVerde2', 'estadoCasa2', 2)">
+      <p class="textoAlarma" id="estadoCasa2">Sin alarmas!</p>
+    </div>
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde3" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200" onclick="cambiarEstado('casaVerde3', 'estadoCasa3', 3)">
+      <p class="textoAlarma" id="estadoCasa3">Sin alarmas!</p>
+    </div>
+  </div>
+            
+  <div class="row">
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde4" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200"  onclick="cambiarEstado('casaVerde4', 'estadoCasa4', 4)">
+      <p class="textoAlarma" id="estadoCasa4">Sin alarmas!</p>
+    </div>
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde5" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200" onclick="cambiarEstado('casaVerde5', 'estadoCasa5', 5)">
+      <p class="textoAlarma" id="estadoCasa5">Sin alarmas!</p>
+    </div>
+    <div class="col-md-3 colImagenes">
+      <img id="casaVerde6" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200" onclick="cambiarEstado('casaVerde6', 'estadoCasa6', 3)">
+      <p class="textoAlarma" id="estadoCasa6">Sin alarmas!</p>
+    </div>
+  </div>
+  
+  
+  </div>
+  
+  <br>
+  <br>
+
+  
+</div>
+  
+  
+  
+  
+
+
+</body>
+</html>
