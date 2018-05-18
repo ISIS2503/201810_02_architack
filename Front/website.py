@@ -101,11 +101,20 @@ def callback_handling():
         'picture': userinfo['picture']
     }
 
-    return redirect('/dashboard')
+    return redirect('/unidades')
     
 @app.route('/dashboard')
 def dashboard():
+    print(session['profile'])
     return render_template('dashboard.html',
+                           userinfo=session['profile'],
+                           userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
+                           
+                           
+                           
+@app.route('/unidades')
+def unidades():
+    return render_template('unidades.html',
                            userinfo=session['profile'],
                            userinfo_pretty=json.dumps(session['jwt_payload'], indent=4))
 
