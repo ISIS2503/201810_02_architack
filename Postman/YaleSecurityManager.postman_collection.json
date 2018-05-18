@@ -508,7 +508,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMTZUMTI6MzU6MTkuNzMzWiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjQ3NDEyMSwiZXhwIjoxNTI2NTEwMTIxfQ.cokVx30ay6WScr_yAY16SnTwZU_xDTpwVUkvHd963FecyIJg6xfs-FY_gofCYzAGyKHngW2wCJEEkb68ozxxJowkNCdNHe3PXURlydSp0xPlGJwvgDypDXwSdj85h_qpR5PDl8cr7gXgw2Dkts19eKaoTRoiWBkEyacSnlVanXVw-JeulhZVlo25unXTV17AJ9puINIsfZXgNDwwxIvJUnWokKAcP7YeWkTId_2CY7ISBPYt1K6S_IRvEa2kEn3E2ZG3Q8ym7pgUafv_EsehXjYwnBcdVGDmvXtle8a0Q5ab6NxvdNHlceNKW3Hy3UMxTOcunsMmVOiPjJb3vfXE7g",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMThUMTY6NDI6MjQuOTY1WiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjY2MTc0NywiZXhwIjoxNTI2Njk3NzQ3fQ.oq8cHYXAiRX2KitT_NhASbnC7XubjOz0rVHuZR714zO_CWN_5eTHsIUtL5UYDFsoENUM2FUGJrJxiJWokkzmO9AlrI6iCYKVLZxkv44sJLY39i4AQ7bo0JwQsHh2nbBVMetTQKnHv21emW7MD1PgGqqwqJjKLOpt9kJB1AtYWPRLeFBQG-iWM1vOT8Mp6k-rBdQNv5QP4KLTQM0OVbe4om3QaHa4jxpF7jA68sJHtXOT4YSFyI2fNMVCdY69FrcJ2Bv_ya7vjabDaW9MzGmgWQ_C1K09yNtZYe-86Jcm2UUSXZ_InktZwlXs6rQbHqzX8GepvZimMiDanspQ62mXaw",
 									"type": "string"
 								}
 							]
@@ -1020,6 +1020,45 @@
 									"key": "email",
 									"value": "jc.ruiz@gmail.com"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alarma",
+			"description": "",
+			"item": [
+				{
+					"name": "Silenciar Alarma",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJUQkZRMEUyTVVKQ1F6TXdOVUUwT1VJek1qZzRPRFU1TnpRM01UUXlOVFJCTUVGQ1FURTRRdyJ9.eyJodHRwOi8vdGhlcm1hbGNvbWZvcnQvcm9sZXMiOlsieWFsZSJdLCJuaWNrbmFtZSI6InlhbGUiLCJuYW1lIjoieWFsZUB5YWxlLmNvIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyLzFhNTlhNTQ4MjhkOTRmNWI3NWM1ZDE3NDA1OGZlZjUyP3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGeWEucG5nIiwidXBkYXRlZF9hdCI6IjIwMTgtMDUtMThUMTY6NDU6MzUuMDk3WiIsImVtYWlsIjoieWFsZUB5YWxlLmNvIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJpc3MiOiJodHRwczovL2lzaXMyNTAzLWphZ29tZXoxLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1YWRiYzI2MTQxYWFjZDFkYWE4OTgzZDYiLCJhdWQiOiJZX0JaVC1UeWI0WjA5bWdiUmtrZlpyUjdHV04xd0o0eSIsImlhdCI6MTUyNjY2MTkzNywiZXhwIjoxNTI2Njk3OTM3fQ.RxDG6ADK2dppF9tEBR-byxoTOLvJK6kTo-bWjikuUrsU6nVbJ_OIDnTPRSpmAyae12QzumVg43mN8PKDdH6453R43GWt_q4x0QKwerLxNp_k_9UwnI0_xyX4ZGit9072Z379Dm2jaQ6_0ONDEkfWGcCoTGs9jbbgmJ_0lbP1I0mM0j3DTpnlA_5YkmOJF0JEF6uhW7IurQFSKqh4ubv9ZcO4sjMo9leKKfFfFQ_5H07hgfgPlCDSMj_-P1BhyCWcAzCghsFxIg8JtzbdCAWypYHoqFLVzJARUtxyRUhySUuWcXTRb6P81F7TDVn0NQZiX9Fa_x76zfIJCPE80q_IXQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/api/alarm/12c1be7b-95f5-4ff3-b757-290fb7ebb6db/silenciar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"alarm",
+								"12c1be7b-95f5-4ff3-b757-290fb7ebb6db",
+								"silenciar"
 							]
 						}
 					},
