@@ -79,7 +79,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-    return redirect('/dashboard')
+    return redirect('/unidades')
     
 @app.route('/dashboard')
 def dashboard():
