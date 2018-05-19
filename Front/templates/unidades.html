@@ -7,20 +7,20 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-        <!-- <link href="/css/app.css" rel="stylesheet"> -->
+        <link type= "text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/app.css') }}">
+		
     </head>
     <body class="home">
         <div class="container">
-        <table>
-        <tr> <th><h1> Unidades residenciales </h1></th> </tr>
+        <ul>
+       <h1> Unidades residenciales </h1>
+		<h1></h1>
         {% for x in unidades %}
-            <tr>
-                <th>
-                    <a href="http://localhost:9080/dashboard?idUnidad={{x.id}}">Unidad {{x.nombreUnidadResidencial}}</a>
-                </th>
-            </tr>
+                       <li><a href="http://localhost:9080/dashboard?idUnidad={{x.id}}">Unidad {{x.nombreUnidadResidencial}}</a></li>
+				<h1></h1>
         {% endfor %}
-        </table>
+        </ul>
         </div>
+		<img src="https://st3.depositphotos.com/7820448/17703/v/1600/depositphotos_177030758-stock-illustration-set-of-cute-colored-houses.jpg"/>
     </body>
 </html>

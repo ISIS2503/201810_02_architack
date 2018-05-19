@@ -7,14 +7,16 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
-        <link href="/css/app.css" rel="stylesheet">
+        <link type= "text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/app.css') }}">
+		
     </head>
     <body class="home">
         <div class="container">
             <div class="login-page clearfix">
               <div class="login-box auth0-box before">
                 <img src="https://ferreteriacaball.com/wp-content/uploads/2017/09/Yale-logo-01-1.png" width="200" height="200" />
-                <h3>Yale</h3>
+				<img src="https://networkradius.com/wp-content/uploads/2015/08/radius-network-security.jpg"/>
+				<h1></h1>
                 <a class="btn btn-primary btn-lg btn-login btn-block" href="/login">Log In</a>
               </div>
             </div>
