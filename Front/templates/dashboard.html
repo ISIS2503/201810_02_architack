@@ -10,62 +10,42 @@
         <!-- <link href="/css/app.css" rel="stylesheet"> -->
 
         <!-- CSS por Andres -->
-        <link href="/css/dashboard.css" rel="stylesheet">
+
+        <link type= "text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/dashboard.css') }}">
+        
+        <!-- Nuestros JS -->
+        <script src="{{ url_for('static', filename='functions/dashboard.js')}}"></script>
+
     </head>
     <body class="home">
-        <div class="container">
-        <table>
-        <h1> Mapa de Residencias </h1>
-        <div id="mapa2" class="container" >
-        {% for x in residenciasUnidad %}
-        <div class="row">
-          <div>
-            <img id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
-            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas!</p>
-          </div>
+        <div>
+            <table>
+            <h1 style="text-align:center;"> Mapa de Residencias </h1>
+            <div class="mapa">
+                {% for y in dataUR %}
+                    <div class="container">
+                        <div class="row" id="mapaRow">
+                          {% for x in y %}
+                          <div class="col-md-4">
+                            <h4 class="nombreRow"> <a href="http://localhost:9080/detalle?idResidencia={{x.id}}&nombreR={{x.nombreResidencia}}"> {{x.nombreResidencia}} {{x.id}}</a></h4>
+                            <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
+                            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>
+                          </div>
+                          {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            </table>
         </div>
+    {% for y in dataUR %}
+        {% for x in y %}
+            <script>
+                createWorker({{x.id}},"{{url_for('static',filename='functions/worker.js')}}","{{token}}");
+            </script>
         {% endfor %}
-        </div>
-        </table>
-        </div>
-        <script>
-        var mqtt;
-                  var reconnectTimeout = 2000;
 
-                  function onConnect(){
-                  console.log("Se conecto");
-                      mqtt.subscribe("#");
-                  }
+    {% endfor %}
 
-                   function MQTTconnect(){
-
-                      console.log("ENTRO A MQTTconnect");
-                      mqtt = new Paho.MQTT.Client("172.24.41.163", 9001, null);
-                      var options = {
-                      timeout:3,
-                      onSuccess: onConnect,
-                      onFailure: onFailure,
-                      };
-                      mqtt.onMessageArrived = onMessageArrived;
-                      mqtt.connect(options);
-                      client.setCallback(new MqttCallback() {
-                      function connectionLost(Throwable cause) {}
-                      function messageArrived(String topic, MqttMessage message) throws Exception {
-                  }
-                  });
-                  }
-
-                  function onFailure(message){
-                      setTimeout(MQTTconnect, reconnectTimeout);
-                  }
-
-                  function onMessageArrived(msg){
-
-                      console.log("Llego algo");
-                      console.log(msg.destinationName);
-
-                  }
-        </script>
-        <script> MQTTconnect(); </script>
     </body>
 </html>

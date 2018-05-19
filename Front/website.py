@@ -1,6 +1,7 @@
 #Importados de auth0
 from functools import wraps
 import json
+import math
 from os import environ as env
 from werkzeug.exceptions import HTTPException
 
@@ -40,6 +41,20 @@ auth0 = oauth.register(
     },
 )
 
+def arrange(data):
+    arrangedData = []
+    dim = 4
+    i = 0
+    
+    for x in data:
+        row = math.floor(i/dim)
+        if(i%dim == 0):
+            arrangedData.append([])
+        arrangedData[row].append(x)
+        i = i+1
+    return arrangedData
+ 
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -64,28 +79,56 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-    return redirect('/dashboard')
+
+    return redirect('/unidades')
+    
 @app.route('/dashboard')
 def dashboard():
-    #unidadId = request.args.get('idUnidad')
-    #headers = {'Authorization': 'Bearer ' + session['id_token']}
-    #data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
-
-    return render_template('oldDashboard.html'
-                          )
-
-
-
+    unidadId = request.args.get('idUnidad')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+    arrangedData = arrange(data);
+    
+    return render_template('dashboard.html',
+                           dataUR = arrangedData,
+                           token = session['id_token'])
+ 
+ 
+                        
+                           
+@app.route('/detalle')
+def detalle():
+    residenciaId = request.args.get('idResidencia')
+    residenciaName = request.args.get('nombreR')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
+    dataAlarmas = requests.get(path + 'residencia/' + residenciaId + "/alarms", headers = headers).json()
+    return render_template('DetalleInmueble.html',
+                            profile = data,
+                            idResidencia = residenciaId,
+                            NombreResidencia = residenciaName,
+                            alarmas = dataAlarmas)
+                           
+@app.route('/silenciar')
+def silenciar():
+    alarmaId = request.args.get('idAlarma')
+    residenciaId = request.args.get('idResidencia')
+    residenciaName = request.args.get('nombreR')
+    
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    requests.put(path + 'alarm/' + alarmaId + "/silenciar", headers = headers)
+    
+    return redirect('/detalle?idResidencia=' + residenciaId + '&nombreR' + residenciaName)
+    
 @app.route('/unidades')
 def unidades():
     headers = {'Authorization': 'Bearer ' + session['id_token']}
     data = requests.get(path + 'unidadresidencial/', headers = headers).json()
-
+    
     return render_template('unidades.html',
                            unidades = data)
 
-
-
+    
 @app.route('/login')
 def login():
     return auth0.authorize_redirect(redirect_uri='http://localhost:9080/callback', audience='https://isis2503-jagomez1.auth0.com/userinfo')
