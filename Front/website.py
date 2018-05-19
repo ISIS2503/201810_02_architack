@@ -93,6 +93,14 @@ def dashboard():
                            token = session['id_token'])
                            
                            
+@app.route('/detalle')
+def detalle():
+    residenciaId = request.args.get('idResidencia')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
+    print(data)
+    return render_template('DetalleInmueble.html', profile = data)
+    
                            
 @app.route('/unidades')
 def unidades():
