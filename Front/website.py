@@ -65,6 +65,7 @@ def callback_handling():
         'picture': userinfo['picture']
     }
     return redirect('/unidades')
+    
 @app.route('/dashboard')
 def dashboard():
     unidadId = request.args.get('idUnidad')
@@ -72,7 +73,8 @@ def dashboard():
     data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
     
     return render_template('dashboard.html',
-                           residenciasUnidad = data)
+                           residenciasUnidad = data,
+                           token = session['id_token'])
                            
                            
                            
@@ -80,7 +82,7 @@ def dashboard():
 def unidades():
     headers = {'Authorization': 'Bearer ' + session['id_token']}
     data = requests.get(path + 'unidadresidencial/', headers = headers).json()
-
+    
     return render_template('unidades.html',
                            unidades = data)
 

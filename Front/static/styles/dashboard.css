@@ -1,0 +1,23 @@
+.mapa{
+  background-image: url("https://preview.ibb.co/ndst6J/mapa_Fondov2.png");
+}
+
+.textoAlarma{
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.nombreRow {
+    text-align: center;
+}
+
+#mapaRow {
+    display: flex;
+    justify-content: center;
+}
+
+.itemRow {
+    margin-left: 50px;
+    margin-right: 50px;
+}
