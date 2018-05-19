@@ -39,6 +39,11 @@ public class AlarmaEntity implements Serializable {
     private static final int MOVIMIENTO_DETECTADO = 2;
     private static final int INTENTOS_DETECTADOS = 3;
     private static final int BATERIA_CRITICA = 4;
+    private static final int FALLO_INTERNET_RESIDENCIA = 5;
+    private static final int FALLO_INTERNET_INMUEBLE = 6;
+    private static final int DETEC_HUMO = 7;
+    private static final int DETEC_MONCARBONO = 8;
+    private static final int DETEC_VENTABIERTAS = 9;
 
     @Id
     private String id;
