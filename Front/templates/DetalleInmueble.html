@@ -43,7 +43,7 @@
     <tr>
         <td>{{x.tiempo}}</td>
         <td>{{x.mensaje}}</td>
-        <td><button type="button">Silenciar</button></td>
+        <td><a href="http://localhost:9080/silenciar?idAlarma={{x.id}}"><button type="button">Silenciar</button></a></td>
     </tr>
   {% endfor %}
   </table>

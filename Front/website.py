@@ -91,7 +91,9 @@ def dashboard():
     return render_template('dashboard.html',
                            dataUR = arrangedData,
                            token = session['id_token'])
-                           
+ 
+ 
+                        
                            
 @app.route('/detalle')
 def detalle():
@@ -106,6 +108,14 @@ def detalle():
                             NombreResidencia = residenciaName,
                             alarmas = dataAlarmas)
                            
+@app.route('/silenciar')
+def silenciar():
+    alarmaId = request.args.get('idAlarma')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    requests.put(path + 'alarm/' + alarmaId + "/silenciar", headers = headers)
+    data = requests.get(path + 'unidadresidencial/', headers = headers).json()
+    return render_template('unidades.html', unidades = data)
+    
 @app.route('/unidades')
 def unidades():
     headers = {'Authorization': 'Bearer ' + session['id_token']}
