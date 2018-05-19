@@ -62,6 +62,7 @@ public class AppMQTT {
 
         messages[3] = "Hubo una alarma en su inmueble: " + mens;
         System.out.println(messages[3]);
+        
 
         jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
                 + " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
