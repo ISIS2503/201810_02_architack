@@ -13,6 +13,21 @@ function createWorker(id, path, token) {
     }
 }
 
+function vistaAlertas(tipo, idUnidad) {
+    if(tipo != "Alertas")
+        window.location.replace("http://localhost:9080/dashboardAlertas?idUnidad=" + idUnidad);
+}
+
+function vistaFallos(tipo, idUnidad) {
+    if(tipo != "Fallos")
+        window.location.replace("http://localhost:9080/dashboardFallos?idUnidad=" + idUnidad);
+}
+
+function vistaCompleta(tipo, idUnidad) {
+    if(tipo != "Completa")
+        window.location.replace("http://localhost:9080/dashboard?idUnidad=" + idUnidad);
+}
+
 function altertarResidencia(id, texto) {
         var imagen = document.getElementById(id+"img");
         if(imagen.src != "https://image.ibb.co/hNyhYy/redhouse.png")

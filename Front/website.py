@@ -90,9 +90,35 @@ def dashboard():
     
     return render_template('dashboard.html',
                            dataUR = arrangedData,
-                           token = session['id_token'])
- 
- 
+                           token = session['id_token'],
+                           tipo = "Completa",
+                           idUnidad = unidadId)
+                           
+@app.route('/dashboardAlertas')
+def dashboardAlertas():
+    unidadId = request.args.get('idUnidad')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+    arrangedData = arrange(data);
+    
+    return render_template('dashboard.html',
+                           dataUR = arrangedData,
+                           token = session['id_token'],
+                           tipo = "Alertas",
+                           idUnidad = unidadId) 
+
+@app.route('/dashboardFallos')
+def dashboardFallos():
+    unidadId = request.args.get('idUnidad')
+    headers = {'Authorization': 'Bearer ' + session['id_token']}
+    data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+    arrangedData = arrange(data);
+    
+    return render_template('dashboard.html',
+                           dataUR = arrangedData,
+                           token = session['id_token'],
+                           tipo = "Fallos",
+                           idUnidad = unidadId)
                         
                            
 @app.route('/detalle')
@@ -100,7 +126,11 @@ def detalle():
     residenciaId = request.args.get('idResidencia')
     residenciaName = request.args.get('nombreR')
     headers = {'Authorization': 'Bearer ' + session['id_token']}
-    data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
+    data = {"userName":"Jorge Gomez","email":"jagv1998@gmail.com"}
+    try:
+        data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
+    except:
+        print("defoUser")
     dataAlarmas = requests.get(path + 'residencia/' + residenciaId + "/alarms", headers = headers).json()
     return render_template('DetalleInmueble.html',
                             profile = data,

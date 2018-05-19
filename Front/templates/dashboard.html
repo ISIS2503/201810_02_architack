@@ -16,32 +16,45 @@
         <script src="{{ url_for('static', filename='functions/dashboard.js')}}"></script>
     </head>
     <body class="home">
-        <div>
-            <table>
+        <div class="jumbotron">
             <h1 style="text-align:center;"> Mapa de Residencias </h1>
-            <div class="mapa">
-                {% for y in dataUR %}
-                    <div class="container">
-                        <div class="row" id="mapaRow">
-                          {% for x in y %}
-                          <div class="col-md-4">
-                            <h4 class="nombreRow"> <a href="http://localhost:9080/detalle?idResidencia={{x.id}}&nombreR={{x.nombreResidencia}}"> {{x.nombreResidencia}} {{x.id}}</a></h4>
-                            <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
-                            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>
-                          </div>
-                          {% endfor %}
-                        </div>
-                    </div>
-                {% endfor %}
+            <h2 style="text-align:center;"> Vista {{tipo}} </h2>
+            <div id="menuBarDiv">
+                <div class="row" id="menuBar">
+                    <button id="FallosBoton" type="button" class="btn btn-primary" onclick="vistaFallos('{{tipo}}','{{idUnidad}}')">Vista Fallos</button>
+                    <button id="AlertasBoton" type="button" class="btn btn-primary" onclick="vistaAlertas('{{tipo}}','{{idUnidad}}')">Vista Alertas</button>
+                    <button id="CompletaBoton" type="button" class="btn btn-primary"onclick="vistaCompleta('{{tipo}}','{{idUnidad}}')">Vista Completa</button>
+                </div>
             </div>
-            </table>
         </div>
-    {% for y in dataUR %}
-        {% for x in y %}
-            <script>
-                createWorker({{x.id}},"{{url_for('static',filename='functions/worker.js')}}","{{token}}");
-            </script>
+        <table>
+        <div class="mapa">
+            {% for y in dataUR %}
+                <div class="container">
+                    <div class="row" id="mapaRow">
+                      {% for x in y %}
+                      <div class="col-md-4">
+                        <h4 class="nombreRow"> <a href="http://localhost:9080/detalle?idResidencia={{x.id}}&nombreR={{x.nombreResidencia}}"> {{x.nombreResidencia}} {{x.id}}</a></h4>
+                        <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
+                        <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>
+                      </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </table>
+        {% for y in dataUR %}
+            {% for x in y %}
+                <script>
+                    var tipo = "{{tipo}}";
+                    createWorker({{x.id}},"/static/functions/worker" + tipo + ".js","{{token}}");
+                </script>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+        <script>
+            var tipo = "{{tipo}}";
+            document.getElementById(tipo+"Boton").disabled = true;
+        </script>
     </body>
 </html>

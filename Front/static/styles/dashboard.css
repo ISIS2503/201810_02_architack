@@ -17,6 +17,23 @@
     justify-content: center;
 }
 
+#menuBar {
+    display: flex;
+    justify-content: center;
+}
+
+#menuBarDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#menuBarDiv .btn {
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
 .itemRow {
     margin: auto;
     display: block;
