@@ -1,0 +1,27 @@
+
+.textoTitulo{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.textoInfo{
+  font-size: 15px;
+
+}
+
+.bloque{
+  margin-top: 50px;
+  border: 5px solid #cecece;
+}
+
+.fila{
+  margin: 20px;
+}
+
+.imagen{
+  margin-left: 80px
+}
+
+#boton{
+  margin-left: 500px;
+}

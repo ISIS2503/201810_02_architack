@@ -64,7 +64,7 @@ def callback_handling():
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-    return redirect('/unidades')
+    return redirect('/dashboard')
     
 @app.route('/dashboard')
 def dashboard():
@@ -85,8 +85,6 @@ def unidades():
     
     return render_template('unidades.html',
                            unidades = data)
-
-
     
 @app.route('/login')
 def login():

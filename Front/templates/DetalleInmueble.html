@@ -1,0 +1,49 @@
+<html>
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- font awesome from BootstrapCDN -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- <link href="/css/app.css" rel="stylesheet"> -->
+        
+        <!-- CSS por Andres -->
+        <link type= "text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/DetalleInmueble.css') }}">
+        
+    </head>
+    <body class="home">
+        <div>
+            <h1> Detalle residencia </h1>
+             <div class="container bloque">
+   <div class="row fila">
+     <div class="col-md-6">
+      <img class="imagen" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa" height="200" width="200">
+     </div>
+     <div class="col-md-6">
+       <br>
+       <p class="textoTitulo">Información Inmueble</p>
+       <br>
+       <p class="textoInfo">Id Inmueble: EL ID</p>
+       <p class="textoInfo">Nombre Inmueble: EL NOMBRE </p> 
+     </div>
+   </div>
+  </div>
+  <div class="container bloque">
+   <div class="row fila">
+     <div class="col-md-6">
+      <img class="imagen" src="https://image.ibb.co/gT52GJ/usuario.png" alt="Imagen Usuario" height="200" width="200">
+     </div>
+     <div class="col-md-6">
+       <br>
+       <p class="textoTitulo">Información Contacto Propietario </p>
+       <br>
+       <p class="textoInfo">Nombre: <p id="nombreProp">EL NOMBRE</p></p>
+       <p class="textoInfo">Correo Electrónico: EL EMAIL </p>
+     </div>
+    </div>  
+   </div>
+        </div>
+    </body>
+</html>
