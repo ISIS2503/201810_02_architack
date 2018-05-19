@@ -111,10 +111,17 @@ def detalle():
 @app.route('/silenciar')
 def silenciar():
     alarmaId = request.args.get('idAlarma')
+    residenciaId = request.args.get('idResidencia')
+    residenciaName = request.args.get('nombreR')
     headers = {'Authorization': 'Bearer ' + session['id_token']}
     requests.put(path + 'alarm/' + alarmaId + "/silenciar", headers = headers)
-    data = requests.get(path + 'unidadresidencial/', headers = headers).json()
-    return render_template('unidades.html', unidades = data)
+    data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
+    dataAlarmas = requests.get(path + 'residencia/' + residenciaId + "/alarms", headers = headers).json()
+    return render_template('DetalleInmueble.html',
+                            profile = data,
+                            idResidencia = residenciaId,
+                            NombreResidencia = residenciaName,
+                            alarmas = dataAlarmas)
     
 @app.route('/unidades')
 def unidades():

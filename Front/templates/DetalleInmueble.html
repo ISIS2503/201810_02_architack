@@ -46,7 +46,7 @@
         <tr>
             <td>{{x.tiempo}}</td>
             <td>{{x.mensaje}}</td>
-            <td><a href="http://localhost:9080/silenciar?idAlarma={{x.id}}"><button id="{{x.id}}Boton" type="button" class="btn btn-success" disabled=true>La alarma ya esta silenciada</button></a></td>
+            <td><a href="http://localhost:9080/silenciar?idAlarma={{x.id}}&idResidencia={{idResidencia}}&nombreR={{NombreResidencia}}"><button id="{{x.id}}Boton" type="button" class="btn btn-success" disabled=true>La alarma ya esta silenciada</button></a></td>
         </tr>
         <script>
             analizarSilenciar("{{x.id}}","{{x.silenciada}}");
