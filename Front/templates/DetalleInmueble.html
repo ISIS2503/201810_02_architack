@@ -30,6 +30,25 @@
      </div>
    </div>
   </div>
+  
+  <!-- Info alarmas -->
+  <div class="row fila">
+  <table class="table">
+  <tr>
+    <th>Tiempo</th>
+    <th>Mensaje</th>
+    <th>Silenciar</th>
+  </tr>
+  {% for x in alarmas %}
+    <tr>
+        <td>{{x.tiempo}}</td>
+        <td>{{x.mensaje}}</td>
+        <td><button type="button">Silenciar</button></td>
+    </tr>
+  {% endfor %}
+  </table>
+  </div>
+  
   <div class="container bloque">
    <div class="row fila">
      <div class="col-md-6">

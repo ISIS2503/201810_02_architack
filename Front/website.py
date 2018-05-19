@@ -99,9 +99,12 @@ def detalle():
     residenciaName = request.args.get('nombreR')
     headers = {'Authorization': 'Bearer ' + session['id_token']}
     data = requests.get(path + 'residencia/' + residenciaId + "/propietario", headers = headers).json()
-    print(data)
-    return render_template('DetalleInmueble.html', profile = data, idResidencia = residenciaId, NombreResidencia = residenciaName)
-    
+    dataAlarmas = requests.get(path + 'residencia/' + residenciaId + "/alarms", headers = headers).json()
+    return render_template('DetalleInmueble.html',
+                            profile = data,
+                            idResidencia = residenciaId,
+                            NombreResidencia = residenciaName,
+                            alarmas = dataAlarmas)
                            
 @app.route('/unidades')
 def unidades():
