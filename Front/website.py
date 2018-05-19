@@ -1,6 +1,7 @@
 #Importados de auth0
 from functools import wraps
 import json
+import math
 from os import environ as env
 from werkzeug.exceptions import HTTPException
 
@@ -40,6 +41,20 @@ auth0 = oauth.register(
     },
 )
 
+def arrange(data):
+    arrangedData = []
+    dim = 3
+    i = 0
+    
+    for x in data:
+        row = math.floor(i/dim)
+        if(i%dim == 0):
+            arrangedData.append([])
+        arrangedData[row].append(x)
+        i = i+1
+    return arrangedData
+ 
+
 @app.route('/')
 def index():
 	return render_template('index.html')
@@ -71,9 +86,10 @@ def dashboard():
     unidadId = request.args.get('idUnidad')
     headers = {'Authorization': 'Bearer ' + session['id_token']}
     data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+    arrangedData = arrange(data);
     
     return render_template('dashboard.html',
-                           residenciasUnidad = data,
+                           dataUR = arrangedData,
                            token = session['id_token'])
                            
                            
