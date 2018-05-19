@@ -45,19 +45,16 @@ public class AppMQTT {
             mens = "Cerradura con nivel de bateria critica";
         } else if (message.trim().equalsIgnoreCase("55555")) {
             tipo = 5;
-            mens = "Deteccion de humo en el ambiente fuera de lo normal";
+            mens = "Cerradura con nivel de bateria critica";
         } else if (message.trim().equalsIgnoreCase("66666")) {
             tipo = 6;
-            mens = "Deteccion de monoxido de carbono en el ambiente fuera de lo normal";
+            mens = "Cerradura con nivel de bateria critica";
         } else if (message.trim().equalsIgnoreCase("77777")) {
             tipo = 7;
-            mens = "Detección de ventanas abiertas";
+            mens = "Cerradura con nivel de bateria critica";
         } else if (message.trim().equalsIgnoreCase("88888")) {
             tipo = 8;
-            mens = "HealthCheck del Hub fuera de linea";
-        } else if (message.trim().equalsIgnoreCase("99999")) {
-            tipo = 9;
-            mens = "HealthCheck de la cerradura fuera de linea";
+            mens = "Cerradura con nivel de bateria critica";
         } else {
             tipo = 3;
             mens = "Numero de intentos excedidos";
