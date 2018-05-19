@@ -36,9 +36,13 @@ public class HealthChecks{
 	
 	public final static String URL_CORREO = "http://172.24.42.26:8088/healthError";
 	
+	public final static String URL_FALLO = "http://172.24.42.26:8088/Yale/alarma";
+	
 	public final static int TIME_BETWEEN_HEALTHCHECKS = 10000;
 	
 	public final static int LOST_HEALTHCHECKS_FAIL = 4;
+	
+	public final static String TOPICO_MQTT = "UnidadResidencial/Inmueble/Hub/HealthCheck";
 	
 
 	private MqttClient client;
@@ -62,8 +66,8 @@ public class HealthChecks{
 	}
 
 	public static void main(String[] args) {
-		//new HealthChecks().recibirMensajes();
-		new HealthChecks().recibirMensajesAsegurado();
+		new HealthChecks().recibirMensajes();
+		//new HealthChecks().recibirMensajesAsegurado();
 	}
 
 	/**
@@ -179,6 +183,24 @@ public class HealthChecks{
 
 	}
 	
+	
+	public String createJsonFallo(String message, String topic) {
+
+//		String [] fixTopic = topic.split("/");
+//		String topicPost = fixTopic[0] + "/" + fixTopic[1] + "/alarma/tipo alarma";
+		String json = "";
+		
+		String topicPost = topic;
+		
+		json = "{\"topic\": \"" + topicPost + "\", \"message\": \"" + message + "\"}";
+
+		return json;
+
+
+
+
+	}
+	
 
 	public void sendRequest(String messageJson) {
 		String resultado = "";
@@ -212,6 +234,42 @@ public class HealthChecks{
 		System.out.println(resultado);
 
 
+	}
+	
+	
+	public void sendFailure(String messageJson) {
+		String resultado = "";
+
+		try {
+			String urlParameters = messageJson;
+			byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+			int postDataLength = postData.length;
+			String request = URL_CORREO;
+			URL url = new URL(request);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setInstanceFollowRedirects(false);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("charset", "utf-8");
+			conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+			conn.setUseCaches(false);
+			try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+				wr.write(postData);
+				wr.flush();
+				Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+				for (int c; (c = in.read()) >= 0;)
+					resultado += (char) c;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		String resultadoFinal = resultado;
+		System.out.println(resultado);
+
+
+		
 	}
 
 	public long getTimeLastHealthCheck() {
