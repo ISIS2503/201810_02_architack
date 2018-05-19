@@ -18,13 +18,13 @@
     <body class="home">
         <div>
             <table>
-            <h1> Mapa de Residencias </h1>
+            <h1 style="text-align:center;"> Mapa de Residencias </h1>
             <div class="mapa">
                 {% for y in dataUR %}
                     <div class="container">
                         <div class="row" id="mapaRow">
                           {% for x in y %}
-                          <div class="col-md-4">
+                          <div class="col-md-3">
                             <h4 class="nombreRow">{{x.nombreResidencia}} {{x.id}}</h4>
                             <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
                             <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>

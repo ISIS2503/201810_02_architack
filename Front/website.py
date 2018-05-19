@@ -43,7 +43,7 @@ auth0 = oauth.register(
 
 def arrange(data):
     arrangedData = []
-    dim = 3
+    dim = 4
     i = 0
     
     for x in data:
