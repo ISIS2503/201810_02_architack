@@ -58,7 +58,7 @@ def arrange(data):
 @app.route('/')
 def index():
 	return render_template('index.html')
-    
+
 @app.route('/callback')
 def callback_handling():
     # Handles response from token endpoint
@@ -71,14 +71,15 @@ def callback_handling():
 
     # Store the tue user information in flask session.
     session['jwt_payload'] = userinfo
-    
-    session['id_token'] = id_token 
-    
+
+    session['id_token'] = id_token
+
     session['profile'] = {
         'user_id': userinfo['sub'],
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
+
     return redirect('/unidades')
     
 @app.route('/dashboard')
@@ -126,6 +127,7 @@ def unidades():
     
     return render_template('unidades.html',
                            unidades = data)
+
     
 @app.route('/login')
 def login():
@@ -136,17 +138,6 @@ def logout():
     session.clear()
     params = {'returnTo': url_for('index', _external=True), 'client_id': 'Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
-    
+
 if __name__ == '__main__':
 	app.run(debug=False,host='0.0.0.0',port=9080)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
