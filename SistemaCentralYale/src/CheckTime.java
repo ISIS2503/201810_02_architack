@@ -49,6 +49,8 @@ public class CheckTime extends TimerTask {
 			//Envio Correo
 			principal.sendRequest(jsonCorreo);
 			System.out.println("Se ha enviado el correo notificando el estado del hub.");
+			String jsonFallo = principal.createJsonFallo("88888", HealthChecks.TOPICO_MQTT);
+			principal.sendFailure(jsonFallo);
 		}
 		
 		principal.setTimeCurrentHealthCheck(System.currentTimeMillis());

@@ -43,6 +43,18 @@ public class AppMQTT {
         } else if (message.trim().equalsIgnoreCase("44444")) {
             tipo = 4;
             mens = "Cerradura con nivel de bateria critica";
+        } else if (message.trim().equalsIgnoreCase("55555")) {
+            tipo = 5;
+            mens = "Cerradura con nivel de bateria critica";
+        } else if (message.trim().equalsIgnoreCase("66666")) {
+            tipo = 6;
+            mens = "Cerradura con nivel de bateria critica";
+        } else if (message.trim().equalsIgnoreCase("77777")) {
+            tipo = 7;
+            mens = "Cerradura con nivel de bateria critica";
+        } else if (message.trim().equalsIgnoreCase("88888")) {
+            tipo = 8;
+            mens = "Cerradura con nivel de bateria critica";
         } else {
             tipo = 3;
             mens = "Numero de intentos excedidos";
@@ -50,6 +62,7 @@ public class AppMQTT {
 
         messages[3] = "Hubo una alarma en su inmueble: " + mens;
         System.out.println(messages[3]);
+        
 
         jsonCorreo = "{\"correoEmisor\": \"" + messages[0] + "\", \"correoReceptor\" : \"" + messages[1]
                 + " \", \"asunto\" : \"" + messages[2] + "\", \"cuerpo\" : \"" + messages[3] + "\"}";
