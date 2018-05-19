@@ -13,29 +13,35 @@
         <link type= "text/css" rel="stylesheet" href="{{ url_for('static',filename='styles/dashboard.css') }}">
         
         <!-- Nuestros JS -->
-        <script src="{{ url_for('static', filename='functions/analizar.js')}}"></script>
+        <script src="{{ url_for('static', filename='functions/dashboard.js')}}"></script>
     </head>
     <body class="home">
         <div>
             <table>
             <h1> Mapa de Residencias </h1>
             <div class="mapa">
-                <div class="row" id="mapaRow">
-                  {% for x in residenciasUnidad %}
-                  <div class="rowContainer">
-                    <h4 class="nombreRow">{{x.nombreResidencia}} {{x.id}}</h4>
-                    <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
-                    <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas!</p>
-                  </div>
-                  {% endfor %}
-                </div>
+                {% for y in dataUR %}
+                    <div class="container">
+                        <div class="row" id="mapaRow">
+                          {% for x in y %}
+                          <div class="col-md-4">
+                            <h4 class="nombreRow">{{x.nombreResidencia}} {{x.id}}</h4>
+                            <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
+                            <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>
+                          </div>
+                          {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
             </table>
         </div>
-    {% for x in residenciasUnidad %}
-    <script>
-        analizar({{x.id}},"{{token}}");
-    </script>
+    {% for y in dataUR %}
+        {% for x in y %}
+            <script>
+                createWorker({{x.id}},"{{url_for('static',filename='functions/worker.js')}}","{{token}}");
+            </script>
+        {% endfor %}
     {% endfor %}
     </body>
 </html>
