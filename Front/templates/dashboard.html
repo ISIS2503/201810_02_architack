@@ -8,9 +8,9 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- <link href="/css/app.css" rel="stylesheet"> -->
-        
+
         <!-- CSS por Andres -->
-        <link href="/css/dashboard.css" rel="stylesheet"> 
+        <link href="/css/dashboard.css" rel="stylesheet">
     </head>
     <body class="home">
         <div class="container">
@@ -28,5 +28,44 @@
         </div>
         </table>
         </div>
+        <script>
+        var mqtt;
+                  var reconnectTimeout = 2000;
+
+                  function onConnect(){
+                  console.log("Se conecto");
+                      mqtt.subscribe("#");
+                  }
+
+                   function MQTTconnect(){
+
+                      console.log("ENTRO A MQTTconnect");
+                      mqtt = new Paho.MQTT.Client("172.24.41.163", 9001, null);
+                      var options = {
+                      timeout:3,
+                      onSuccess: onConnect,
+                      onFailure: onFailure,
+                      };
+                      mqtt.onMessageArrived = onMessageArrived;
+                      mqtt.connect(options);
+                      client.setCallback(new MqttCallback() {
+                      function connectionLost(Throwable cause) {}
+                      function messageArrived(String topic, MqttMessage message) throws Exception {
+                  }
+                  });
+                  }
+
+                  function onFailure(message){
+                      setTimeout(MQTTconnect, reconnectTimeout);
+                  }
+
+                  function onMessageArrived(msg){
+
+                      console.log("Llego algo");
+                      console.log(msg.destinationName);
+
+                  }
+        </script>
+        <script> MQTTconnect(); </script>
     </body>
 </html>

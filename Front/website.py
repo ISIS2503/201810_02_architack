@@ -43,7 +43,7 @@ auth0 = oauth.register(
 @app.route('/')
 def index():
 	return render_template('index.html')
-    
+
 @app.route('/callback')
 def callback_handling():
     # Handles response from token endpoint
@@ -56,26 +56,26 @@ def callback_handling():
 
     # Store the tue user information in flask session.
     session['jwt_payload'] = userinfo
-    
-    session['id_token'] = id_token 
-    
+
+    session['id_token'] = id_token
+
     session['profile'] = {
         'user_id': userinfo['sub'],
         'name': userinfo['name'],
         'picture': userinfo['picture']
     }
-    return redirect('/unidades')
+    return redirect('/dashboard')
 @app.route('/dashboard')
 def dashboard():
-    unidadId = request.args.get('idUnidad')
-    headers = {'Authorization': 'Bearer ' + session['id_token']}
-    data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
-    
-    return render_template('dashboard.html',
-                           residenciasUnidad = data)
-                           
-                           
-                           
+    #unidadId = request.args.get('idUnidad')
+    #headers = {'Authorization': 'Bearer ' + session['id_token']}
+    #data = requests.get(path + 'unidadresidencial/' + unidadId + "/residencias", headers = headers).json()
+
+    return render_template('oldDashboard.html'
+                          )
+
+
+
 @app.route('/unidades')
 def unidades():
     headers = {'Authorization': 'Bearer ' + session['id_token']}
@@ -85,7 +85,7 @@ def unidades():
                            unidades = data)
 
 
-    
+
 @app.route('/login')
 def login():
     return auth0.authorize_redirect(redirect_uri='http://localhost:9080/callback', audience='https://isis2503-jagomez1.auth0.com/userinfo')
@@ -95,17 +95,6 @@ def logout():
     session.clear()
     params = {'returnTo': url_for('index', _external=True), 'client_id': 'Y_BZT-Tyb4Z09mgbRkkfZrR7GWN1wJ4y'}
     return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
-    
+
 if __name__ == '__main__':
 	app.run(debug=False,host='0.0.0.0',port=9080)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
