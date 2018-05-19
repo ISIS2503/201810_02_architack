@@ -25,7 +25,7 @@
                         <div class="row" id="mapaRow">
                           {% for x in y %}
                           <div class="col-md-4">
-                            <h4 class="nombreRow"> <a href="http://localhost:9080/detalle?idResidencia={{x.id}}"> {{x.nombreResidencia}} {{x.id}}</a></h4>
+                            <h4 class="nombreRow"> <a href="http://localhost:9080/detalle?idResidencia={{x.id}}&nombreR={{x.nombreResidencia}}"> {{x.nombreResidencia}} {{x.id}}</a></h4>
                             <img class="itemRow" id="{{x.id}}img" src="https://image.ibb.co/cJTS0d/greenhouse.png" alt="Imagen Casa Verde" height="200" width="200">
                             <p class="textoAlarma" id="{{x.id}}texto">Sin alarmas</p>
                           </div>
