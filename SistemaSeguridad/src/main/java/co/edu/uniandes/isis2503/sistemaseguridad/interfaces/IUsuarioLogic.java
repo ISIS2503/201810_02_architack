@@ -41,5 +41,5 @@ public interface IUsuarioLogic {
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception;
     public List<HorarioDTO> darHorarios(String id);
-    
+    public UsuarioDTO asignarResidencia(String idUser, String idResidencia);
 }

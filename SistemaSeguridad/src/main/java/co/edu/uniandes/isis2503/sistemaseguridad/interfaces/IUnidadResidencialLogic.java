@@ -24,6 +24,7 @@
 package co.edu.uniandes.isis2503.sistemaseguridad.interfaces;
 
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.ResidenciaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UnidadResidencialDTO;
 import java.util.List;
 
@@ -40,4 +41,5 @@ public interface IUnidadResidencialLogic {
     public List<AlarmaDTO> findAlarms(String id);
     public List<AlarmaDTO> findAlarmsBarrio(String barrio);
     public List<AlarmaDTO> findAlarmsByMonth (String id);
+    public List<ResidenciaDTO> darResidenciasUR(String id);
 }

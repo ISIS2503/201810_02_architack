@@ -38,5 +38,5 @@ public interface IAlarmaConverter {
 
     public List<AlarmaDTO> listEntitiesToListDTOs(List<AlarmaEntity> entities);
 
-    public List<AlarmaEntity> listDTOsToListEntities(List<AlarmaDTO> dtos);    
+    public List<AlarmaEntity> listDTOsToListEntities(List<AlarmaDTO> dtos);
 }

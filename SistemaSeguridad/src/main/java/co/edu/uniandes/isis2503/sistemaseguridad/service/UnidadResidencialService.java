@@ -63,7 +63,6 @@ import java.util.logging.Logger;
  */
 @Path("/unidadresidencial")
 @Produces(MediaType.APPLICATION_JSON)
-@Secured({Role.yale})
 public class UnidadResidencialService {
 
     private final IUnidadResidencialLogic unidadResidencialLogic;
@@ -81,6 +80,7 @@ public class UnidadResidencialService {
     }
 
     @POST
+    @Secured({Role.yale})
     public UnidadResidencialDTO add(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.add(dto);
     }
@@ -92,7 +92,7 @@ public class UnidadResidencialService {
         RespuestaDTO r = new RespuestaDTO("El registro se realizo de manera exitosa");
         list.add(r);
         
-        AlarmaDTO alarma = new AlarmaDTO(null, dto.getTipo(), dto.getTiempo(), dto.getMensaje());
+        AlarmaDTO alarma = new AlarmaDTO(null, dto.getTipo(), dto.getTiempo(), dto.getMensaje(), false);
         alarma = alarmaLogic.add(alarma);
         list.add(alarma);
         
@@ -138,6 +138,7 @@ public class UnidadResidencialService {
     }
 
     @POST
+    @Secured({Role.yale})
     @Path("{nombre}/residencia")
     public ResidenciaDTO addResidencia(@PathParam("nombre") String id, ResidenciaDTO dto) throws Exception {
         UnidadResidencialDTO unidad = unidadResidencialLogic.find(id);
@@ -148,6 +149,7 @@ public class UnidadResidencialService {
     }
 
     @PUT
+    @Secured({Role.yale})
     public UnidadResidencialDTO update(UnidadResidencialDTO dto) {
         return unidadResidencialLogic.update(dto);
     }
@@ -167,35 +169,46 @@ public class UnidadResidencialService {
     }
 
     @GET
+    @Secured({Role.yale, Role.admin, Role.seguridad})
     public List<UnidadResidencialDTO> all() {
         return unidadResidencialLogic.all();
     }
+    
 
     @DELETE
+    @Secured({Role.yale})
     @Path("/{id}")
-    public Response delete(@PathParam("id") String id) {
+    public RespuestaDTO delete(@PathParam("id") String id) {
         try {
             UnidadResidencialDTO unidad = unidadResidencialLogic.find(id);
             unidad.setActiva(false);
             unidadResidencialLogic.update(unidad);
-            return Response.status(200).header("Access-Control-Allow-Origin", "*").entity("Sucessful: Unidad Residencial was disabled").build();
+            return new RespuestaDTO("Sucessful: Unidad Residencial was disabled");
         } catch (Exception e) {
             Logger.getLogger(UnidadResidencialService.class.getName()).log(Level.WARNING, e.getMessage());
-            return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
+            return new RespuestaDTO("We found errors in your query, please contact the Web Admin.");
         }
     }
     
     @GET
-    @Path("/barrio/{barrio}")
+    @Secured({Role.yale, Role.admin, Role.seguridad})
+    @Path("/alarmasPorBarrio/{barrio}")
     public List<AlarmaDTO> alarmasBarrio(@PathParam("barrio") String barrio) {
         return unidadResidencialLogic.findAlarmsBarrio(barrio);
     }
     
     @GET
-    @Path("mes/{id}")
+    @Path("{id}/alarmasUltimoMes")
     @Secured({Role.yale, Role.admin, Role.seguridad})
     public List<AlarmaDTO> findAlarmsByMonth(@PathParam("id") String id) {
         return unidadResidencialLogic.findAlarmsByMonth(id);
+    }
+    
+    @GET
+    @Path("/{id}/residencias")
+    @Secured({Role.yale, Role.admin, Role.seguridad})
+    public List<ResidenciaDTO> darResidenciasUR(@PathParam("id") String id) {
+        return unidadResidencialLogic.darResidenciasUR(id);
     }
     
 }

@@ -26,12 +26,8 @@ package co.edu.uniandes.isis2503.sistemaseguridad.logic;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IHorarioLogic;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioLogic;
 import static co.edu.uniandes.isis2503.sistemaseguridad.model.dto.converter.HorarioConverter.CONVERTER;
-import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
-import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.persistence.HorarioPersistence;
 
 /**
@@ -40,7 +36,7 @@ import co.edu.uniandes.isis2503.sistemaseguridad.persistence.HorarioPersistence;
  */
 public class HorarioLogic implements IHorarioLogic {
     
-     private final HorarioPersistence persistence;
+    private final HorarioPersistence persistence;
 
     public HorarioLogic() {
         this.persistence = new HorarioPersistence();
@@ -73,8 +69,6 @@ public class HorarioLogic implements IHorarioLogic {
 
     @Override
     public Boolean delete(String id) {
-         return persistence.delete(id);
+        return persistence.delete(id);
     }
-
-
 }

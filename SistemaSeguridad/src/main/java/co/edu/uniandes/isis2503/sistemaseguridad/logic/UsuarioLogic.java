@@ -30,6 +30,7 @@ import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUsuarioLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.HorarioDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.entity.UsuarioEntity;
 import co.edu.uniandes.isis2503.sistemaseguridad.persistence.UsuarioPersistence;
 
 /**
@@ -39,12 +40,12 @@ import co.edu.uniandes.isis2503.sistemaseguridad.persistence.UsuarioPersistence;
 public class UsuarioLogic implements IUsuarioLogic {
     
     private final UsuarioPersistence persistence;
-    private final ResidenciaLogic residenciaLogic;
+//    private final ResidenciaLogic residenciaLogic;
     private final HorarioLogic horarioLogic;
 
     public UsuarioLogic() {
         this.persistence = new UsuarioPersistence();
-        this.residenciaLogic = new ResidenciaLogic();
+//        this.residenciaLogic = new ResidenciaLogic();
         this.horarioLogic = new HorarioLogic();
     }
 
@@ -78,17 +79,23 @@ public class UsuarioLogic implements IUsuarioLogic {
     public Boolean delete(String id) {
         return persistence.delete(id);
     }
-    
+     
     @Override
     public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception
     {
-        if (residenciaLogic.find(idResidencia).getPropietario().equals(idDueño))
-        {
-            throw new Exception();
-        }
-        
-        return residenciaLogic.findAlarms(idResidencia);
+        return null;
     }
+    
+//    @Override
+//    public List<AlarmaDTO> findAlarms(String idDueño, String idResidencia) throws Exception
+//    {
+//        if (residenciaLogic.find(idResidencia).getPropietario().equals(idDueño))
+//        {
+//            throw new Exception();
+//        }
+//        
+//        return residenciaLogic.findAlarms(idResidencia);
+//    }
     
     @Override
     public List<HorarioDTO> darHorarios(String id){
@@ -104,5 +111,12 @@ public class UsuarioLogic implements IUsuarioLogic {
         return horarios;
     }
     
+    public UsuarioDTO asignarResidencia(String idUser, String idResidencia){
+        UsuarioEntity user = persistence.find(idUser);
+        List<String> residencias = user.getResidencia();
+        residencias.add(idResidencia);
+        user.setResidencia(residencias);
+        return CONVERTER.entityToDto(persistence.update(user));
+    }
 
 }

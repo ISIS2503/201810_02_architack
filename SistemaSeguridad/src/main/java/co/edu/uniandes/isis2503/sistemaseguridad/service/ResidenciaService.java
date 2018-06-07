@@ -42,6 +42,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IResidenciaLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IAlarmaLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import java.util.logging.Logger;
 
 /**
@@ -117,9 +118,16 @@ public class ResidenciaService {
     }
     
     @GET
+    @Path("/{id}/propietario")
+    public UsuarioDTO findOwner(@PathParam("id") String id) {
+        return residenciaLogic.findOwner(id);
+    }
+    
+    @GET
     @Path("mes/{id}")
     @Secured({Role.yale, Role.admin, Role.seguridad})
     public List<AlarmaDTO> findAlarmsByMonth(@PathParam("id") String id) {
         return residenciaLogic.findAlarmsByMonth(id);
     }
+    
 }

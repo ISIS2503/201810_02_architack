@@ -17,6 +17,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IAlarmaLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.RespuestaDTO;
 import java.util.logging.Logger;
 
 /**
@@ -66,5 +67,15 @@ public class AlarmaService {
             Logger.getLogger(AlarmaService.class.getName()).log(Level.WARNING, e.getMessage());
             return Response.status(500).header("Access-Control-Allow-Origin", "*").entity("We found errors in your query, please contact the Web Admin.").build();
         }
-    }   
+    }
+    
+    @PUT
+    @Path("/{id}/silenciar")
+    @Secured({Role.yale, Role.admin, Role.seguridad, Role.prop})
+    public RespuestaDTO silenciar(@PathParam("id") String id) {
+        AlarmaDTO alarma = sensorLogic.find(id);
+        alarma.setSilenciada(true);
+        sensorLogic.update(alarma);
+        return new RespuestaDTO("La alarma " + id + " se silencio correctamente.");
+    }
 }

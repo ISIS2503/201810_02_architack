@@ -87,7 +87,7 @@ public class UsuarioService {
     
     @DELETE
     @Path("{idUser}/eliminarHorario/{id}")
-    public void delete(@PathParam("id") String id, @PathParam("idUser") String idUser){
+    public void eliminarHorarioUsuario(@PathParam("id") String id, @PathParam("idUser") String idUser){
         UsuarioDTO user = usuarioLogic.find(idUser);
         user.getHorarios().remove(id);
         usuarioLogic.update(user);
@@ -95,15 +95,15 @@ public class UsuarioService {
     }
     
     @GET
-    @Path("{id}/darHorario")
-    public HorarioDTO darHorarios (@PathParam("id") String id){
-        return horarioLogic.find(id);
+    @Path("horarios")
+    public List<HorarioDTO> darHorarios (@PathParam("email") String email){
+        return horarioLogic.all();
     }
     
     @GET
-    @Path("{id}/darHorariosUser")
-    public List<HorarioDTO> darHorariosUser (@PathParam("id") String id){
-        return usuarioLogic.darHorarios(id);
+    @Path("{email}/horarios")
+    public List<HorarioDTO> darHorariosUsuario(@PathParam("email") String email){
+        return usuarioLogic.darHorarios(email);
     }
     
     @POST
@@ -134,7 +134,7 @@ public class UsuarioService {
                     .asString();
             
             JSONObject body = new JSONObject(request.getBody());
-            token = body.toString();
+            token = body.getString("id_token");
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         respuesta.setMsg(token);
@@ -189,8 +189,20 @@ public class UsuarioService {
     
     @GET
     @Path("/dar")
-    public List<UsuarioDTO> darusuarios(){
+    public List<UsuarioDTO> darUsuarios(){
         return usuarioLogic.all();
+    }
+    
+    @GET
+    @Path("/dar/{id}")
+    public UsuarioDTO darUsuario(@PathParam("id") String id){
+        return usuarioLogic.find(id);
+    }
+    
+    @PUT
+    @Path("/{id}/asignarResidencia/{idResidencia}")
+    public UsuarioDTO asignarResidencia(@PathParam("id") String id, @PathParam("idResidencia") String idR){
+        return usuarioLogic.asignarResidencia(id, idR);
     }
     
     @POST
@@ -347,6 +359,7 @@ public class UsuarioService {
         } catch(Exception e) { return new RespuestaDTO(e.getMessage()); }
         
         respuesta.setMsg("Se elimino el usuario con correo " + email + " correctamente.");
+        usuarioLogic.delete(email);
         return respuesta;
     }
     

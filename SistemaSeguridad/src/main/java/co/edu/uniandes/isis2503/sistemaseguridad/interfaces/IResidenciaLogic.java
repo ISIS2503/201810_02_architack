@@ -25,6 +25,7 @@ package co.edu.uniandes.isis2503.sistemaseguridad.interfaces;
 
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.ResidenciaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import java.util.List;
 
 /**
@@ -39,4 +40,5 @@ public interface IResidenciaLogic {
     public Boolean delete(String id);
     public List<AlarmaDTO> findAlarms(String id);
     public List<AlarmaDTO> findAlarmsByMonth (String id);
+    public UsuarioDTO findOwner(String id);
 }

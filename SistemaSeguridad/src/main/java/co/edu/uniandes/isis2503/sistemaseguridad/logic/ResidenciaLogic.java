@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.UUID;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IResidenciaLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.UsuarioDTO;
 import java.util.ArrayList;
 
 /**
@@ -40,11 +41,13 @@ public class ResidenciaLogic implements IResidenciaLogic {
     private final ResidenciaPersistence persistence;
     private final HubLogic hubLogic;
     private final AlarmaLogic alarmaLogic;
+    private final UsuarioLogic usuarioLogic;
 
     public ResidenciaLogic() {
         this.persistence = new ResidenciaPersistence();
         this.hubLogic = new HubLogic();
         this.alarmaLogic = new AlarmaLogic();
+        this.usuarioLogic = new UsuarioLogic();
     }
 
     @Override
@@ -97,5 +100,18 @@ public class ResidenciaLogic implements IResidenciaLogic {
     public List<AlarmaDTO> findAlarmsByMonth (String id)
     {
         return alarmaLogic.findAlarmsByMonth(findAlarms(id));
+    }
+    
+    @Override
+    public UsuarioDTO findOwner(String id)
+    {
+        List<UsuarioDTO> users = usuarioLogic.all();
+        for (int i = 0; i < users.size(); i++){
+            List<String> residencias = usuarioLogic.find(users.get(i).getEmail()).getResidencias();
+                for (int j = 0; j < residencias.size(); j++)
+                    if (Integer.parseInt(residencias.get(j))==Integer.parseInt(id))
+                        return users.get(i);
+        }
+        return null;
     }
 }

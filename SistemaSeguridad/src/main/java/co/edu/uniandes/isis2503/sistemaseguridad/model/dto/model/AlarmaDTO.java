@@ -43,17 +43,19 @@ public class AlarmaDTO {
     private int tipo;
     private String mensaje;
     private String tiempo;
+    private boolean silenciada;
 
 
     public AlarmaDTO() {
-
+        
     }
 
-    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje) {
+    public AlarmaDTO(String id, int tipo, String tiempo, String mensaje, boolean silenciada) {
         this.id = id;
         this.tipo = tipo;
         this.mensaje = mensaje;
         this.tiempo = tiempo;
+        this.silenciada = silenciada;
     }
 
     public String getId() {
@@ -88,4 +90,17 @@ public class AlarmaDTO {
         this.tiempo = tiempo;
     }
 
+    /**
+     * @return the silenciada
+     */
+    public boolean isSilenciada() {
+        return silenciada;
+    }
+
+    /**
+     * @param silenciada the silenciada to set
+     */
+    public void setSilenciada(boolean silenciada) {
+        this.silenciada = silenciada;
+    }
 }

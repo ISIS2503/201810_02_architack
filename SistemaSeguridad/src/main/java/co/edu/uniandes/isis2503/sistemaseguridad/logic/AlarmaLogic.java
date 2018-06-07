@@ -29,9 +29,11 @@ import co.edu.uniandes.isis2503.sistemaseguridad.persistence.AlarmaPersistence;
 import java.util.List;
 import java.util.UUID;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IAlarmaLogic;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.ResidenciaDTO;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -82,24 +84,26 @@ public class AlarmaLogic implements IAlarmaLogic {
     
     public List<AlarmaDTO> findAlarmsByMonth (List<AlarmaDTO> lista){
         List <AlarmaDTO> alarmas = new ArrayList();
-        List <AlarmaDTO> alarmasBuscadas = new ArrayList();
+        List <AlarmaDTO> alarmasMes = new ArrayList();
         alarmas = lista;
-        String pattern = "d-MM-YYYY";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String pattern = "d-MMM-YYYY";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, Locale.US);
         String date = simpleDateFormat.format(new Date());
         String[] partes = date.split("-");
-        String month = partes[2];
-        int año = Integer.parseInt(partes[3]);
+        String month = partes[1];
         
         for (AlarmaDTO alarma : alarmas) {
-            String s = alarma.getTiempo();
-            String[] token = s.split(" ");
-            
-            if (token[1].equals(month) && Integer.parseInt(token[2])== año)
-            {
-                alarmasBuscadas.add(alarma);
-            } 
+            if(alarma != null) {
+                String s = alarma.getTiempo();
+                if(s != null) {
+                    String[] token = s.split(" ");
+                    if (token[1].toLowerCase().equals(month.toLowerCase()))
+                    {
+                        alarmasMes.add(alarma);
+                    } 
+                }
+            }
         }
-      return alarmasBuscadas;  
+      return alarmasMes;  
     }
 }

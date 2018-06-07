@@ -47,7 +47,7 @@ public class UsuarioConverter implements IUsuarioConverter {
         dto.setEmail(entity.getEmail());
         dto.setUserName(entity.getUserName());
         dto.setResidencias(entity.getResidencia());
-        dto.setGrupo(entity.getPassword());
+        dto.setGrupo(entity.getGrupo());
         dto.setHorarios(entity.getHorarios());
         dto.setPassword(entity.getPassword());
         return dto;

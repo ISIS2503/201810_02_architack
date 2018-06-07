@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.UUID;
 import co.edu.uniandes.isis2503.sistemaseguridad.interfaces.IUnidadResidencialLogic;
 import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.AlarmaDTO;
+import co.edu.uniandes.isis2503.sistemaseguridad.model.dto.model.ResidenciaDTO;
 import java.util.ArrayList;
 
 /**
@@ -81,7 +82,12 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
     @Override
     public List<AlarmaDTO> findAlarms(String id) {
         UnidadResidencialDTO unidadR = this.find(id);
-        List<String> residencias = unidadR.getResidencias();
+        List<String> residencias;
+        if(unidadR != null) {
+            residencias = unidadR.getResidencias();
+        } else {
+            return new ArrayList<>();
+        }
         
         List<AlarmaDTO> lista = new ArrayList<>();
         List<String> residenciasBuscadas = new ArrayList<>();
@@ -116,4 +122,30 @@ public class UnidadResidenciaLogic implements IUnidadResidencialLogic{
     {
         return alarmaLogic.findAlarmsByMonth(findAlarms(id));
     }
+    
+    public List<ResidenciaDTO> darResidenciasUR(String id) {
+        UnidadResidencialDTO unidadR = this.find(id);
+        List<String> residencias;
+        if(unidadR != null) {
+            residencias = unidadR.getResidencias();
+        } else {
+            return new ArrayList<>();
+        }
+        
+        if(residencias == null) return new ArrayList<>();
+        
+        List<ResidenciaDTO> lista = new ArrayList<>();
+        List<String> residenciasBuscadas = new ArrayList<>();
+        for(String idResidencia : residencias) {
+            if(!residenciasBuscadas.contains(idResidencia)) {
+                residenciasBuscadas.add(idResidencia);
+                ResidenciaDTO residencia = residenciaLogic.find(idResidencia);
+                if(residencia != null)
+                    lista.add(residencia);
+            }
+        }
+        
+        return lista;
+    }
 }
+    

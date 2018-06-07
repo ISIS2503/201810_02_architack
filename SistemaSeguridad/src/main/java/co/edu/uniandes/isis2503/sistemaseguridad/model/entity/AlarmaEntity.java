@@ -39,11 +39,6 @@ public class AlarmaEntity implements Serializable {
     private static final int MOVIMIENTO_DETECTADO = 2;
     private static final int INTENTOS_DETECTADOS = 3;
     private static final int BATERIA_CRITICA = 4;
-    private static final int FALLO_INTERNET_RESIDENCIA = 5;
-    private static final int FALLO_INTERNET_INMUEBLE = 6;
-    private static final int DETEC_HUMO = 7;
-    private static final int DETEC_MONCARBONO = 8;
-    private static final int DETEC_VENTABIERTAS = 9;
 
     @Id
     private String id;
@@ -53,16 +48,19 @@ public class AlarmaEntity implements Serializable {
     private String mensaje;
     
     private String tiempo;
+    
+    private Boolean silenciada;
 
     public AlarmaEntity() {
 
     }
 
-    public AlarmaEntity(String id, int tipo, String mensaje, String tiempo) {
+    public AlarmaEntity(String id, int tipo, String mensaje, String tiempo, Boolean silenciada) {
         this.id = id;
         this.tipo = tipo;
         this.mensaje = mensaje;
         this.tiempo = tiempo;
+        this.silenciada = silenciada;
     }
 
     public String getId() {
@@ -97,4 +95,19 @@ public class AlarmaEntity implements Serializable {
         this.tiempo = tiempo;
     }
 
+    /**
+     * @return the silenciada
+     */
+    public Boolean getSilenciada() {
+        return silenciada;
+    }
+
+    /**
+     * @param silenciada the silenciada to set
+     */
+    public void setSilenciada(Boolean silenciada) {
+        this.silenciada = silenciada;
+    }
+
+    
 }

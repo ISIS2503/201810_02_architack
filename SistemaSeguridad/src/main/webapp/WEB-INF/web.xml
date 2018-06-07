@@ -63,7 +63,7 @@ THE SOFTWARE.
 
     <servlet-mapping>
         <servlet-name>jersey-services</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

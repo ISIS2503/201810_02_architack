@@ -37,5 +37,4 @@ public interface IHorarioLogic {
     public HorarioDTO find(String id);
     public List<HorarioDTO> all();
     public Boolean delete(String id);
-    
-}
+} 

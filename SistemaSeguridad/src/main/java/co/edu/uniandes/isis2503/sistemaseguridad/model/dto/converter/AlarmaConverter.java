@@ -48,6 +48,8 @@ public class AlarmaConverter implements IAlarmaConverter {
         dto.setMensaje(entity.getMensaje());
         dto.setTiempo(entity.getTiempo());
         dto.setTipo(entity.getTipo());
+        dto.setSilenciada(entity.getSilenciada());
+        
         return dto;
     }
 
@@ -58,8 +60,8 @@ public class AlarmaConverter implements IAlarmaConverter {
         entity.setId(dto.getId());
         entity.setMensaje(dto.getMensaje());
         entity.setTiempo(dto.getTiempo());
-        entity.setTipo(dto.getTipo());  
-  
+        entity.setTipo(dto.getTipo());
+        entity.setSilenciada(dto.isSilenciada());
         return entity;
     }
 
