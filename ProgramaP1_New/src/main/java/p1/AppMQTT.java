@@ -32,7 +32,7 @@ public class AppMQTT {
 
         System.out.print("TOPICO : " + topic);
         System.out.print("MENSAJE : " + message);
-        String pUrlPersistir = "http://172.24.42.30:8080/unidadresidencial/persistir";
+        String pUrlPersistir = "http://localhost:8080/api/unidadresidencial/persistir";
 
         if (message.trim().equalsIgnoreCase("11111")) {
             tipo = 1;
@@ -82,7 +82,7 @@ public class AppMQTT {
           System.out.print("Correo : " + jsonCorreo);
           System.out.print("Por persistir :" + jsonPersistir);
 //        enviardatosCorreo(jsonCorreo);
-//        enviarDatosPersistir(jsonPersistir, pUrlPersistir);
+          enviarDatosPersistir(jsonPersistir, pUrlPersistir);
     }
 
     public static String enviardatosCorreo(String jsonCorreo) {

@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -31,7 +32,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class Bridge{
 
-	public final static String URL_BALANCEADOR = "http://172.24.42.106:80/Yale/alarma";
+	public final static String URL_BALANCEADOR = "http://localhost:8081/Yale/alarma";
 
 	MqttClient client;
 
@@ -84,9 +85,7 @@ public class Bridge{
 			//client.subscribe("unidadResidencial/residencia/alarma/movimientoDetectado", 0);
 			//client.subscribe("unidadResidencial/residencia/alarma/intentosExcedidos", 0);
 			//client.subscribe("#", 0);
-			client.subscribe("UnidadResidencial/Inmueble/#");
-			client.subscribe("UnidadResidencial/Inmueble/Hub/Alarma");
-			client.subscribe("Unidad1/Inmueble1/alarma/bateria baja");
+			client.subscribe("UnidadResidencial/Inmueble/Hub/Cerradura");
 
 		} 
 		catch (MqttException e) {
@@ -99,7 +98,7 @@ public class Bridge{
 		String [] fixTopic = topic.split("/");
 		String topicPost = fixTopic[0] + "/" + fixTopic[1] + "/alarma/tipo alarma";
 		String json = "";
-		json = "{\"topic\": \"" + topicPost + "\", \"message\" : \"" + message + "\"}";
+		json = "{\"topic\": \"" + topicPost + "\", \"message\": " + message.trim() + "}";
 
 		return json;
 

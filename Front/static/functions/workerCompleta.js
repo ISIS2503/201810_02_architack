@@ -3,16 +3,16 @@ function analizar(id, token) {
     var texto = "Sin alarmas";
     var cambiarColor = false;
     var type = 1;
-    xhr.open('GET', "http://172.24.42.30:8080/api/residencia/" + id + "/alarms", false);
+    xhr.open('GET', "http://localhost:8080/api/residencia/" + id + "/alarms", false);
     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
     xhr.send();
-    
+
     if (xhr.readyState == 4) {
         console.log(xhr.status);
         var response = JSON.parse(xhr.responseText);
         evaluar(response);
     }
-    
+
     function evaluar(response) {
         cambiarColor = false;
         for(var i = 0; i < response.length && !cambiarColor; i = i+1) {
@@ -22,11 +22,11 @@ function analizar(id, token) {
                 cambiarColor = true;
             }
         }
-        
+
         if(cambiarColor) type = 0;
-        
+
         console.log(id + "//" + cambiarColor + "//" + texto + "//" + type);
-        
+
         data = {"id":id, "texto":texto, "type": type};
         postMessage(data);
     }

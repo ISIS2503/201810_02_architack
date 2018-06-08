@@ -1,6 +1,0 @@
-service\P1Service.class
-p1\AppMQTT.class
-p1\ThreadServidor.class
-dtos\MqttDTO.class
-dtos\MessageDTO.class
-main\Main.class

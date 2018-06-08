@@ -19,7 +19,7 @@ from flask import Flask, jsonify, request
 
 
 #Constantes
-path = "http://172.24.42.30:8080/api/"
+path = "http://localhost:8080/api/"
 #Fin constantes
 
 #Declaracion APP
